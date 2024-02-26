@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <cs50.h>
 
 int main(void)
 {
-    printf("Let's start\n");
+    int x = get_int("type first int ");
+    printf("your first int %i",x);
 }
