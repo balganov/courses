@@ -8,7 +8,7 @@ int main(void)
 
     while (x > 0)
     {
-        printf("print counter %i",x);
+        printf("print counter %i\n",x);
         x--;
     }
 
