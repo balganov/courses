@@ -12,5 +12,9 @@ int main(void)
         x--;
     }
 
+    for (int i = 0; y > i, y--)
+    {
+        printf("print second counter %i\n",y);
+    }
 
 }
