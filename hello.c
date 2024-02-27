@@ -6,15 +6,9 @@ int main(void)
     int x = get_int("type first int ");
     int y = get_int("type second int ");
 
-    while (x > 0)
+    while (true)
     {
-        printf("print counter %i\n",x);
-        x--;
-    }
-
-    for (int i = 0; y > i; y--)
-    {
-        printf("print second counter %i\n",y);
+        printf("aaaaa\n");
     }
 
 }
