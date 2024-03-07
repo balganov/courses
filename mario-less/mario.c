@@ -20,18 +20,19 @@ int main(void)
 
 void draw (int a)
 {
-    int count;
     for (int r = a; r > 0; r--)
     {
         for (int c = 0; c < r; c++)
         {
             printf("#");
         }
-        for (int c = 0; c < count; c++)
+        for (int c = 0; c < a; c++)
         {
-            printf("*");
+            for (int i = 0; i < (c+1); i++)
+            {
+                printf("*");
+            }
         }
         printf("\n");
-        count++;
     }
 }
