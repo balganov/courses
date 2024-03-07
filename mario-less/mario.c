@@ -24,12 +24,12 @@ void draw (int a)
     {
         for (int c = 0; c < a; c++)
         {
-            if (a == 1)
+            if (c == 1)
             {
                 printf("#");
             } else
             {
-                printf(" ");
+                printf("*");
             }
         }
         printf("\n");
