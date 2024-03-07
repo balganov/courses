@@ -27,6 +27,11 @@ void draw (int a)
         {
             printf("#");
         }
+        for (int c = 0; c < count; c++)
+        {
+            printf("*");
+        }
         printf("\n");
+        count++;
     }
 }
