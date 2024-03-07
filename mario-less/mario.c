@@ -7,9 +7,10 @@ int main(void)
 
     for (int r = 0; r < height; r++)
     {
+        printf(" ");
         for (int c = 0; c < height; c++)
         {
-            printf(" #");
+            printf("#");
         }
         printf("\n");
     }
