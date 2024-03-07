@@ -5,9 +5,15 @@ int main(void)
 {
     int height = get_int("Pyramid height: ");
 
-    for (int r = 0; r < height; r++)
+    draw (height);
+
+}
+
+void draw (int a)
+{
+    for (int r = 0; r < a; r++)
     {
-        for (int c = 0; c < height; c++)
+        for (int c = 0; c < a; c++)
         {
             printf("#");
         }
