@@ -15,7 +15,6 @@ int main(void)
         while (height < 1);
 
         draw (height);
-        printf("%.*s",height,"*");
     }
 }
 
@@ -23,10 +22,11 @@ void draw (int a)
 {
     for (int r = a; r > 0; r--)
     {
+        printf("*");
         for (int c = 0; c < a; c++)
         {
-                //printf("%.*s",r,"*");
+            printf("#");
         }
-        //printf("\n");
+        printf("\n");
     }
 }
