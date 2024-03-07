@@ -1,11 +1,16 @@
 #include <stdio.h>
 #include <cs50.h>
+void draw (int a);
 
 int main(void)
 {
     int height = get_int("Pyramid height: ");
 
-    draw (height);
+    do
+    {
+        draw (height);
+    } while (height < 1);
+
 
 }
 
