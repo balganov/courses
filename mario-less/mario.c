@@ -1,8 +1,12 @@
 #include <stdio.h>
-#include <c50.h>
+#include <cs50.h>
 
 int main(void)
 {
-    int height = get_int("Pyramid height: ")
-    
+    int height = get_int("Pyramid height: ");
+
+    for (int i = 0; i < height; i++)
+    {
+        printf("#");
+    }
 }
