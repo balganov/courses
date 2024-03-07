@@ -20,10 +20,10 @@ int main(void)
 
 void draw (int a)
 {
-    int c;
+    int count;
     for (int r = a; r > 0; r--)
     {
-        for (c = 0; c < r; c++)
+        for (int c = 0; c < r; c++)
         {
             printf("#");
         }
