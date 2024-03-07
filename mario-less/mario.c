@@ -27,7 +27,7 @@ void draw (int a)
             printf("#");
         }
 
-        for (int k = 0; k > ; k++)
+        for (int k = 0; k < a; k++)
         {
             printf("*");
         }
