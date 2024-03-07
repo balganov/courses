@@ -3,11 +3,8 @@
 
 int main(void)
 {
-    int x = get_string()
+    string name = get_string("What's your name? ");
+    printf("hello, %s\n",name);
 
-    while (true)
-    {
-        printf("aaaaa\n");
-    }
 
 }
