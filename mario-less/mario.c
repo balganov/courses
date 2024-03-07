@@ -24,8 +24,7 @@ void draw (int a)
     {
         for (int c = 0; c < a; c++)
         {
-                printf("#");
-                printf("*");
+                printf("%.*s",c,"*");
         }
         printf("\n");
     }
