@@ -24,13 +24,8 @@ void draw (int a)
     {
         for (int c = 0; c < a; c++)
         {
-            if (c == 1)
-            {
                 printf("#");
-            } else
-            {
                 printf("*");
-            }
         }
         printf("\n");
     }
