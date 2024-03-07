@@ -3,8 +3,7 @@
 
 int main(void)
 {
-    int x = get_int("type first int ");
-    int y = get_int("type second int ");
+    int x = get_string()
 
     while (true)
     {
