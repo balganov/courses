@@ -22,7 +22,6 @@ void draw (int a)
 {
     for (int r = a; r > 0; r--)
     {
-        printf("*");
         for (int c = 0; c < a; c++)
         {
             printf("#");
