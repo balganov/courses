@@ -4,14 +4,15 @@ void draw (int a);
 
 int main(void)
 {
-    int height = get_int("Pyramid height: ");
 
+    int height;
     do
     {
-        draw (height);
-    } while (height < 1);
+        height = get_int("Pyramid height: ");
+    }
+    while (height < 1);
 
-
+    draw (height);
 }
 
 void draw (int a)
