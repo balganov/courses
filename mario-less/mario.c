@@ -5,8 +5,12 @@ int main(void)
 {
     int height = get_int("Pyramid height: ");
 
-    for (int i = 0; i < height; i++)
+    for (int r = 0; r < height; r++)
     {
-        printf("#");
+        for (int c = 0; c < height; c++)
+        {
+            printf("#");
+        }
+        printf("\n");
     }
 }
