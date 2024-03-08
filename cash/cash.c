@@ -11,12 +11,10 @@ int main(void)
     while(n < 0);
     //25, 10, 5, 1
     int coins;
-    if (n / 25 && n % 25 == 0)
+    if (n % 25 == 0)
     {
         coins = n / 25;
-        printf("%i\n",coins)
+        printf("%i\n",coins);
     }
 
-    int k = n % 25;
-    //printf("%i\n",k);
 }
