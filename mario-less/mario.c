@@ -6,16 +6,15 @@ int main(void)
 {
 
     int height;
-    while (true)
-    {
-        do
-        {
-            height = get_int("Pyramid height: ");
-        }
-        while (height < 1);
 
-        draw (height);
+    do
+    {
+        height = get_int("Pyramid height: ");
     }
+    while (height < 1);
+
+    draw (height);
+
 }
 
 void draw (int a)
@@ -25,7 +24,7 @@ void draw (int a)
     {
         for (int k = 0; k < b - i; k++)
         {
-            printf("*");
+            printf(" ");
         }
         for (int j = 0; j < i + 1; j++)
         {
