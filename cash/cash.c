@@ -15,6 +15,9 @@ int main(void)
     {
         coins = n / 25;
         printf("%i\n",coins);
-    } else if ()
-
+    } else if (n % 25 < 0 && n % 10 == 0)
+    {
+        coins = n / 10;
+        printf("%i\n",coins);
+    }
 }
