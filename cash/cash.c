@@ -20,4 +20,6 @@ int main(void)
         coins = n / 10;
         printf("%i\n",coins);
     }
+
+    printf("%i",n % 25);
 }
