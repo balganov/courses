@@ -1,6 +1,6 @@
-#include <stdio.h>
 #include <cs50.h>
-void draw (int a);
+#include <stdio.h>
+void draw(int a);
 
 int main(void)
 {
@@ -13,11 +13,10 @@ int main(void)
     }
     while (height < 1);
 
-    draw (height);
-
+    draw(height);
 }
 
-void draw (int a)
+void draw(int a)
 {
     int b = a - 1;
     for (int i = 0; i < a; i++)
