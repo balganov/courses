@@ -15,11 +15,17 @@ int main(void)
     {
         coins = n / 25;
         printf("%i\n",coins);
-    } else if (n % 25 < 0 && n % 10 == 0)
+    } else if (n % 10 == 0)
     {
         coins = n / 10;
         printf("%i\n",coins);
+    } else if (n % 5 == 0)
+    {
+        coins = n / 5;
+        printf("%i\n",coins);
+    }else if (n % 1 == 0)
+    {
+        coins = n / 1;
+        printf("%i\n",coins);
     }
-
-    printf("%i",n % 25);
 }
