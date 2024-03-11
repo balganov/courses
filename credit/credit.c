@@ -16,6 +16,10 @@ int main(void)
 
     for (long i = 1000; i < 10000000000000000; i=i*100)
     {
+        if ()
+        {
+            
+        }
         sum = sum + (card_number/i % 10)*2;
         printf("%li in the loop %i\n",i,sum);
     }
