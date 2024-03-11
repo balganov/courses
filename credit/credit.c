@@ -28,6 +28,11 @@ int main(void)
         printf("%i in the loop %i\n",digits_check,sum);
     }
 
+    for (long i = 1000; i < 10000000000000000; i=i*100)
+    {
+        sum = sum + card_number/i % 10;
+    }
+
     printf("afer the loop %i\n",sum);
 
     string output = "INVALID\n";
