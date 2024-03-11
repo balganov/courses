@@ -36,6 +36,13 @@ int main(void)
         printf("in the second loop %i\n",last);
     }
 
+    if ((sum + last) % 10 == 0 && )
+    {
+        printf("VISA");
+    } else
+    {
+        printf("INVALID\n");
+    }
     printf("afer the loop %i\n",sum);
 
     string output = "INVALID\n";
