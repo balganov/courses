@@ -1,15 +1,15 @@
-#include <stdio.h>
 #include <cs50.h>
+#include <stdio.h>
 
 int main(void)
 {
     int n;
     do
     {
-       n = get_int("Change owed: ");
+        n = get_int("Change owed: ");
     }
-    while(n < 0);
-    //25, 10, 5, 1
+    while (n < 0);
+    // 25, 10, 5, 1
     int coins = 0;
 
     while (n >= 25)
@@ -33,6 +33,5 @@ int main(void)
         coins++;
     }
 
-    printf("%i\n",coins);
-
+    printf("%i\n", coins);
 }
