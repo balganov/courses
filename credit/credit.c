@@ -17,6 +17,7 @@ int main(void)
 
     for (long i = 1000; i < 10000000000000000; i=i*100)
     {
+        digits_check = (card_number/i % 10)*2;
         if (digits_check < 9)
         {
             sum = sum + (card_number/i % 10)*2;
