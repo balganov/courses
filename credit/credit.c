@@ -12,7 +12,15 @@ int main(void)
     while (card_number < 0);
 
     int last_digit = card_number % 10;
-    int 
+
+    100
+    10000
+    1000000
+    100000000
+    for (int i = 0; i < 1000000; i*100)
+    {
+        
+    }
 
     printf("%i\n",last_digit);
 
