@@ -10,22 +10,12 @@ int main(void)
     }
     while(n < 0);
     //25, 10, 5, 1
-    int coins;
-    if (n % 25 == 0)
+    int coins = 0;
+
+    while (n > 25)
     {
-        coins = n / 25;
-        printf("%i\n",coins);
-    } else if (n % 10 == 0)
-    {
-        coins = n / 10;
-        printf("%i\n",coins);
-    } else if (n % 5 == 0)
-    {
-        coins = n / 5;
-        printf("%i\n",coins);
-    }else if (n % 1 == 0)
-    {
-        coins = n / 1;
-        printf("%i\n",coins);
+        n = n - 25;
+        coins++;
     }
+
 }
