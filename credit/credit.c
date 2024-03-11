@@ -12,6 +12,7 @@ int main(void)
     while (card_number < 0);
 
     int sum = (card_number/100^1 % 10)*2;
+    sum = 100^1;
     printf("before loop %i\n",sum);
 
     for (int i = 1; i < 7; i++)
