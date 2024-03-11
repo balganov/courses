@@ -27,12 +27,13 @@ int main(void)
         {
             sum = sum + sum%10 + 1;
         }
-        printf("%i in the loop %i\n",digits_check,sum);
+        printf("%i in the loop %i\n",second_to_last,sum);
     }
 
     for (long i = 100; i < 10000000000000000; i=i*100)
     {
-        sum = sum + card_number/i % 10;
+        last = last + card_number/i % 10;
+        printf("in the second loop %i\n",last);
     }
 
     printf("afer the loop %i\n",sum);
