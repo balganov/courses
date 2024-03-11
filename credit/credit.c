@@ -14,9 +14,9 @@ int main(void)
     int sum = (card_number % 10)*2;
     printf("before loop %i\n",sum);
 
-    for (int i = 1; i < 1000; i=i*10)
+    for (long i = 100; i < 100000000000000; i=i*100)
     {
-        sum = sum + (card_number/(100*i) % 10)*2;
+        sum = sum + (card_number/i % 10)*2;
         printf("in the loop %i\n",sum);
     }
 
