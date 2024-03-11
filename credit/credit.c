@@ -3,15 +3,18 @@
 
 int main(void)
 {
-    long card;
+    long card_number;
 
     do
     {
-        card = get_long("Number: ");
+        card_number = get_long("Number: ");
     }
-    while (card < 0);
+    while (card_number < 0);
 
-    
+    int last_digit =card_number % 10;
+
+    printf("%i\n",last_digit);
+
     string output = "INVALID\n";
     output = "AMEX\n";
     output = "VISA\n";
