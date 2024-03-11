@@ -11,10 +11,10 @@ int main(void)
     }
     while (card_number < 0);
 
-    int sum = (card_number % 10)*2;
+    int sum = (card_number/10 % 10)*2;
     printf("before loop %i\n",sum);
 
-    for (long i = 100; i < 100000000000000; i=i*100)
+    for (long i = 1000; i < 100000000000000; i=i*100)
     {
         sum = sum + (card_number/i % 10)*2;
         printf("%li in the loop %i\n",i,sum);
