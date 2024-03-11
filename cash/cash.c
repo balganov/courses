@@ -18,4 +18,6 @@ int main(void)
         coins++;
     }
 
+    printf("%i\n",coins);
+
 }
