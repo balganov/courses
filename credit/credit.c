@@ -12,6 +12,7 @@ int main(void)
     while (card_number < 0);
 
     int last_digit = card_number % 10;
+    int 
 
     printf("%i\n",last_digit);
 
