@@ -12,16 +12,16 @@ int main(void)
     while (card_number < 0);
 
     int digits_check = (card_number/10 % 10)*2;
-    int sum;
+    int sum = digits_check;
     printf("before loop %i\n",sum);
 
     for (long i = 1000; i < 10000000000000000; i=i*100)
     {
         if (digit_check < 9)
         {
-
+            sum = sum + (card_number/i % 10)*2;
         }
-        sum = sum + (card_number/i % 10)*2;
+
         printf("%li in the loop %i\n",i,sum);
     }
 
