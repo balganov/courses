@@ -35,15 +35,16 @@ int main(void)
         last = last + card_number/i % 10;
         printf("in the second loop %i\n",last);
     }
-
-    if ((sum + last) % 10 == 0 && )
+    printf("afer the loop %i\n",sum);
+    //printf("VISA CHECK %li\n",card_number/1000000000000000 % 10);
+    if ((sum + last) % 10 == 0 && (card_number/1000000000000000) % 10 == 4)
     {
-        printf("VISA");
+        printf("VISA\n");
     } else
     {
         printf("INVALID\n");
     }
-    printf("afer the loop %i\n",sum);
+
 
     string output = "INVALID\n";
     output = "AMEX\n";
