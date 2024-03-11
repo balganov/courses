@@ -11,14 +11,16 @@ int main(void)
     }
     while (card_number < 0);
     //4003600000000014
-    int digits_check = (card_number/10 % 10)*2;
-    int sum = digits_check;
+    int second_to_last = (card_number/10 % 10)*2;
+    int last = card_number % 10;
+    int sum = second_to_last;
+
     printf("before loop %i\n",sum);
 
     for (long i = 1000; i < 10000000000000000; i=i*100)
     {
-        digits_check = (card_number/i % 10)*2;
-        if (digits_check < 9)
+        second_to_last = (card_number/i % 10)*2;
+        if (second_to_last < 9)
         {
             sum = sum + (card_number/i % 10)*2;
         } else
@@ -28,7 +30,7 @@ int main(void)
         printf("%i in the loop %i\n",digits_check,sum);
     }
 
-    for (long i = 1000; i < 10000000000000000; i=i*100)
+    for (long i = 100; i < 10000000000000000; i=i*100)
     {
         sum = sum + card_number/i % 10;
     }
