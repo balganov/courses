@@ -10,19 +10,21 @@ int main(void)
         card_number = get_long("Number: ");
     }
     while (card_number < 0);
-
+    //4003600000000014
     int digits_check = (card_number/10 % 10)*2;
     int sum = digits_check;
     printf("before loop %i\n",sum);
 
     for (long i = 1000; i < 10000000000000000; i=i*100)
     {
-        if (digit_check < 9)
+        if (digits_check < 9)
         {
             sum = sum + (card_number/i % 10)*2;
+        } else
+        {
+            sum = sum + sum%10 + 1;
         }
-
-        printf("%li in the loop %i\n",i,sum);
+        printf("%i in the loop %i\n",digits_check,sum);
     }
 
     printf("afer the loop %i\n",sum);
