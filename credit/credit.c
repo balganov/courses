@@ -13,11 +13,11 @@ int main(void)
 
     int sum = (card_number % 10)*2;
 
-    for (int i = 100; i < 1000000; i=i*100)
+    for (int i = 100; i < 100000000000000; i=i*100)
     {
         sum = sum + (card_number/i % 10)*2;
     }
-    
+
     printf("%i\n",sum);
 
     string output = "INVALID\n";
