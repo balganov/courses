@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+#include <math.h>
 
 int main(void)
 {
@@ -11,13 +12,12 @@ int main(void)
     }
     while (card_number < 0);
 
-    int sum = (card_number/100^1 % 10)*2;
-    sum = 100^1;
+    int sum = (card_number % 10)*2;
     printf("before loop %i\n",sum);
 
     for (int i = 1; i < 7; i++)
     {
-        sum = sum + (card_number/100^i % 10)*2;
+        sum = sum + (card_number/pow(100,i) % 10)*2;
         printf("in the loop %i\n",sum);
     }
 
