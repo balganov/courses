@@ -11,16 +11,14 @@ int main(void)
     }
     while (card_number < 0);
 
-    int digit = (card_number % 10)*2;
-    int sum;
+    int sum = (card_number % 10)*2;
 
     for (int i = 100; i < 1000000; i=i*100)
     {
-        digit = card_number/i % 10;
-        sum = digit + digit*2;
+        sum = sum + (card_number/i % 10)*2;
     }
-    */
-    printf("%i\n",digit);
+    
+    printf("%i\n",sum);
 
     string output = "INVALID\n";
     output = "AMEX\n";
