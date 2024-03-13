@@ -18,6 +18,7 @@ int main(void)
     int sum = 0;
     int length = get_length(card_number);
     int first_digit = get_first_digit(card_number);
+    int first_two_digits = get_first__two_digits(card_number);
     //5555555555554444
     for (long i = 10; i < 1000000000000000000; i=i*100)
     {
@@ -63,6 +64,14 @@ int get_length (long a)
 int get_first_digit (long a)
 {
     while (a > 9)
+    {
+        a /= 10;
+    }
+    return a;
+}
+int get_first_two_digits (long a)
+{
+    while (a > 90)
     {
         a /= 10;
     }
