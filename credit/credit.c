@@ -22,6 +22,7 @@ int main(void)
     for (long i = 1000; i < 10000000000000000; i=i*100)
     {
         second_to_last = (card_number/i % 10)*2;
+        printf("second to last %i\n",second_to_last);
         if (second_to_last < 9)
         {
             sum = sum + (card_number/i % 10)*2;
@@ -29,11 +30,13 @@ int main(void)
         {
             sum = sum + sum%10 + 1;
         }
+        printf("sum inside first loop %i\n",sum);
     }
 
     for (long i = 100; i < 10000000000000000; i=i*100)
     {
         last = last + card_number/i % 10;
+        printf("last inside second loop %i\n",last);
     }
 
     if ((sum + last) % 10 == 0)
