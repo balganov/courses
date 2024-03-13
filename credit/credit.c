@@ -28,7 +28,7 @@ int main(void)
             sum = sum + (card_number/i % 10)*2;
         } else
         {
-            sum = sum + sum%10 + 1;
+            sum = sum + second_to_last%10 + 1;
         }
         printf("sum inside first loop %i\n",sum);
     }
