@@ -1,5 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
+int get_length(long a);
 
 int main(void)
 {
@@ -14,8 +15,8 @@ int main(void)
     int second_to_last = (card_number/10 % 10)*2;
     int last = card_number % 10;
     int sum = second_to_last;
-
-    printf("before loop %i\n",sum);
+    int length = get_length(card_number);
+    printf("before loop sum %i and length%i\n",sum, length);
 
     for (long i = 1000; i < 10000000000000000; i=i*100)
     {
@@ -44,12 +45,13 @@ int main(void)
     {
         printf("INVALID\n");
     }
-
-
     string output = "INVALID\n";
     output = "AMEX\n";
     output = "VISA\n";
     output = "MASTERCARD\n";
+}
 
-
+int get_length (long a)
+{
+    return log10 (abs (a)) + 1;
 }
