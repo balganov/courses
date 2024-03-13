@@ -18,7 +18,7 @@ int main(void)
     int sum = second_to_last;
     int length = get_length(card_number);
     int first_digit = get_first_digit(card_number);
-
+    //5555555555554444
     for (long i = 1000; i < 10000000000000000; i=i*100)
     {
         second_to_last = (card_number/i % 10)*2;
