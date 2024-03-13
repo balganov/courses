@@ -53,5 +53,11 @@ int main(void)
 
 int get_length (long a)
 {
-    return log10 (abs (a)) + 1;
+    int i = 1;
+    while (a > 9)
+    {
+        a /= 10;
+        i++;
+    }
+    return i;
 }
