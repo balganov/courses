@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 int get_length(long a);
+int get_first_digit (long a);
 
 int main(void)
 {
@@ -60,4 +61,8 @@ int get_length (long a)
         i++;
     }
     return i;
+}
+int get_first_digit (long a)
+{
+    
 }
