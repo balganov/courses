@@ -17,7 +17,8 @@ int main(void)
     int last = card_number % 10;
     int sum = second_to_last;
     int length = get_length(card_number);
-    printf("before loop sum %i and length%i\n",sum, length);
+    int first_digit = get_first_digit(card_number);
+    printf("before loop sum %i and length %i\n and first digit %i",sum, length, first_digit);
 
     for (long i = 1000; i < 10000000000000000; i=i*100)
     {
@@ -64,8 +65,9 @@ int get_length (long a)
 }
 int get_first_digit (long a)
 {
-    while (a > 1)
+    while (a > 9)
     {
         a /= 10;
     }
+    return a;
 }
