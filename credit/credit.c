@@ -65,7 +65,7 @@ int get_length (long a)
 }
 int get_first_digit (long a)
 {
-    while (a > 1)
+    while (a > 9)
     {
         a /= 10;
     }
