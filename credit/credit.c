@@ -13,16 +13,16 @@ int main(void)
     }
     while (card_number < 0);
 
-    int second_to_last = (card_number/10 % 10)*2;
+    int second_to_last;
     int last = card_number % 10;
-    int sum = second_to_last;
+    int sum;
     int length = get_length(card_number);
     int first_digit = get_first_digit(card_number);
     //5555555555554444
-    for (long i = 1000; i < 10000000000000000; i=i*100)
+    for (long i = 10; i < 1000000000000000000; i=i*100)
     {
         second_to_last = (card_number/i % 10)*2;
-        //printf("second to last %i\n",second_to_last);
+        printf("second to last %i\n",second_to_last);
         if (second_to_last < 9)
         {
             sum = sum + (card_number/i % 10)*2;
@@ -30,13 +30,13 @@ int main(void)
         {
             sum = sum + second_to_last%10 + 1;
         }
-        //printf("sum inside first loop %i\n",sum);
+        printf("sum inside first loop %i\n",sum);
     }
 
     for (long i = 100; i < 10000000000000000; i=i*100)
     {
         last = last + card_number/i % 10;
-        //printf("last inside second loop %i\n",last);
+        printf("last inside second loop %i\n",last);
     }
 
     if ((sum + last) % 10 == 0)
