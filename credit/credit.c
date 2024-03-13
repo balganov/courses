@@ -41,9 +41,11 @@ int main(void)
     }
     printf("afer the loop %i\n",sum);
     //printf("VISA CHECK %li\n",card_number/1000000000000000 % 10);
-    if ((sum + last) % 10 == 0 && first_digit == 4)
+    if ((sum + last) % 10 == 0)
     {
-        printf("VISA\n");
+        if (first_digit == 4 && (length == 13 || length = 16)) printf("VISA\n");
+        if (first_digit == 5 && length = 16) printf("MASTERCARD\n");
+
     } else
     {
         printf("INVALID\n");
