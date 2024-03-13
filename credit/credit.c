@@ -44,9 +44,16 @@ int main(void)
 
     if ((sum + last) % 10 == 0)
     {
-        if ((first_two_digits == 34 || first_two_digits == 37) && length == 15) printf("AMEX\n"); printf("INVALID\n");
-        if (first_digit == 4 && (length == 13 || length == 16)) printf("VISA\n"); printf("INVALID\n");
-        if (first_two_digits >= 51 && first_two_digits <=55 && length == 16) printf("MASTERCARD\n"); printf("INVALID\n");
+        if ((first_two_digits == 34 || first_two_digits == 37) && length == 15)
+        {
+            printf("AMEX\n");
+        } else if (first_digit == 4 && (length == 13 || length == 16))
+        {
+            printf("VISA\n");
+        } else if (first_two_digits >= 51 && first_two_digits <=55 && length == 16)
+        {
+            printf("MASTERCARD\n");
+        } else printf("INVALID\n");
     } else
     {
         printf("INVALID\n");
