@@ -27,11 +27,18 @@ void points (string word)
     string p10 = "QZ";
 
     int size = 26;
-    string alph[] = {"AEILNORSTUDGBCMPFHVWYKJXQZ","1111111111223333444445881010"};
+    string alph_c = "AEILNORSTUDGBCMPFHVWYKJXQZ";
+    string alph_p = "1111111111223333444445881010";
+    string check = toupper(word);
 
-    printf(alph[0][2]);
-
-        //toupper(word[i])
-        printf("\n");
-    //return 0;
+    for (int i = 0, l = strlen(check); i < l, i++)
+    {
+        for (int k = 0, l = strlen(alph_c); k < l; k++)
+        {
+            if (check[i]==alph_c[k])
+            {
+                printf("found letter %c on index %i\n",word[i], k);
+            }
+        }
+    }
 }
