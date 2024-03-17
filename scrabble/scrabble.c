@@ -13,7 +13,7 @@ int main(void)
     player2 = get_string("Player 2: ");
 
     points(player1);
-    //points(player2);
+    points(player2);
 }
 
 void points (string word)
