@@ -40,11 +40,11 @@ int calculate_points (string word)
         {
             if (word[i] == alph_c[k])
             {
-                printf("found letter %c on index %i\n",word[i], k);
+                //printf("found letter %c on index %i\n",word[i], k);
                 points += alph_p[k];
             }
         }
     }
-    printf("points = %i\n",points);
+    //printf("points = %i\n",points);
     return points;
 }
