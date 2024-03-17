@@ -29,7 +29,7 @@ void points (string word)
     int size = 26;
     string alph_c = "AEILNORSTUDGBCMPFHVWYKJXQZ";
     string alph_p = "1111111111223333444445881010";
-    string check = toupper(word);
+    string check = word;
 
     for (int i = 0, l = strlen(check); i < l, i++)
     {
