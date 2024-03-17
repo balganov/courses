@@ -13,7 +13,7 @@ int main(void)
     player2 = get_string("Player 2: ");
 
     points(player1);
-    points(player2);
+    //points(player2);
 }
 
 void points (string word)
@@ -27,14 +27,11 @@ void points (string word)
     string p10 = "QZ";
 
     int size = 26;
-    string alph [][] = {"AEILNORSTUDGBCMPFHVWYKJXQZ","1111111111223333444445881010"};
+    string alph[] = {"AEILNORSTUDGBCMPFHVWYKJXQZ","1111111111223333444445881010"};
 
-    for (int i = 0, length = strlen(word); i < length; i++)
-    {
-        printf(alph[0][i]);
+    printf(alph[0][2]);
 
         //toupper(word[i])
         printf("\n");
-    }
     //return 0;
 }
