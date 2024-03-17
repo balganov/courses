@@ -26,11 +26,17 @@ int points (string word)
     string p8 = "JX";
     string p10 = "QZ";
 
-    string alph [size][size] = {}
+    int size = 26;
+    string alph [size][size] = {{A, E, I, L, N, O, R, S, T, U, D, G, B, C, M, P, F, H, V, W, Y, K, J, X, Q, Z},
+    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 8, 8, 10, 10}}
 
     for (int i = 0, length = strlen(word); i < length; i++)
     {
-        tolower(word[i])
+        for (int k = 0; k < size; k++)
+        {
+            
+        }
+        toupper(word[i])
     }
     return 0;
 }
