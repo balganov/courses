@@ -22,7 +22,7 @@ void points (string word)
     string alph_p = "1111111111223333444445881010";
     string check = word;
 
-    for (int i = 0, l = strlen(check); i < l, i++)
+    for (int i = 0, le = strlen(check); i < le, i++)
     {
         for (int k = 0, l = strlen(alph_c); k < l; k++)
         {
