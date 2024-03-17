@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-int points (string word);
+void points (string word);
 
 int main(void)
 {
@@ -16,7 +16,7 @@ int main(void)
     points(player2);
 }
 
-int points (string word)
+void points (string word)
 {
     string p1 = "AEILNORSTU";
     string p2 = "DG";
@@ -33,7 +33,7 @@ int points (string word)
     {
         for (int k = 0; k < size; k++)
         {
-
+            
         }
         toupper(word[i])
     }
