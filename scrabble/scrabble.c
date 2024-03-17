@@ -28,6 +28,9 @@ void points (string word)
             if (word[i] == alph_c[k])
             {
                 printf("found letter %c on index %i\n",word[i], k);
+            } else
+            {
+                break;
             }
         }
     }
