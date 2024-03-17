@@ -19,7 +19,7 @@ int main(void)
 void points (string word)
 {
     string alph_c = "AEILNORSTUDGBCMPFHVWYKJXQZ";
-    string alph_p = "1111111111223333444445881010";
+    int alph_p[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 8, 8, 10, 10};
     int points = 0;
 
     for (int i = 0, l1 = strlen(word); i < l1; i++)
@@ -29,11 +29,12 @@ void points (string word)
             if (word[i] == alph_c[k])
             {
                 printf("found letter %c on index %i\n",word[i], k);
-                points += 
+                points += alph_p[k];
             } else
             {
                 break;
             }
         }
     }
+    printf("points = %i\n",points);
 }
