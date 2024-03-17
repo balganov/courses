@@ -30,9 +30,6 @@ void points (string word)
             {
                 printf("found letter %c on index %i\n",word[i], k);
                 points += alph_p[k];
-            } else
-            {
-                break;
             }
         }
     }
