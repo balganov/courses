@@ -18,15 +18,6 @@ int main(void)
 
 void points (string word)
 {
-    string p1 = "AEILNORSTU";
-    string p2 = "DG";
-    string p3 = "CMP";
-    string p4 = "FHVWY";
-    string p5 = "K";
-    string p8 = "JX";
-    string p10 = "QZ";
-
-    int size = 26;
     string alph_c = "AEILNORSTUDGBCMPFHVWYKJXQZ";
     string alph_p = "1111111111223333444445881010";
     string check = word;
@@ -38,7 +29,9 @@ void points (string word)
             if (check[i]==alph_c[k])
             {
                 printf("found letter %c on index %i\n",word[i], k);
+                return 0;
             }
         }
+        return 1;
     }
 }
