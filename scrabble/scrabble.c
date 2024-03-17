@@ -26,7 +26,9 @@ int points (string word)
     string p8 = "JX";
     string p10 = "QZ";
 
-    for (int i = 0; i < strlen(word); i++)
+    string alph [size][size] = {}
+
+    for (int i = 0, length = strlen(word); i < length; i++)
     {
         tolower(word[i])
     }
