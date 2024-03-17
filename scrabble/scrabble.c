@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-int points (string word);
+int calculate_points (string word);
 
 int main(void)
 {
@@ -12,22 +12,22 @@ int main(void)
     player1 = get_string("Player 1: ");
     player2 = get_string("Player 2: ");
 
-    int p1 = points(player1);
-    int p2 = points(player2);
+    int p1 = calculate_points(player1);
+    int p2 = calculate_points(player2);
 
     if (p1 > p2)
     {
-        printf("Player 1 wins!\n”);
+        printf("Player 1 wins!\n");
     } else if (p1 < p2)
     {
-        printf("Player 2 wins!\n”);
+        printf("Player 2 wins!\n");
     } else
     {
-        printf("Tie!\n”);
+        printf("Tie!\n");
     }
 }
 
-int points (string word)
+int calculate_points (string word)
 {
     string alph_c = "AEILNORSTUDGBCMPFHVWYKJXQZ";
     int alph_p[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 8, 8, 10, 10};
