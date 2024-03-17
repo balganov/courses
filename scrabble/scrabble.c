@@ -27,14 +27,12 @@ void points (string word)
     string p10 = "QZ";
 
     int size = 26;
-    string alph [] = {"AEILNORSTUDGBCMPFHVWYKJXQZ","1111111111223333444445881010"};
+    string alph [][] = {"AEILNORSTUDGBCMPFHVWYKJXQZ","1111111111223333444445881010"};
 
     for (int i = 0, length = strlen(word); i < length; i++)
     {
-        for (int k = 0; k < size; k++)
-        {
-            printf(alph[0][k]);
-        }
+        printf(alph[0][i]);
+
         //toupper(word[i])
         printf("\n");
     }
