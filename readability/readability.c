@@ -14,12 +14,10 @@ int main(void)
 void calculate_index(string t)
 {
     int length = strlen(t);
-    int letters = 0;
-    int words = 0;
-    int sentences = 0;
+    float letters = 0;
+    float words = 0;
+    float sentences = 0;
     float index = 0.0;
-    float al = 0.0;
-    float as = 0.0;
 
     for (int i = 0; i < length; i++)
     {
@@ -36,13 +34,10 @@ void calculate_index(string t)
         {
             sentences += 1;
         }
-
     }
-    printf("number of letters %i\n",letters);
-    printf("number of words %i\n",words+1);
-    printf("number of sentences %i\n",sentences);
-    al = letters/(words+1)*100;
-    as = sentences/(words+1)*100;
-    index = 0.0588 * al - 0.296 * as - 15.8;
+    printf("number of letters %f\n",letters);
+    printf("number of words %f\n",words+1);
+    printf("number of sentences %f\n",sentences);
+    index = 0.0588 * letters/(words+1)*100 - 0.296 * sentences/(words+1)*100 - 15.8;
     printf("index is %f\n",index);
 }
