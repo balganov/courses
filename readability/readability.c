@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 void calculate_index(string t);
 
 int main(void)
@@ -39,5 +40,5 @@ void calculate_index(string t)
     printf("number of words %f\n",words+1);
     printf("number of sentences %f\n",sentences);
     index = 0.0588 * letters/(words+1)*100 - 0.296 * sentences/(words+1)*100 - 15.8;
-    printf("index is %f\n",index);
+    printf("index is %f\n",round(index));
 }
