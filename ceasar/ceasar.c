@@ -11,9 +11,13 @@ int main(int argc, string argv[])
 
     for (int i = 0; i < l; i++)
     {
-        if (isdigit(input[i]))
+        if (!isdigit(input[i]))
+        {
+            printf("Usage ./ceasar key\n");
+            return 1;
+        }
     }
-    if (argc != 2 || key <= 0)
+    if (argc != 2)
     {
         printf("Usage ./ceasar key\n");
         return 1;
