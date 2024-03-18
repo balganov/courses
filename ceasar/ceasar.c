@@ -22,6 +22,6 @@ int main(int argc, string argv[])
             return 1;
         }
     }
-    
-    printf("all good %s", argv[1]);
+
+    string printf("all good %s", argv[1]);
 }
