@@ -1,8 +1,8 @@
 #include <cs50.h>
 #include <ctype.h>
+#include <math.h>
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
 float calculate_index(string t);
 
 int main(void)
@@ -13,10 +13,12 @@ int main(void)
     if (grade < 1)
     {
         printf("Before Grade 1\n");
-    } else if (grade > 16)
+    }
+    else if (grade > 16)
     {
         printf("Grade 16+\n");
-    } else
+    }
+    else
     {
         printf("Grade %i\n", grade);
     }
@@ -46,11 +48,7 @@ float calculate_index(string t)
             sentences += 1;
         }
     }
-    //printf("number of letters %f\n",letters);
-    //printf("number of words %f\n",words+1);
-    //printf("number of sentences %f\n",sentences);
-    index = round(0.0588 * letters/(words+1)*100 - 0.296 * sentences/(words+1)*100 - 15.8);
+    index =
+        round(0.0588 * letters / (words + 1) * 100 - 0.296 * sentences / (words + 1) * 100 - 15.8);
     return index;
-    //printf("index is %f\n", index);
-
 }
