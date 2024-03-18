@@ -8,17 +8,17 @@ float calculate_index(string t);
 int main(void)
 {
     string text = get_string("Text: ");
-    float grade = calculate_index(text);
+    int grade = calculate_index(text);
 
     if (grade < 1)
     {
         printf("Before Grade 1\n");
-    } (grade > 16)
+    } else if (grade > 16)
     {
         printf("Grade 16+\n");
     } else
     {
-        printf("Grade %f", grade);
+        printf("Grade %i\n", grade);
     }
 }
 
