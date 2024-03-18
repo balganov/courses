@@ -26,7 +26,7 @@ void calculate_index(string t)
         {
             letters += 1;
         }
-        if (t[i] == ' ' || t[i] == '\'')
+        if (t[i] == ' ')
         {
             words += 1;
         }
