@@ -4,8 +4,10 @@
 int main(argc, argv[])
 {
     int key;
-    do
+
+    if (argc != 2)
     {
-        key = get_int(")
+        printf("Usage ./ceasar key\n");
+        return 1;
     }
 }
