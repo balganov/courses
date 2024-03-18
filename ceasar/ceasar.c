@@ -13,10 +13,9 @@ int main(int argc, string argv[])
     }
     int l = strlen(argv[1]);
     string input = argv[1];
-
     for (int i = 0; i < l; i++)
     {
-        if (!isdigit(input[i]) || input[0] == '0')
+        if (input[0] == '0' || !isdigit(input[i]))
         {
             printf("Usage ./ceasar key\n");
             return 1;
