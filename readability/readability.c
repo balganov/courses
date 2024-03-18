@@ -37,5 +37,5 @@ void calculate_index(string t)
     }
     printf("number of letters %i\n",letters);
     printf("number of words %i\n",words+1);
-    printf("number of sentences %i\n",sentences+1);
+    printf("number of sentences %i\n",sentences);
 }
