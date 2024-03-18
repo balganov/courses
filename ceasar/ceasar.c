@@ -9,7 +9,7 @@ int main(int argc, string argv[])
     int l = strlen(argv[1]);
     for (int i = 0; i < l; i++)
     {
-        
+        if (isdigit(argv[]))
     }
     if (argc != 2 || key <= 0)
     {
