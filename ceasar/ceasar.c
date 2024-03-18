@@ -9,22 +9,19 @@ int main(int argc, string argv[])
     int l = strlen(argv[1]);
     string input = argv[1];
 
-    if (argc == 2 || input[0] !== '0')
-    {
-        for (int i = 0; i < l; i++)
-        {
-            if (!isdigit(input[i]))
-            {
-                
-             }
-        }
-    }
-    else
+    if (argc != 2 || input[0] == '0')
     {
         printf("Usage ./ceasar key\n");
         return 1;
     }
-
+    for (int i = 0; i < l; i++)
+    {
+        if (!isdigit(input[i]))
+        {
+            printf("Usage ./ceasar key\n");
+            return 1;
+        }
+    }
 
     printf("all good %s", argv[1]);
 }
