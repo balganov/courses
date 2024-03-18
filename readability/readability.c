@@ -17,6 +17,7 @@ void calculate_index(string t)
     int letters = 0;
     int words = 0;
     int sentences = 0;
+    int index = 0;
 
     for (int i = 0; i < length; i++)
     {
@@ -38,4 +39,6 @@ void calculate_index(string t)
     printf("number of letters %i\n",letters);
     printf("number of words %i\n",words+1);
     printf("number of sentences %i\n",sentences);
+    index = 0.0588 * (letters/(words+1)*100) - 0.296 * (sentences/(words+1)*100) - 15.8;
+    printf("index is %i\n",index);
 }
