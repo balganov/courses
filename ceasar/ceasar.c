@@ -9,7 +9,7 @@ int main(int argc, string argv[])
     int l = strlen(argv[1]);
     string input = argv[1];
 
-    if (argc != 2)
+    if (argc != 2 || input[0] == '0')
     {
         printf("Usage ./ceasar key\n");
         return 1;
@@ -23,5 +23,5 @@ int main(int argc, string argv[])
         }
     }
 
-    string printf("all good %s", argv[1]);
+    printf("all good %s", argv[1]);
 }
