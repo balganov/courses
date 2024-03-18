@@ -6,7 +6,10 @@
 int main(int argc, string argv[])
 {
     int l = strlen(argv[1]);
-    for (int i = 0; i < )
+    for (int i = 0; i < l; i++)
+    {
+        
+    }
     if (argc != 2 || key <= 0)
     {
         printf("Usage ./ceasar key\n");
