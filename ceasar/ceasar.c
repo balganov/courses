@@ -31,12 +31,13 @@ int main(int argc, string argv[])
 
 string cipher (string s, int k)
 {
-    for (int i = 0, l = strlen(s); i < s; i++)
+    for (int i = 0, l = strlen(s); i < l; i++)
     {
-        if (s[i] => 'A' && s[i] <= 'Z')
+        if (s[i] >= 'A' && s[i] <= 'Z')
         {
             s[i] = s[i] + (k % 26);
         }
     }
     printf("ciphertext :%s",s);
+    return s;
 }
