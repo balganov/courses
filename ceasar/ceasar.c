@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-string cipher (string s, int k);
+void cipher (string s, int k);
 
 int main(int argc, string argv[])
 {
@@ -25,11 +25,10 @@ int main(int argc, string argv[])
 
     cipher(get_string("plaintext:  "), atoi(input));
 
-    printf("all good \n");
     return 0;
 }
 
-string cipher (string s, int k)
+void cipher (string s, int k)
 {
     for (int i = 0, l = strlen(s); i < l; i++)
     {
@@ -38,6 +37,5 @@ string cipher (string s, int k)
             s[i] = s[i] + (k % 26);
         }
     }
-    printf("ciphertext :%s\n",s);
-    return s;
+    printf("ciphertext: %s\n",s);
 }
