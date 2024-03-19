@@ -35,7 +35,8 @@ string cipher (string s, int k)
     {
         if (s[i] => 'A' && s[i] <= 'Z')
         {
-            
+            s[i] = s[i] + (k % 26);
         }
     }
+    printf("ciphertext :%s",s);
 }
