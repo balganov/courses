@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+string cipher (string s);
 
 int main(int argc, string argv[])
 {
@@ -22,5 +23,12 @@ int main(int argc, string argv[])
         }
     }
 
+    cipher(get_string("plaintext:  "));
+
     printf("all good %s", argv[1]);
+}
+
+string cipher (string s)
+{
+    
 }
