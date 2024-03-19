@@ -25,10 +25,11 @@ int main(int argc, string argv[])
 
     cipher(get_string("plaintext:  "));
 
-    printf("all good %s", argv[1]);
+    printf("all good \n");
+    return 0;
 }
 
 string cipher (string s)
 {
-    
+
 }
