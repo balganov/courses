@@ -38,6 +38,6 @@ string cipher (string s, int k)
             s[i] = s[i] + (k % 26);
         }
     }
-    printf("ciphertext :%s",s);
+    printf("ciphertext :%s\n",s);
     return s;
 }
