@@ -40,7 +40,7 @@ void cipher (string s, int k)
                 new[i] = s[i] + (k % 26);
                 if (new[i] > 90)
                 {
-                    new[i] = new[i] -25;
+                    new[i] = new[i] - 25;
                 }
             }
             else
@@ -48,7 +48,7 @@ void cipher (string s, int k)
                 new[i] = s[i] + (k % 26);
                 if (new[i] > 122)
                 {
-                    new[i] = new[i] -25;
+                    new[i] = new[i] - 25;
                 }
             }
         }
