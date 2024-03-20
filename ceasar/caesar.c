@@ -38,7 +38,7 @@ void cipher (string s, int k)
             {
                 if (s[i] + (k % 26) > 90)
                 {
-                    s[i] = s[i] + (k % 26) - 25;
+                    s[i] = s[i] + (k % 26) - 26;
                 }
                 else
                 {
@@ -49,7 +49,7 @@ void cipher (string s, int k)
             {
                 if (s[i] + (k % 26) > 122)
                 {
-                    s[i] = s[i] + (k % 26) - 25;
+                    s[i] = s[i] + (k % 26) - 26;
                 }
                 else
                 {
