@@ -30,31 +30,33 @@ int main(int argc, string argv[])
 
 void cipher (string s, int k)
 {
-    string new = s;
     for (int i = 0, l = strlen(s); i < l; i++)
     {
         if ((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z'))
         {
             if (isupper(s[i]))
             {
-                new[i] = s[i] + (k % 26);
-                if (new[i] > 90)
+                if (s[i] + (k % 26) > 90)
                 {
-                    new[i] = new[i] - 25;
+                    s[i] = s[i] + (k % 26) - 25;
+                }
+                else
+                {
+                    s[i] = s[i] + (k % 26);
                 }
             }
             else
             {
                 if (s[i] + (k % 26) > 122)
                 {
-                    new[i] = s[i] + (k % 26) - 25;
+                    s[i] = s[i] + (k % 26) - 25;
                 }
                 else
                 {
-                    new[i] = s[i] + (k % 26);
+                    s[i] = s[i] + (k % 26);
                 }
             }
         }
     }
-    printf("ciphertext: %s\n",new);
+    printf("ciphertext: %s\n",s);
 }
