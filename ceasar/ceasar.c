@@ -34,7 +34,7 @@ void cipher (string s, int k)
     {
         if ((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z'))
         {
-            if (isupper[i])
+            if (isupper(s[i]))
             {
                 s[i] = s[i] + (k % 26);
                 if (s[i] > 90)
