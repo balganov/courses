@@ -30,6 +30,7 @@ int main(int argc, string argv[])
 
 void cipher (string s, int k)
 {
+    string new = "";
     for (int i = 0, l = strlen(s); i < l; i++)
     {
         if ((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z'))
