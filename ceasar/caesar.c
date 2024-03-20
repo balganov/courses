@@ -37,21 +37,21 @@ void cipher (string s, int k)
         {
             if (isupper(s[i]))
             {
-                s[i] = s[i] + (k % 26);
-                if (s[i] > 90)
+                new[i] = s[i] + (k % 26);
+                if (new[i] > 90)
                 {
-                    s[i] = s[i] -25;
+                    new[i] = new[i] -25;
                 }
             }
             else
             {
-                s[i] = s[i] + (k % 26);
-                if (s[i] > 122)
+                new[i] = s[i] + (k % 26);
+                if (new[i] > 122)
                 {
-                    s[i] = s[i] -25;
+                    new[i] = new[i] -25;
                 }
             }
         }
     }
-    printf("ciphertext: %s\n",s);
+    printf("ciphertext: %s\n",new);
 }
