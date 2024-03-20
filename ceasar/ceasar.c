@@ -34,7 +34,7 @@ void cipher (string s, int k)
     {
         if ((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= 'a' && s[i] <= 'z'))
         {
-            s[i] = (s[i] + k) % 26;
+            s[i] = s[i] + (s[i] + k) % 26;
         }
     }
     printf("ciphertext: %s\n",s);
