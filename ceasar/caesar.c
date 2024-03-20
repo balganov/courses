@@ -1,9 +1,9 @@
 #include <cs50.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-void cipher (string s, int k);
+void cipher(string s, int k);
 
 int main(int argc, string argv[])
 {
@@ -28,7 +28,7 @@ int main(int argc, string argv[])
     return 0;
 }
 
-void cipher (string s, int k)
+void cipher(string s, int k)
 {
     for (int i = 0, l = strlen(s); i < l; i++)
     {
@@ -58,5 +58,5 @@ void cipher (string s, int k)
             }
         }
     }
-    printf("ciphertext: %s\n",s);
+    printf("ciphertext: %s\n", s);
 }
