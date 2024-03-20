@@ -45,10 +45,13 @@ void cipher (string s, int k)
             }
             else
             {
-                new[i] = s[i] + (k % 26);
-                if (new[i] > 122)
+                if (s[i] + (k % 26) > 122)
                 {
-                    new[i] = new[i] - 25;
+                    new[i] = s[i] + (k % 26) - 25;
+                }
+                else
+                {
+                    new[i] = s[i] + (k % 26);
                 }
             }
         }
