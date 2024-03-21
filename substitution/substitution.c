@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-void cipher(string s, string k);
+void cipher(string s, string key);
 
 int main(int argc, string argv[])
 {
@@ -41,7 +41,7 @@ int main(int argc, string argv[])
     return 0;
 }
 
-void cipher(string s, string k)
+void cipher(string s, string key)
 {
     string a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for (int i = 0, l = strlen(s); i < l; i++)
@@ -50,7 +50,7 @@ void cipher(string s, string k)
         {
             if (s[i] == a[k])
             {
-                s[i] = k [k];
+                s[i] = key[k];
             }
         }
     }
