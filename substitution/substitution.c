@@ -13,9 +13,10 @@ int main(int argc, string argv[])
     if (argc == 2)
     {
         l = strlen(argv[1]);
-        input = toupper(argv[1]);
+        input = argv[1];
         for (int i = 0; i < l; i++)
         {
+            input[i] = toupper(input[i]);
             if (!isalpha(input[i]) || strchr("ABCDEFGHIJKLMNOPQRSTUVWXYZ",input[i]) == NULL)
             {
                 alpha = false;
