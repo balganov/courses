@@ -25,7 +25,7 @@ int main(int argc, string argv[])
             }
             for (int k = i + 1; k < l; k++)
             {
-                if (input[i] == input[k])
+                if (input[i] == toupper(input[k]))
                 {
                     duplicate = true;
                     break;
