@@ -48,7 +48,7 @@ void cipher(string s, string key)
     {
         for (int k = 0, l2 = strlen(a); k < l2; k++)
         {
-            if (s[i] == a[k])
+            if (toupper(s[i]) == a[k])
             {
                 s[i] = key[k];
                 break;
