@@ -28,7 +28,7 @@ int main(int argc, string argv[])
 
     if (alpha = false or l != 26)
     {
-
+        printf("there is an error\n");
     }
 
 
