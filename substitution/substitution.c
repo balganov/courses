@@ -18,7 +18,7 @@ int main(int argc, string argv[])
         for (int i = 0; i < l; i++)
         {
             input[i] = toupper(input[i]);
-            if (!isalpha(input[i]) || strchr("ABCDEFGHIJKLMNOPQRSTUVWXYZ",input[i]) == NULL)
+            if (!isalpha(input[i]) || strchr("ABCDEFGHIJKLMNOPQRSTUVWXYZ", input[i]) == NULL)
             {
                 alpha = false;
                 break;
