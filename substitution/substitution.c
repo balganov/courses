@@ -35,10 +35,7 @@ int main(int argc, string argv[])
         printf("there is an error\n");
         return 1;
     }
-
-
     cipher(get_string("plaintext:  "), input);
-
     return 0;
 }
 
