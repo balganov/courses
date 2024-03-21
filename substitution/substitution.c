@@ -20,10 +20,15 @@ int main(int argc, string argv[])
             }
         }
     }
-    if (argc != 2 || alpha = false)
+    else
     {
         printf("Usage ./ceasar key\n");
         return 1;
+    }
+
+    if (alpha = false or l != 26)
+    {
+
     }
 
 
