@@ -50,8 +50,16 @@ void cipher(string s, string key)
         {
             if (toupper(s[i]) == a[k])
             {
-                s[i] = key[k];
-                break;
+                if (isupper(s[i]))
+                {
+                    s[i] = key[k];
+                    break;
+                }
+                else
+                {
+                    s[i] = tolower(key[k]);
+                    break;
+                }
             }
         }
     }
