@@ -51,6 +51,7 @@ void cipher(string s, string key)
             if (s[i] == a[k])
             {
                 s[i] = key[k];
+                break;
             }
         }
     }
