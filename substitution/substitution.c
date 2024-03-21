@@ -19,6 +19,7 @@ int main(int argc, string argv[])
             if (!isalpha(input[i]) || strchr("ABCDEFGHIJKLMNOPQRSTUVWXYZ",input[i]) == NULL)
             {
                 alpha = false;
+                break;
             }
         }
     }
