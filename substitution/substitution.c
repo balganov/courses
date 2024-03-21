@@ -43,9 +43,16 @@ int main(int argc, string argv[])
 
 void cipher(string s, string k)
 {
+    string a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for (int i = 0, l = strlen(s); i < l; i++)
     {
-        
+        for (int k = 0, l2 = strlen(a); k < l2; k++)
+        {
+            if (s[i] == a[k])
+            {
+                s[i] = k [k];
+            }
+        }
     }
     printf("ciphertext: %s\n", s);
 }
