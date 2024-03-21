@@ -8,6 +8,7 @@ void cipher(string s, string key);
 int main(int argc, string argv[])
 {
     bool alpha = true;
+    bool duplicate = false;
     int l = 0;
     string input = "";
     if (argc == 2)
@@ -25,7 +26,10 @@ int main(int argc, string argv[])
             for (int k = i + 1; k < l; k++)
             {
                 if (input[i] == input[k])
-                    
+                {
+                    duplicate = true;
+                    break;
+                }
             }
         }
     }
@@ -35,9 +39,9 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    if (alpha == false || l != 26)
+    if (alpha == false || l != 26 || duplicate)
     {
-        printf("there is an error\n");
+        printf("Your key must contain only 26 non-duplicate alphabetic characters!\n");
         return 1;
     }
     cipher(get_string("plaintext:  "), input);
