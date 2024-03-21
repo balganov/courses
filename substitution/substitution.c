@@ -14,7 +14,7 @@ int main(int argc, string argv[])
         string input = argv[1];
         for (int i = 0; i < l; i++)
         {
-            if (!isalpha(input[i]))
+            if (!isalpha(input[i]) || strchr(""))
             {
                 alpha = false;
             }
