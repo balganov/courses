@@ -8,13 +8,15 @@ void cipher(string s, int k);
 int main(int argc, string argv[])
 {
     bool alpha = true;
+    int l = 0;
+    string input = "";
     if (argc == 2)
     {
-        int l = strlen(argv[1]);
-        string input = argv[1];
+        l = strlen(argv[1]);
+        input = argv[1];
         for (int i = 0; i < l; i++)
         {
-            if (!isalpha(input[i]) || strchr("ABCDEFGHIJKLMNOPQRSTUVWXYZ",input[i]) = NULL)
+            if (!isalpha(input[i]) || strchr("ABCDEFGHIJKLMNOPQRSTUVWXYZ",input[i]) == NULL)
             {
                 alpha = false;
             }
@@ -22,11 +24,11 @@ int main(int argc, string argv[])
     }
     else
     {
-        printf("Usage ./ceasar key\n");
+        printf("Usage ./substitution key\n");
         return 1;
     }
 
-    if (alpha = false or l != 26)
+    if (alpha == false || l != 26)
     {
         printf("there is an error\n");
     }
