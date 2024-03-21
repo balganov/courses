@@ -22,6 +22,11 @@ int main(int argc, string argv[])
                 alpha = false;
                 break;
             }
+            for (int k = i + 1; k < l; k++)
+            {
+                if (input[i] == input[k])
+                    
+            }
         }
     }
     else
