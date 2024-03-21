@@ -9,19 +9,24 @@ int main(int argc, string argv[])
 {
     if (argc != 2)
     {
+        int l = strlen(argv[1]);
+        string input = argv[1];
+        for (int i = 0; i < l; i++)
+        {
+            if (isalpha(input[i]))
+            {
+                printf("Usage ./ceasar key\n");
+                return 1;
+            }
+        }
+
+    }
+    else
+    {
         printf("Usage ./ceasar key\n");
         return 1;
     }
-    int l = strlen(argv[1]);
-    string input = argv[1];
-    for (int i = 0; i < l; i++)
-    {
-        if (input[0] == '0' || !isdigit(input[i]))
-        {
-            printf("Usage ./ceasar key\n");
-            return 1;
-        }
-    }
+
 
     cipher(get_string("plaintext:  "), atoi(input));
 
