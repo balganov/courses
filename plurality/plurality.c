@@ -75,7 +75,9 @@ bool vote(string name)
             found = true;
         }
     }
-    if (!found)
+    if (found)
+        return true;
+    else
         return false;
 }
 
