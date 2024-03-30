@@ -85,5 +85,16 @@ bool vote(string name)
 void print_winner(void)
 {
     // TODO
-    return;
+    int highest = 0;
+    for (int i = 0; i < candidates_count; i++)
+    {
+        if (candidates[i].votes > highest)
+            highest = candidates[i].votes
+    }
+    for (int k = 0; k < candidates_count;k++)
+    {
+        if (candidates[i].votes == highest)
+            printf("%s\n",candidates[i].name)
+    }
+    return 0;
 }
