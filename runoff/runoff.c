@@ -157,14 +157,15 @@ void tabulate(void)
                 if (preferences[i][k] == j)
                 {
                     if(candidates[j].eliminated == false)
+                    {
                         candidates[j].votes += 1;
                         stop = true;
+                    }
                 }
             }
         }
         stop = false;
     }
-    return 0;
 }
 
 // Print the winner of the election, if there is one
