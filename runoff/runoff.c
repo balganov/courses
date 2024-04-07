@@ -127,7 +127,7 @@ int main(int argc, string argv[])
 bool vote(int voter, int rank, string name)
 {
     // TODO
-    bool valid = false;
+    bool found = false;
     for (int i = 0; i < candidate_count; i++)
     {
         if (strcmp(candidates[i].name, name) == 0)
@@ -136,7 +136,10 @@ bool vote(int voter, int rank, string name)
             found = true;
         }
     }
-    return false;
+    if (found)
+        return true;
+    else
+        return false;
 }
 
 // Tabulate votes for non-eliminated candidates
