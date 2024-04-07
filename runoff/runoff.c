@@ -150,7 +150,7 @@ void tabulate(void)
     bool stop = false;
     for (int i = 0; i < voter_count; i++)
     {
-        for (int k = 0; k < candidate_count; k++)
+        for (int k = 0; k < candidate_count && !stop; k++)
         {
             for (int j = 0; j < candidate_count && !stop; j++)
             {
