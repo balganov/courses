@@ -162,10 +162,9 @@ void tabulate(void)
                 }
             }
         }
-        stop = false; 
+        stop = false;
     }
-
-    return;
+    return 0;
 }
 
 // Print the winner of the election, if there is one
