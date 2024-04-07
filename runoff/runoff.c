@@ -171,7 +171,16 @@ void tabulate(void)
 bool print_winner(void)
 {
     // TODO
-    return false;
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes > voter_count/2)
+        {
+            printf("%s\n",candidates[i].name);
+            return true;
+        }
+        else
+            return false;
+    }
 }
 
 // Return the minimum number of votes any remaining candidate has
