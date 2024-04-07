@@ -128,14 +128,18 @@ bool vote(int voter, int rank, string name)
 {
     // TODO
     bool found = false;
-    for (int i = 0; i < candidate_count; i++)
+    for (int k = 0; k < voter_count; k++)
     {
-        if (strcmp(candidates[i].name, name) == 0)
+        for (int i = 0; i < candidate_count; i++)
         {
-            preferences[voter][rank] =
-            found = true;
+            if (strcmp(candidates[i].name, name) == 0)
+            {
+                preferences[k][i] = 
+                found = true;
+            }
         }
     }
+
     if (found)
         return true;
     else
