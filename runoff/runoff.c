@@ -130,7 +130,11 @@ bool vote(int voter, int rank, string name)
     bool valid = false;
     for (int i = 0; i < candidate_count; i++)
     {
-        
+        if (strcmp(candidates[i].name, name) == 0)
+        {
+            candidates[i].votes += 1;
+            found = true;
+        }
     }
     return false;
 }
