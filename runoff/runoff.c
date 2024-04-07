@@ -129,11 +129,15 @@ bool vote(int voter, int rank, string name)
 {
     // TODO
     bool found = false;
-    if (strcmp(candidates[rank-1].name, name) == 0)
+    for (int i = 0; i < candidate_count; i++)
     {
-        preferences[voter][rank-1] = rank;
-        found = true;
+        if (strcmp(candidates[i].name, name) == 0)
+        {
+            preferences[voter][rank-1] = i;
+            found = true;
+        }
     }
+
     if (found)
         return true;
     else
