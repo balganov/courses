@@ -105,11 +105,11 @@ bool vote(int rank, string name, int ranks[])
     {
         if (strcmp(candidates[i], name) == 0)
         {
-            ranks[rank] = i;]
+            ranks[rank] = i;
             found = true;
         }
     }
-    return found; 
+    return found;
 }
 
 // Update preferences given one voter's ranks
