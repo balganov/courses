@@ -117,7 +117,7 @@ void record_preferences(int ranks[])
     {
         if (candidates[i] == ranks[i])
         {
-            
+
         }
     }
 
