@@ -12,12 +12,10 @@
         "inferrinizzard.prettier-sql-vscode",
         "mathematic.vscode-pdf",
         "ms-azuretools.vscode-docker",
-        "ms-ceintl.vscode-language-pack-bg",
         "ms-ceintl.vscode-language-pack-cs",
         "ms-ceintl.vscode-language-pack-de",
         "ms-ceintl.vscode-language-pack-es",
         "ms-ceintl.vscode-language-pack-fr",
-        "ms-ceintl.vscode-language-pack-hu",
         "ms-ceintl.vscode-language-pack-it",
         "ms-ceintl.vscode-language-pack-ja",
         "ms-ceintl.vscode-language-pack-ko",
@@ -38,6 +36,9 @@
       "settings": {
         "[python]": {
           "editor.defaultFormatter": "ms-python.autopep8"
+        },
+        "accessibility.signals.terminalBell": {
+          "sound": "on"
         },
         "breadcrumbs.enabled": false,
         "C_Cpp.autocomplete": "disabled",
@@ -90,6 +91,7 @@
             }
           }
         },
+        "editor.stickyScroll.enabled": false,
         "editor.suggestOnTriggerCharacters": false,
         "explorer.autoOpenDroppedFile": false,
         "explorer.compactFolders": false,
@@ -129,7 +131,7 @@
         "html.suggest.html5": false,
         "java.configuration.runtimes": [
           {
-            "name": "JavaSE-22",
+            "name": "JavaSE-24",
             "path": "/opt/jdk",
             "default": true
           }
@@ -142,6 +144,7 @@
         "javascript.validate.enable": false,
         "Prettier-SQL.keywordCase": "upper",
         "problems.decorations.enabled": false,
+        "problems.visibility": false,
         "python.terminal.executeInFileDir": true,
         "remote.autoForwardPorts": true,
         "remote.autoForwardPortsFallback": 0,
@@ -154,7 +157,7 @@
           "workbench.action.toggleSidebarVisibility"
         ],
         "terminal.integrated.defaultProfile.linux": "bash",
-        "terminal.integrated.enableBell": true,
+        "terminal.integrated.enableVisualBell": true,
         "terminal.integrated.gpuAcceleration": "off",
         "terminal.integrated.persistentSessionReviveProcess": "never",
         "terminal.integrated.profiles.linux": {
@@ -200,10 +203,12 @@
         },
         "workbench.editor.closeOnFileDelete": true,
         "workbench.editor.enablePreview": false,
+        "workbench.editor.labelFormat": "medium",
         "workbench.editorAssociations": {
           "*.wav": "vscode.audioPreview"
         },
         "workbench.iconTheme": "vs-minimal",
+        "workbench.layoutControl.enabled": false,
         "workbench.preferredDarkColorTheme": "GitHub Dark Default",
         "workbench.preferredLightColorTheme": "GitHub Light Default",
         "workbench.startupEditor": "none",
@@ -221,7 +226,7 @@
     8082,
     8787
   ],
-  "image": "ghcr.io/cs50/codespace:dacf950c60c11b6af331507cd49b39dc66df9235",
+  "image": "ghcr.io/cs50/codespace:be397844fd41c3c6c62cacc61166f39b49fd909a",
   "mounts": [
     {
       "source": "/var/run/docker.sock",
