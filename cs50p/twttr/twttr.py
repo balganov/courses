@@ -4,7 +4,9 @@ v = ("A", "E", "I", "O", "U")
 
 
 for i in s:
-    i = ""
-    print("here")
+    if i in v:
+        print("found one")
+    else:
+        print("nothin")
 
-print("Output: ", s)
+
