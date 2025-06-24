@@ -2,10 +2,11 @@ s = input("Input: ")
 
 v = ["A", "E", "I", "O", "U"]
 
-print("Output: ")
+
 
 for c in s:
     if c.upper in v:
-        c=""
-    else:
-        print(c,end="")
+        s.replace(c,"")
+        print("here")
+
+print("Output: ", s)
