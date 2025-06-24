@@ -9,7 +9,8 @@ def main():
 def is_valid(s):
     if s[0:2].isalpha():
         return True
-    elif:
+    elif 
+
     else:
         return False
 
