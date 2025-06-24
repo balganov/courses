@@ -2,5 +2,10 @@ s = input("Input: ")
 
 v = ["A", "E", "I", "O", "U"]
 
+print("Output: ")
+
 for c in s:
-    print(c.replace())
+    if c.upper in v
+        print(c.replace())
+    else:
+        print(c)
