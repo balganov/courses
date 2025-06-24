@@ -12,10 +12,11 @@ def is_valid(s):
         for c in s:
             if c.isdigit():
                 if not digit_found:
-                digit_found = True
-                if c == '0':
-                    return False
-        return True
+                    digit_found = True
+                    if c == '0':
+                        return False
+            elif digit_found:
+                return True
     else:
         return False
 
