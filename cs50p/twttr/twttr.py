@@ -4,9 +4,9 @@ v = ("A", "E", "I", "O", "U")
 
 
 for i in s:
-    if i in v:
-        print("found one")
+    if i.upper in v:
+        print("",end="")
     else:
-        print("nothin")
+        print(i,end="")
 
 
