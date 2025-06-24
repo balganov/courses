@@ -12,7 +12,7 @@ def is_valid(s):
         for c in s:
             if c.isdigit():
                 digit_found = True
-                if not digit_found c == '0':
+                if not digit_found and c == '0':
                     return False
         return True
     else:
