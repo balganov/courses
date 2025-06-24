@@ -15,6 +15,8 @@ def is_valid(s):
                     digit_found = True
                     if c == '0':
                         return False
+            elif digit_found:
+                return False
         return True
     else:
         return False
