@@ -12,8 +12,7 @@ def is_valid(s):
             if c.isdigit():
                 if c == '0':
                     return False
-            else:
-                return True
+        return True
     else:
         return False
 
