@@ -4,7 +4,7 @@ v = ("A", "E", "I", "O", "U")
 
 
 for i in s:
-    s.replace(i,"")
+    i = ""
     print("here")
 
 print("Output: ", s)
