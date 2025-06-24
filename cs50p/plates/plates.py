@@ -7,7 +7,7 @@ def main():
 
 
 def is_valid(s):
-    if s[0:2].isalpha() and len(s) <= 6 and s[-1].isdigit() and s.isalnum():
+    if s[0:2].isalpha() and len(s) <= 6 and s.isalnum():
         digit_found = False
         for c in s:
             if c.isdigit():
