@@ -11,6 +11,8 @@ def is_valid(s):
         for c in s:
             if c.isdigit() and c == 0:
                 print(c)
+                return False
+            else:
                 return True
     else:
         return False
