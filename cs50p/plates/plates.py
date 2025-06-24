@@ -13,6 +13,13 @@ def is_valid(s):
         return False
 
     for c in s:
-        if c 
+        if c.isdigit():
+            counter = counter + 1
+            if c = 0 and counter = 1
+                return False
+            else:
+                return True
+
+
 
 main()
