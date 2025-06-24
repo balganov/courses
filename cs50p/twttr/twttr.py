@@ -6,6 +6,6 @@ print("Output: ")
 
 for c in s:
     if c.upper in v:
-        print(c.replace())
+        c=""
     else:
-        print(c)
+        print(c,end="")
