@@ -11,8 +11,9 @@ def is_valid(s):
         digit_found = False
         for c in s:
             if c.isdigit():
+                if not digit_found:
                 digit_found = True
-                if not digit_found and c == '0':
+                if c == '0':
                     return False
         return True
     else:
