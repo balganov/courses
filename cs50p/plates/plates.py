@@ -7,7 +7,7 @@ def main():
 
 
 def is_valid(s):
-    if s[0:2].isalpha() and len(s) <= 6:
+    if s[0:2].isalpha() and len(s) <= 6 and s.endswith():
         return True
     else:
         return False
