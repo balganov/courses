@@ -10,8 +10,8 @@ def is_valid(s):
     if s[0:2].isalpha() and len(s) <= 6 and s[-1].isdigit() and s.isalnum():
         for c in s:
             if c.isdigit():
-                print(c)
-                return False
+                if c == '0':
+                    return False
             else:
                 return True
     else:
