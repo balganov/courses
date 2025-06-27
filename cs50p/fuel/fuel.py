@@ -10,6 +10,9 @@ def main():
             return
         except (ValueError, ZeroDivisionError):
             pass
+        except Exception:
+            if fuel > 100:
+                pass
 
 
 def how_much(left):
@@ -18,8 +21,6 @@ def how_much(left):
 
     if result <= 1:
         return "E"
-    elif result > 100:
-        return
     elif result >= 99:
         return "F"
     else:
