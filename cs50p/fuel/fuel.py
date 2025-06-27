@@ -1,7 +1,7 @@
 
 
 def main():
-    
+
 
     while True:
         try:
@@ -20,6 +20,8 @@ def how_much(left):
         return "E"
     elif result >= 99:
         return "F"
+    elif > 100
+        raise Exception()
     else:
         return str(result) + "%"
 
