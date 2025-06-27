@@ -21,9 +21,13 @@ def main():
             if item in menu:
                 total += menu[item]
                 print("Total: ", total)
+            else:
+                continue
         except EOFError:
             print("\n")
             return
+        except (KeyError, ValueError):
+            pass
 
 main()
 
