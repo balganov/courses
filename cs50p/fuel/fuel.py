@@ -1,6 +1,8 @@
 
 
 def main():
+    
+
     while True:
         try:
             fuel = input("Fraction: ")
