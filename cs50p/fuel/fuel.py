@@ -18,7 +18,7 @@ def how_much(left):
 
     if result <= 1:
         return "E"
-    elif result >= 99:
+    elif 99 >= result <= 100:
         return "F"
     elif result > 100:
         raise Exception()
