@@ -16,7 +16,7 @@ def main():
 try:
     item = input("Item: ").strip().title()
 except EOFError:
-    ...
+    print("\n")
 
 
 def calculate_order():
