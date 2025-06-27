@@ -13,5 +13,11 @@ def main():
     "Tortilla Salad": 8.00
 }
 
+try:
+    item = input("Item: ").strip().title()
+except EOFError:
+    ...
+
+
 def calculate_order():
 
