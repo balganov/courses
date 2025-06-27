@@ -1,29 +1,23 @@
 
 
 def main():
+    print(get_fuel())
 
-
-    while True:
-        try:
-            fuel = input("Fraction: ")
-            print(how_much(fuel))
-            return
-        except (ValueError, ZeroDivisionError):
-            pass
-        except Exception:
-            if fuel > 100:
-                pass
-
-
-def how_much(left):
+def get_fuel(left):
     l = left.split("/")
     result = int(round(int(l[0])/int(l[1])*100))
 
-    if result <= 1:
-        return "E"
-    elif result >= 99:
-        return "F"
-    else:
-        return str(result) + "%"
+    while True
+        try:
+            fuel = input("Fraction: ")
+            
+            if result <= 1:
+                return "E"
+            elif result >= 99:
+                return "F"
+            else:
+                return str(result) + "%"
+        except (ValueError, ZeroDivisionError):
+            pass
 
 main()
