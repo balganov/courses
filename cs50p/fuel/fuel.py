@@ -14,13 +14,13 @@ def main():
 
 def how_much(left):
     l = left.split("/")
-    result = int(int(l[0])/int(l[1])*100)
+    result = int(round(int(l[0])/int(l[1])*100))
 
     if result <= 1:
         return "E"
     elif result >= 99:
         return "F"
-    elif > 100
+    elif result > 100:
         raise Exception()
     else:
         return str(result) + "%"
