@@ -7,7 +7,6 @@ def main():
 
 def how_much(left):
     l = left.split("/")
-    result = int(l[0])/int(l[1])*100
-    return result + "%"
+    return str(int(l[0])/int(l[1])*100) + "%"
 
 main()
