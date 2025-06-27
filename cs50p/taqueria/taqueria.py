@@ -11,13 +11,14 @@ def main():
     "Super Quesadilla": 9.50,
     "Taco": 3.00,
     "Tortilla Salad": 8.00
-}
+    }
 
-try:
-    item = input("Item: ").strip().title()
-except EOFError:
-    print("\n")
+    try:
+        item = input("Item: ").strip().title()
+        if item in menu:
+            total += total
+            print("Total: ",total)
+    except EOFError:
+        print("\n")
 
-
-def calculate_order():
 
