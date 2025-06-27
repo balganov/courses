@@ -13,12 +13,15 @@ def main():
     "Tortilla Salad": 8.00
     }
 
-    try:
-        item = input("Item: ").strip().title()
-        if item in menu:
-            total += total
-            print("Total: ",total)
-    except EOFError:
-        print("\n")
+    while True:
+        try:
+            item = input("Item: ").strip().title()
+            total = 0
+            if item in menu:
+                total += menu[item]
+                print("Total: ", total)
+        except EOFError:
+            print("\n")
 
+main()
 
