@@ -5,7 +5,7 @@ f = input("Fraction: ")
 
 
 
-def how_much:
+def how_much(f):
 
 
 main()
