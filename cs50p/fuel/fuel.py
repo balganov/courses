@@ -1,8 +1,13 @@
 
 
 def main():
-    fuel = input("Fraction: ")
-    print(how_much(fuel))
+    while True:
+        try:
+            fuel = input("Fraction: ")
+            print(how_much(fuel))
+            return
+        except (ValueError, ZeroDivisionError):
+            pass
 
 
 def how_much(left):
