@@ -17,7 +17,7 @@ def get_fuel():
                 print("F")
             else:
                 print(str(result) + "%")
-        except (ValueError, ZeroDivisionError):
+        except (Exception, ValueError, ZeroDivisionError):
             pass
 
 main()
