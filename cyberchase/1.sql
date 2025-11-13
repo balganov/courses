@@ -1,1 +1,1 @@
-SELECT * FROM "episodes";
+SELECT "title" FROM "episodes" WHERE "season" = 1;
