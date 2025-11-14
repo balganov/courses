@@ -2,8 +2,14 @@ import random
 
 
 def main():
-    print(get_level())
-    print(generate_integer(get_level()))
+    l = get_level()
+    counter = 10
+    while counter < 10
+        while True:
+            try:
+                answer = int(input((generate_integer(l) + "+" + generate_integer(l) + "=")
+            except:
+                raise ValueError
 
 
 def get_level():
