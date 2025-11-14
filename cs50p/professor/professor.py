@@ -12,6 +12,7 @@ def get_level():
                 level = int(input("Level: "))
                 if level < 4 or level > 0:
                     return level
+                    break
                 else:
                     raise ValueError
             except:
