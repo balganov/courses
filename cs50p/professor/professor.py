@@ -8,7 +8,7 @@ def main():
         while True:
             try:
                 answer = int(input((f"{generate_integer(l)} + {generate_integer(l)}= ")
-
+                if answer == 
             except:
                 continue
 
