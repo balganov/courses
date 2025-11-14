@@ -12,7 +12,7 @@ def main():
         while True:
             try:
                 if errors == 3:
-                    print()
+                    print(f"{first_int} + {second_int} = {sum}")
                 answer = int(input(f"{first_int} + {second_int} = "))
                 if answer == sum:
                     counter += 1
