@@ -13,6 +13,7 @@ def main():
             try:
                 if errors == 3:
                     print(f"{first_int} + {second_int} = {sum}")
+                    break
                 answer = int(input(f"{first_int} + {second_int} = "))
                 if answer == sum:
                     counter += 1
