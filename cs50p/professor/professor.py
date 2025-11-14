@@ -4,13 +4,15 @@ import random
 def main():
     l = get_level()
     counter = 0
-    errors = 0
     while counter < 10:
+        errors = 0
         first_int = generate_integer(l)
         second_int = generate_integer(l)
         sum = first_int + second_int
-        while errors < 3:
+        while True:
             try:
+                if errors == 3:
+                    print()
                 answer = int(input(f"{first_int} + {second_int} = "))
                 if answer == sum:
                     counter += 1
