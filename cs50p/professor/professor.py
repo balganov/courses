@@ -7,15 +7,15 @@ def main():
 
 
 def get_level():
-    try:
-        while True:
-            level = int(input("Level: "))
-            if level < 4 or level > 0:
-                return level
-            else:
-                raise ValueError
-    except:
-        continue
+    while True:
+            try:
+                level = int(input("Level: "))
+                if level < 4 or level > 0:
+                    return level
+                else:
+                    raise ValueError
+            except:
+                continue
 
 
 def generate_integer(level):
