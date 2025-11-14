@@ -10,7 +10,7 @@ def get_level():
     while True:
             try:
                 level = int(input("Level: "))
-                if level < 4 or level > 0:
+                if level > 0 and level < 4:
                     return level
                     break
                 else:
