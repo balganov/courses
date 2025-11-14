@@ -7,8 +7,8 @@ def main():
     while counter < 10
         while True:
             try:
-                answer = int(input((generate_integer(l) + "+" + generate_integer(l) + "=")
-                                   
+                answer = int(input((f"{generate_integer(l)} + {generate_integer(l)}= ")
+
             except:
                 continue
 
