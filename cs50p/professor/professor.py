@@ -4,6 +4,7 @@ import random
 def main():
     l = get_level()
     counter = 0
+    score = 0
     while counter < 10:
         errors = 0
         first_int = generate_integer(l)
