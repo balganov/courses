@@ -4,17 +4,20 @@ import random
 def main():
     l = get_level()
     counter = 0
+    errors = 0
     while counter < 10:
         first_int = generate_integer(l)
         second_int = generate_integer(l)
         sum = first_int + second_int
-        while True:
+        while errors < 3:
             try:
-                answer = int(input(f"{first_int} + {second_int}= "))
+                answer = int(input(f"{first_int} + {second_int} = "))
                 if answer == sum:
                     counter += 1
                     break
                 else:
+                    print("EEE")
+                    errors += 1
                     raise ValueError
             except:
                 continue
