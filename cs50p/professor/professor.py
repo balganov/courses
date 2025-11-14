@@ -14,6 +14,7 @@ def main():
             try:
                 if errors == 3:
                     print(f"{first_int} + {second_int} = {sum}")
+                    counter += 1
                     break
                 answer = int(input(f"{first_int} + {second_int} = "))
                 if answer == sum:
