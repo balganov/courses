@@ -8,8 +8,9 @@ def main():
         while True:
             try:
                 answer = int(input((generate_integer(l) + "+" + generate_integer(l) + "=")
+                                   
             except:
-                raise ValueError
+                continue
 
 
 def get_level():
