@@ -18,6 +18,7 @@ def main():
                 answer = int(input(f"{first_int} + {second_int} = "))
                 if answer == sum:
                     counter += 1
+                    score += 1
                     break
                 else:
                     print("EEE")
@@ -26,6 +27,7 @@ def main():
             except:
                 continue
 
+    print(f"Score: {score}")
 
 def get_level():
     while True:
