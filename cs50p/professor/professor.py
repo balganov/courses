@@ -3,12 +3,19 @@ import random
 
 def main():
     l = get_level()
-    counter = 10
-    while counter < 10
+    counter = 0
+    while counter < 10:
+        first_int = generate_integer(l)
+        second_int = generate_integer(l)
+        sum = first_int + second_int
         while True:
             try:
-                answer = int(input((f"{generate_integer(l)} + {generate_integer(l)}= ")
-                if answer == 
+                answer = int(input(f"{first_int} + {second_int}= "))
+                if answer == sum:
+                    counter += 1
+                    break
+                else:
+                    raise ValueError
             except:
                 continue
 
