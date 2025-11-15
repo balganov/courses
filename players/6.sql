@@ -1,4 +1,4 @@
 SELECT "first_name", "last_name", "debut", "birth_city", "birth_state"
 FROM "players"
 WHERE "birth_city" = 'Pittsburgh' AND "birth_state" = 'PA'
-ORDER BY "debut" DESC, "first_name", "last_name";
+ORDER BY "last_name", "first_name", "debut" DESC;
