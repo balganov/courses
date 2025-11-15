@@ -1,2 +1,1 @@
-SELECT COUNT(*) FROM "views" WHERE "artist" = 'Hiroshige' AND "english_title" LIKE '%fuji%';
-
+SELECT COUNT(*) FROM "views" WHERE "artist" = 'Hiroshige' AND "english_title" LIKE '%eastern%capital%';
