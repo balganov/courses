@@ -1,5 +1,5 @@
-SELECT "english_title"
+SELECT "english_title" as "Title"
 FROM "views"
-WHERE "artist" = 'Hiroshige'
-ORDER BY "brightness" DESC
-LIMIT 5;
+WHERE "artist" = 'Hokusai'
+ORDER BY "entropy" DESC
+LIMIT 3;
