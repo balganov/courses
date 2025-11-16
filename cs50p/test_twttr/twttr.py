@@ -7,7 +7,7 @@ def shorten(word):
     v = ("A", "E", "I", "O", "U")
     new_word = ""
     for i in word:
-        if not i.upper() in v:
+        if not i in v:
             new_word += i
 
     return new_word
