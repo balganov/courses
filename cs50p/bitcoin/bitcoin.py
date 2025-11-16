@@ -25,7 +25,8 @@ def main():
             print(e)
 
         content = r.json()
-        print(content["data"]["priceUsd"])
+        result = content["data"]["priceUsd"] * 10
+        print(f"{result}")
 
 
 main()
