@@ -1,14 +1,13 @@
 
 def main():
-    input = shorten(input("Input :"))
-    print(f"Output: {input}")
+    result = shorten(input("Input :"))
+    print(f"Output: {result}")
 
 def shorten(word):
     v = ("A", "E", "I", "O", "U")
-    result = ""
-    
+
     for i in word:
-        if i.upper() in word:
+        if i.upper() in v:
             print("",end="")
         else:
             print(i,end="")
