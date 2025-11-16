@@ -23,7 +23,7 @@ def main():
             r = requests.get('https://rest.coincap.io/v3/assets/bitcoin?apiKey=e8d5c419eda93141a0fc9a8b0c95192a27c9105f9df50d8435e1c891135b9bf9')
             content = r.json()
             for data in content["data"]:
-                print(data["priceUSD"])
+                print(data['priceUSD'])
 
         except requests.RequestException as e:
             print(e)
