@@ -1,5 +1,6 @@
 import sys
 import requests
+import json
 
 
 def is_float(value):
@@ -20,7 +21,7 @@ def main():
     else:
         try:
             r = requests.get('https://rest.coincap.io/v3/assets/bitcoin?apiKey=e8d5c419eda93141a0fc9a8b0c95192a27c9105f9df50d8435e1c891135b9bf9')
-            print(r.json())
+            print(json.dumps(r.json(), indent = 2))
         except requests.RequestException as e:
             print(e)
 
