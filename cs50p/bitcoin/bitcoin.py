@@ -1,7 +1,5 @@
 import sys
 import requests
-import json
-
 
 def is_float(value):
     try:
@@ -10,9 +8,7 @@ def is_float(value):
     except ValueError:
         return False
 
-
 def main():
-    result = 0.0
     if len(sys.argv) == 1:
         print("Missing command-line argument")
         sys.exit()
@@ -25,9 +21,7 @@ def main():
         except requests.RequestException as e:
             print(e)
 
-        content = r.json()
-        result = content["data"]["priceUsd"] * 10
-        print(f"{result}")
-
-
+        result = float(r.json()["data"]["priceUsd"]) * float(sys.argv[1])
+        print(f"${result:,.4f}")
+        
 main()
