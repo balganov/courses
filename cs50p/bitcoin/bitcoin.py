@@ -3,19 +3,23 @@ import requests
 
 
 def is_float(value):
-    if float(value): return True else: return False
+    try:
+        float(value)
+        return True
+    except ValueError:
+        return False
 
 
 def main():
 
     if len(sys.argv) == 1:
-        print("Missing command-line argument\n")
+        print("Missing command-line argument")
         sys.exit()
-    elif float(sys.argv[1]):
-        print("Command-line argument is not a number\n")
+    elif not is_float(sys.argv[1]):
+        print("Command-line argument is not a number")
         sys.exit()
     else:
-        print("all good")
-        sys.exit()
+        try:
+            
 
 main()
