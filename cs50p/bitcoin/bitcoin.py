@@ -10,11 +10,9 @@ def is_float(value):
 
 def main():
     if len(sys.argv) == 1:
-        print("Missing command-line argument")
-        sys.exit()
+        sys.exit("Missing command-line argument")
     elif not is_float(sys.argv[1]):
-        print("Command-line argument is not a number")
-        sys.exit()
+        sys.exit("Command-line argument is not a number")
     else:
         try:
             r = requests.get('https://rest.coincap.io/v3/assets/bitcoin?apiKey=e8d5c419eda93141a0fc9a8b0c95192a27c9105f9df50d8435e1c891135b9bf9')
@@ -23,5 +21,5 @@ def main():
 
         result = float(r.json()["data"]["priceUsd"]) * float(sys.argv[1])
         print(f"${result:,.4f}")
-        
+
 main()
