@@ -12,6 +12,7 @@ def is_float(value):
 
 
 def main():
+    result = 0.0
     if len(sys.argv) == 1:
         print("Missing command-line argument")
         sys.exit()
