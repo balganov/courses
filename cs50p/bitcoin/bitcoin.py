@@ -2,10 +2,12 @@ import sys
 import requests
 
 def main():
-    try:
-        while len(sys.argv) == 2
-            
+
+    if len(sys.argv) == 1:
+        print("Missing command-line argument\n")
+    elif 
+
     except:
-        continue
+
 
 main()
