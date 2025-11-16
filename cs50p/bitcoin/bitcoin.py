@@ -25,7 +25,7 @@ def main():
             print(e)
 
         content = r.json()
-        print(content["data"]["priceUSD"])
+        print(content["data"]['priceUSD'])
 
 
 main()
