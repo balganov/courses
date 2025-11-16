@@ -1,16 +1,15 @@
 
 def main():
-    result = shorten(input("Input :"))
+    result = shorten(input("Input : "))
     print(f"Output: {result}")
 
 def shorten(word):
     v = ("A", "E", "I", "O", "U")
 
     for i in word:
-        if i.upper() in v:
-            print("",end="")
-        else:
-            print(i,end="")
+        if i.upper() in v: word.replace(i,"")
 
-if __name__ = "__main__":
+    return word
+
+if __name__ == "__main__":
     main()
