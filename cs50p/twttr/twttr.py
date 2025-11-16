@@ -6,10 +6,10 @@ def main():
 def shorten(word):
     v = ("A", "E", "I", "O", "U")
     for i in word:
-        if i.upper() in v:
-            word.replace(i,"")
+        if not i.upper() in v:
+            new_word += i
 
-    return word
+    return new_word
 
 if __name__ == "__main__":
     main()
