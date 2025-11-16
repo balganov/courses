@@ -7,9 +7,9 @@ def shorten(word):
     v = ("A", "E", "I", "O", "U")
     for i in word:
         if i.upper() in v:
-            word.replace(i,"")
+            s = word.replace(i,"")
 
-    return word
+    return s
 
 if __name__ == "__main__":
     main()
