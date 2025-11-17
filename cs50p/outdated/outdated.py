@@ -14,8 +14,7 @@ def main():
 
     try:
         date = input("Date: ")
-        if date.split(" ").index(0) in months:
-            print("here")
+        print(date.split(" ").index(0))
     except:
         pass
 main()
