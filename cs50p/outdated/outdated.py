@@ -15,7 +15,7 @@ def main():
     while True:
         try:
             date = input("Date: ")
-            if date[0].isdigit():
+            if '/' in date and date[0].isdigit():
                 prep = date.split("/")
                 if prep[0] <= 12 and prep[1] <= 31:
                     print(f"{prep[1]:02}-{prep[0]:02}-{prep[2]}")
@@ -26,7 +26,7 @@ def main():
             else:
                 prep = date.replace(",","").split()
                 if prep[0].capitalize() in months:
-                    print(f"{prep[1]:02}-{months.index(prep[0].capitalize()):02}-{prep[2]}")
+                    print(f"{prep[1]:02}-{months.index(prep[0].capitalize())+1:02}-{prep[2]}")
                     return
                 else:
                     raise ValueError
