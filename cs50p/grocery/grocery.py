@@ -9,7 +9,8 @@ def main():
             else:
                 d[item.upper()] = counter
         except EOFError:
-            print(d)
+            for key in d:
+                print(f"{d[key]} {d}\n")
             return
 
 
