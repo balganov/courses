@@ -18,11 +18,10 @@ def main():
             if '/' in date and date[0].isdigit():
                 prep = date.split("/")
                 int_list = [int(s) for s in prep]
-                if <= 1 int_list[0] <= 12 and 1 <= int_list[1] <= 31:
-                    print(f"{prep[1]:02}-{prep[0]:02}-{prep[2]}")
+                if 1 <= int_list[0] <= 12 and 1 <= int_list[1] <= 31:
+                    print(f"{int_list[1]:02d}-{int_list[0]:02d}-{int_list[2]}")
                     return
                 else:
-                    print("here")
                     raise ValueError
             else:
                 prep = date.replace(",","").split()
