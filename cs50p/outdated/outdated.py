@@ -18,7 +18,7 @@ def main():
 
             if prep[0].capitalize() in months:
                 prep = date.replace(",","").split()
-                print(f"{prep[1]:02}/{months.index(prep[0])}/{prep[2]}")
+                print(f"{prep[1]:02}/{months.index(prep[0].capitalize())}/{prep[2]}")
                 return
             else:
                 print(prep)
