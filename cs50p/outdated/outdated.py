@@ -21,6 +21,7 @@ def main():
                     print(f"{prep[1]:02}-{prep[0]:02}-{prep[2]}")
                     return
                 else:
+                    print("here")
                     raise ValueError
             else:
                 prep = date.replace(",","").split()
