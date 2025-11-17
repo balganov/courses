@@ -19,7 +19,7 @@ def main():
                 prep = date.split("/")
                 int_list = [int(s) for s in prep]
                 if 1 <= int_list[0] <= 12 and 1 <= int_list[1] <= 31 and 1000 <= int_list[2] <= 9999:
-                    print(f"{int_list[1]:02d}-{int_list[0]:02d}-{int_list[2]:04d}")
+                    print(f"{int_list[2]:04d}-{int_list[1]:02d}-{int_list[0]:02d}")
                     return
                 else:
                     raise ValueError
@@ -29,7 +29,7 @@ def main():
                     prep[0] = months.index(prep[0].capitalize())+1
                     int_list = [int(s) for s in prep]
                     if 1 <= int_list[0] <= 12 and 1 <= int_list[1] <= 31 and 1000 <= int_list[2] <= 9999:
-                        print(f"{int_list[1]:02d}-{int_list[0]:02d}-{int_list[2]:04d}")
+                        print(f"{int_list[2]:04d}-{int_list[1]:02d}-{int_list[0]:02d}")
                         return
                 else:
                     raise ValueError
