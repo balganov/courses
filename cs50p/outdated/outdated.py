@@ -12,6 +12,9 @@ def main():
     "November",
     "December"]
 
-    date = input("Date: ")
-    
+    try:
+        date = input("Date: ")
+        date.split("/")
+    except:
+        pass
 main()
