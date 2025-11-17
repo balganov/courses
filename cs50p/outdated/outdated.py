@@ -17,7 +17,8 @@ def main():
             date = input("Date: ")
             if '/' in date and date[0].isdigit():
                 prep = date.split("/")
-                if prep[0] <= 12 and prep[1] <= 31:
+                int_list = [int(s) for s in prep]
+                if <= 1 int_list[0] <= 12 and 1 <= int_list[1] <= 31:
                     print(f"{prep[1]:02}-{prep[0]:02}-{prep[2]}")
                     return
                 else:
