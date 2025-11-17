@@ -15,9 +15,8 @@ def main():
     while True:
         try:
             date = input("Date: ")
-
+            prep = date.replace(",","").split()
             if prep[0].capitalize() in months:
-                prep = date.replace(",","").split()
                 print(f"{prep[1]:02}/{months.index(prep[0].capitalize())}/{prep[2]}")
                 return
             else:
