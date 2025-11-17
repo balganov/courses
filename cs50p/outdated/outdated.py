@@ -12,9 +12,10 @@ def main():
     "November",
     "December"]
 
-    try:
-        date = input("Date: ")
-        print(date.split(" ").index(0))
-    except:
-        pass
+    while True:
+        try:
+            date = input("Date: ")
+            print(date.split(" "))
+        except:
+            pass
 main()
