@@ -24,6 +24,7 @@ def main():
                 else:
                     raise ValueError
             else:
+                prep = date.split()
                 if ',' not in date and prep[0].capitalize() in months:
                     prep = date.replace(",","").split()
                     prep[0] = months.index(prep[0].capitalize())+1
