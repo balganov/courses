@@ -15,9 +15,9 @@ def main():
     while True:
         try:
             date = input("Date: ")
-            r = date.replace(",","")
-            if date.split(" ")[0] in months:
-                print("asdasd")
+            prep = date.replace(",","").capitalize().split()
+            if prep[0] in months:
+                print("in list")
                 return
             else:
                 print("else")
