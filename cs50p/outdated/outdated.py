@@ -15,12 +15,12 @@ def main():
     while True:
         try:
             date = input("Date: ")
-            prep = date.replace(",","").capitalize().split()
-            if prep[0] in months:
+            prep = date.replace(",","").split()
+            if prep[0].capitalize() in months:
                 print("in list")
                 return
             else:
-                print("else")
+                print(prep)
                 return
         except:
             pass
