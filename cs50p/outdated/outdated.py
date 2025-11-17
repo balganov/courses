@@ -15,7 +15,7 @@ def main():
     while True:
         try:
             date = input("Date: ")
-            print(date.split(" "))
+            print(date.split(" ")[0])
         except:
             pass
 main()
