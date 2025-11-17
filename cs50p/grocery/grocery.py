@@ -4,10 +4,10 @@ def main():
     while True:
         try:
             item = input()
-            if item in d:
-                d[item] += 1
+            if item.upper() in d:
+                d[item.upper()] += 1
             else:
-                d[item] = counter
+                d[item.upper()] = counter
         except EOFError:
             print(d)
             return
