@@ -25,7 +25,7 @@ def main():
             else:
                 prep = date.replace(",","").split()
                 if prep[0].capitalize() in months:
-                    print(f"{prep[1]:02}-{months.index(prep[0].capitalize())}-{prep[2]}")
+                    print(f"{prep[1]:02}-{months.index(prep[0].capitalize()):02}-{prep[2]}")
                     return
                 else:
                     raise ValueError
