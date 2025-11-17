@@ -15,7 +15,9 @@ def main():
     while True:
         try:
             date = input("Date: ")
-            print(date.split(" ")[0])
+            if date.split(" ")[0] in months:
+                
+            return
         except:
             pass
 main()
