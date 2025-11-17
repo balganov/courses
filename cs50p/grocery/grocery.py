@@ -9,8 +9,9 @@ def main():
             else:
                 d[item.upper()] = counter
         except EOFError:
-            d = sorted(d.items())
-            for key in d:
+            sorted_items = sorted(d.items())
+            sorted_dict = dict(sorted_items)
+            for key in sorted_dict:
                 print(f"{d[key]} {key}")
             return
 
