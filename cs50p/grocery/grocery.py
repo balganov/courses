@@ -10,7 +10,7 @@ def main():
                 d[item.upper()] = counter
         except EOFError:
             for key in d:
-                print(f"{d[key]} {d.get(key)}\n")
+                print(f"{d[key]} {d.value(key)}\n")
             return
 
 
