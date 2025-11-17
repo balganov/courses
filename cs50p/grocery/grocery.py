@@ -9,6 +9,7 @@ def main():
             else:
                 d[item.upper()] = counter
         except EOFError:
+            d = sorted(d.items())
             for key in d:
                 print(f"{d[key]} {key}")
             return
