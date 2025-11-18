@@ -1,3 +1,3 @@
 --SELECT COUNT(*) FROM (
-SELECT "name" FROM "districts" WHERE "name" LIKE '%(non-op)';
+SELECT 'Average District Per-Pupil Expenditure' FROM "districts" WHERE "name" LIKE '%(non-op)';
 --);
