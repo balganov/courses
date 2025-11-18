@@ -1,9 +1,8 @@
 SELECT COUNT(*) FROM (
-SELECT "d"."city", COUNT("s"."name") AS "Number of Schools"
-FROM "schools" AS "s"
-JOIN "districts" AS "d" ON "s"."district_id" = "d"."id"
---WHERE "s"."type" = 'Public School'
-GROUP BY "d"."city"
+SELECT "city", COUNT("name") AS "Number of Schools"
+FROM "schools"
+WHERE "type" = 'Public School'
+GROUP BY "city"
 HAVING "Number of Schools" <= 3
-ORDER BY "Number of Schools" DESC, "d"."city"
+ORDER BY "Number of Schools" DESC, "city"
 );
