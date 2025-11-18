@@ -1,4 +1,4 @@
-SELECT "d"."name", "e"."pupils"
+SELECT "d"."name"
 FROM "districts" AS "d"
 JOIN "expenditures" AS "e" ON "d"."id" = "e"."district_id"
-ORDER BY "e"."pupils"
+WHERE "e"."pupils" = (SELECT MIN("pupils") FROM "expenditures")
