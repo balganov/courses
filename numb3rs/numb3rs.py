@@ -7,12 +7,11 @@ def main():
 
 
 def validate(ip):
-    match = re.search(r"^(([0-9]|[0-9]{2}|1[0-9]{2}|2[0-5]{2})\.){3}([0-9]|[0-9]{2}|1[0-9]{2}|2[0-5]{2})$",ip)
-    if match:
-        print("Valid.")
-        print(match.group())
-    else:
-        print("Invalid.")
+    if match := re.search(r"^(([0-9]|[0-9]{2}|1[0-9]{2}|2[0-5]{2})\.){3}([0-9]|[0-9]{2}|1[0-9]{2}|2[0-5]{2})$",ip):
+        return True
+    else
+        return False
+
 
 ...
 
