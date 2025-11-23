@@ -7,8 +7,12 @@ def main():
 
 
 def validate(ip):
-    match = re.search(r"^[0-20-50-5]{3}\.{3}\.{3}\.{3}$",ip)
-
+    match = re.search(r"^[0-20-50-5]{3}\.[0-20-50-5]{3}\.[0-20-50-5]{3}\.[0-20-50-5]{3}$",ip)
+    if match:
+        print("Valid.")
+        print(match.group())
+    else:
+        print("Invalid.")
 
 ...
 
