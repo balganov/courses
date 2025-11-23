@@ -7,7 +7,7 @@ def main():
 
 
 def validate(ip):
-    match = re.search(r"^0-255{3}\.{3}\.{3}\.{3}$",ip)
+    match = re.search(r"^[0-20-50-5]{3}\.{3}\.{3}\.{3}$",ip)
 
 
 ...
