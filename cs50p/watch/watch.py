@@ -7,7 +7,7 @@ def main():
 
 
 def parse(s):
-    re.search(r"",s)
+    re.search(r"src=\"(..*)",s)
     return None
 
 if __name__ == "__main__":
