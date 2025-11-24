@@ -7,11 +7,11 @@ def main():
 
 
 def parse(s):
-    match = re.search(r"src=\"(..*)\"",s)
+    match = re.search(r"src=\"(.*)\"",s)
     if match:
-        print(match.group(1))
-
-    return None
+        return match.group(1)
+    else:
+        return None
 
 if __name__ == "__main__":
     main()
