@@ -7,7 +7,7 @@ def main():
 
 
 def parse(s):
-    match = re.search(r"src=\"(.*)\"",s)
+    match = re.search(r"src=\"(\w)\"",s)
     if match:
         return match.group(1)
     else:
