@@ -7,7 +7,7 @@ def main():
 
 
 def parse(s):
-    match = re.search(r"src=\"(\S+)\"",s)
+    match = re.search(r"src=\"[https?](\S+)\"",s)
     if match:
         return f"https://youtu.be/{match.group(1).split("/")[4]}"
     else:
