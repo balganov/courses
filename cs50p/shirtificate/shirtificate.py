@@ -7,7 +7,7 @@ def main():
     pdf.cell(0, 50, "CS50 Shirtificate", align="C")
     pdf.image("shirtificate.png", w=200, x=5, y=70)
     pdf.set_text_color(r=255,g=255,b=255)
-    pdf.set_font_size(20)
+    pdf.set_font_size(30)
     pdf.set_x(0)
     pdf.cell(0, 250, "Nursultan took CS50", align="C")
     pdf.output("shirtificate.pdf")
