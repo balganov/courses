@@ -6,8 +6,8 @@ def main():
     pdf.set_font("helvetica", style="B", size=40)
     pdf.cell(0, 50, "CS50 Shirtificate", align="C")
     pdf.image("shirtificate.png", w=200, x=5, y=70)
-    pdf.set_font("helvetica", style="B", size=40)
-    pdf.cell(0, 50, "CS50 Shirtificate", align="C")
+    pdf.set_text_color(r=255,g=255,b=255)
+    pdf.cell(50, 50, "Nursultan took CS50", align="C")
     pdf.output("shirtificate.pdf")
 
 if __name__ == "__main__":
