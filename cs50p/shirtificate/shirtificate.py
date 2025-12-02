@@ -5,7 +5,9 @@ def main():
     pdf.add_page()
     pdf.set_font("helvetica", style="B", size=40)
     pdf.cell(0, 50, "CS50 Shirtificate", align="C")
-    pdf.image("shirtificate.png",)
+    pdf.image("shirtificate.png", w=200, x=5, y=70)
+    pdf.set_font("helvetica", style="B", size=40)
+    pdf.cell(0, 50, "CS50 Shirtificate", align="C")
     pdf.output("shirtificate.pdf")
 
 if __name__ == "__main__":
