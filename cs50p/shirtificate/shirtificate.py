@@ -9,7 +9,7 @@ def main():
     pdf.set_text_color(r=255,g=255,b=255)
     pdf.set_font_size(30)
     pdf.set_xy(0,0)
-    pdf.cell(0, 250, "Nursultan took CS50", align="C")
+    pdf.cell(0, 250, "Nursultan took CS50", align="C",center=True)
     pdf.output("shirtificate.pdf")
 
 if __name__ == "__main__":
