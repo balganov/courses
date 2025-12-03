@@ -1,4 +1,4 @@
-CREATE TABLE "meteorites_temp" (
+CREATE TABLE IF NOT EXISTS "meteorites_temp" (
     "name" TEXT,
     "id" INTEGER,
     "name_type" TEXT,
@@ -27,7 +27,7 @@ UPDATE "meteorites_temp"
 SET "long" = NULL
 WHERE "long" = '';
 
-CREATE TABLE "meteorites" (
+CREATE TABLE IF NOT EXISTS "meteorites" (
     "id" INTEGER,
     "name" TEXT,
     "class" TEXT,
