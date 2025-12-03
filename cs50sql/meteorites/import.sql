@@ -45,3 +45,4 @@ FROM "meteorites_temp"
 WHERE "name_type" != 'Relict'
 ORDER BY "year", "name";
 
+DELETE FROM "meteorites" WHERE "year" > 2025;
