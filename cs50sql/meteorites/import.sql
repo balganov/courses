@@ -1,4 +1,4 @@
-CREATE TABLE "meteorites" (
+CREATE TABLE "meteorites_temp" (
     "id" INTEGER,
     "name" TEXT,
     "class" TEXT,
@@ -8,4 +8,4 @@ CREATE TABLE "meteorites" (
     "lat" NUMERIC,
     "long" NUMERIC,
     PRIMARY KEY("id")
-)
+);
