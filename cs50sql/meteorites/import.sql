@@ -27,3 +27,20 @@ UPDATE "meteorites_temp"
 SET "long" = NULL
 WHERE "long" = '';
 
+CREATE TABLE "meteorites" (
+    "id" INTEGER,
+    "name" TEXT,
+    "class" TEXT,
+    "mass" NUMERIC,
+    "discovery" TEXT CHECK ("discovery" in ("Fell", "Found")),
+    "year" DATETIME,
+    "lat" NUMERIC,
+    "long" NUMERIC,
+    PRIMARY KEY("id")
+);
+
+INSERT INTO "meteorites" ("name", "class", "mass", "discovery", "year", "lat", "long")
+SELECT "name", "class", ROUND("mass",2), "discovery", "year", ROUND("lat",2), ROUND("long",2)
+FROM "meteorites_temp"
+WHERE "name_type" != 'Relict'
+
