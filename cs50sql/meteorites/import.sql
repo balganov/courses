@@ -3,7 +3,7 @@ CREATE TABLE "meteorites" (
     "name" TEXT,
     "class" TEXT,
     "mass" NUMERIC,
-    "discovery" TEXT,
+    "discovery" TEXT CHECK ("discovery" in ("Fell", "Found")),
     "year" DATETIME,
     "lat" NUMERIC,
     "long" NUMERIC,
