@@ -1,6 +1,7 @@
 CREATE TABLE "meteorites_temp" (
-    "id" INTEGER,
     "name" TEXT,
+    "id" INTEGER,
+    "name_type" TEXT,
     "class" TEXT,
     "mass" NUMERIC,
     "discovery" TEXT CHECK ("discovery" in ("Fell", "Found")),
