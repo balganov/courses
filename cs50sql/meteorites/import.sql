@@ -43,4 +43,5 @@ INSERT INTO "meteorites" ("name", "class", "mass", "discovery", "year", "lat", "
 SELECT "name", "class", ROUND("mass",2), "discovery", "year", ROUND("lat",2), ROUND("long",2)
 FROM "meteorites_temp"
 WHERE "name_type" != 'Relict'
+ORDER BY "year", "name";
 
