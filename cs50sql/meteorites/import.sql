@@ -10,3 +10,7 @@ CREATE TABLE "meteorites_temp" (
     "long" NUMERIC,
     PRIMARY KEY("id")
 );
+
+UPDATE "meteorites_temp"
+SET "mass" = NULL
+WHERE "mass" = '';
