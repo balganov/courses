@@ -5,7 +5,7 @@ def main():
 
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     #fetch_dictionaries()
-
+    get_roles()
     print("done")
 
 def fetch_dictionaries():
@@ -24,7 +24,9 @@ def fetch_dictionaries():
 
 def get_roles():
     with open("job_roles.json", "r", encoding="utf-8") as f:
-        for 
+        job_roles = json.load(f)
+
+        print(job_roles)
 
 if __name__ == "__main__":
     main()
