@@ -2,20 +2,14 @@ import requests
 
 
 def main():
-    ...
+    try:
+        r = requests.get('https://api.hh.ru/professional_roles')
 
+    except requests.RequestException as e:
+        print(e)
 
-def function_1():
-    ...
-
-
-def function_2():
-    ...
-
-
-def function_n():
-    ...
-
+    vacancies = r.json()
+    print(vacancies)
 
 if __name__ == "__main__":
     main()
