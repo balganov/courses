@@ -26,8 +26,8 @@ def get_roles():
     with open("job_roles.json", "r", encoding="utf-8") as f:
         job_roles = json.load(f)
 
-        for i,c in enumerate(job_roles["categories"]):
-            print(i,c)
+        for i in job_roles["categories"][7]["roles"]:
+            print(i["name"])
 
 if __name__ == "__main__":
     main()
