@@ -14,7 +14,7 @@ def main():
 def fetch_dictionaries():
     try:
         roles = requests.get('https://api.hh.ru/professional_roles')
-        currency
+        areas = requests.get('https://api.hh.ru/areas')
 
 
     except requests.RequestException as e:
