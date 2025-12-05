@@ -11,5 +11,6 @@ def main():
     job_roles = r.json()
     print(job_roles["categories"])
 
+
 if __name__ == "__main__":
     main()
