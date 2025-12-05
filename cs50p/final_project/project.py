@@ -3,7 +3,8 @@ import json
 
 def main():
 
-    fetch_dictionaries()
+    # First we fetch dictionaries from corresponding endpoints and write them to local json flies
+    # fetch_dictionaries()
 
     print("done")
 
