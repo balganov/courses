@@ -1,6 +1,6 @@
 import requests
 import json
-import 
+from deep_translator import GoogleTranslator
 
 def main():
 
@@ -27,8 +27,7 @@ def get_roles():
     with open("job_roles.json", "r", encoding="utf-8") as f:
         job_roles = json.load(f)
 
-        for i in job_roles["categories"][7]["roles"]:
-            print(i["name"])
+        print(GoogleTranslator(source="ru", target="en").translate(''.join(i["name"] for i in job_roles["categories"][7]["roles"]) + "\n"))
 
 if __name__ == "__main__":
     main()
