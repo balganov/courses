@@ -1,14 +1,15 @@
 import requests
 
+job_roles = {}
+countries = {}
 
 def main():
 
-
-
+    fetch_dictionaries()
 
     for i, c in enumerate(job_roles["categories"]):
         if c["id"] == "11":
-            print(c["roles"])
+            print(c["roles"], i)
             break
 
 def fetch_dictionaries():
