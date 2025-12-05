@@ -8,8 +8,8 @@ def main():
     except requests.RequestException as e:
         print(e)
 
-    vacancies = r.json()
-    print(vacancies)
+    job_roles = r.json()
+    print(job_roles["categories"])
 
 if __name__ == "__main__":
     main()
