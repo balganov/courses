@@ -11,7 +11,7 @@ def main():
     job_roles = r.json()
 
     for i, c in enumerate(job_roles["categories"]):
-        if c["id"] == 11:
+        if c["id"] == "11":
             print(c["roles"])
         break
 
