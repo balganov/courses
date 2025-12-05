@@ -15,7 +15,7 @@ def main():
             print(c["roles"])
             break
 
-
+def fetch_dictionaries
 
 
 if __name__ == "__main__":
