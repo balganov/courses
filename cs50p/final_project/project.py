@@ -34,7 +34,8 @@ def get_areas():
     with open("areas.json", "r", encoding="utf-8") as f:
         areas = json.load(f)
 
-    return GoogleTranslator(source="ru", target="en").translate('\n'.join(f"{i+1} {e['name']}" for i, e in enumerate(areas) if e["name"] != "Другие регионы"))
+    areas = sorted(areas,key=lambda x: x['name'])
+    return GoogleTranslator(source="ru", target="en").translate('\n'.join(f"{i+1} {e['name']}" for i, e in enumerate(areas) if e['name'] != "Другие регионы"))
 
 if __name__ == "__main__":
     main()
