@@ -9,7 +9,7 @@ def main():
         print(e)
 
     job_roles = r.json()
-    print(job_roles["categories"])
+    print(job_roles["categories"][i]["id"] == )
 
 
 if __name__ == "__main__":
