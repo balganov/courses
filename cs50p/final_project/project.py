@@ -17,7 +17,10 @@ def fetch_dictionaries():
         roles = requests.get('https://api.hh.ru/professional_roles')
         areas = requests.get('https://api.hh.ru/areas')
 
-        job_roles = roles.json()
+        file = open("job_roles","w")
+        file.write(roles.json())
+
+        
         countries = areas.json()
 
     except requests.RequestException as e:
