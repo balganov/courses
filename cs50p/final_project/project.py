@@ -27,7 +27,7 @@ def get_roles():
     with open("job_roles.json", "r", encoding="utf-8") as f:
         job_roles = json.load(f)
 
-        print(GoogleTranslator(source="ru", target="en").translate(''.join(i["name"] for i in job_roles["categories"][7]["roles"]) + "\n"))
+        print(GoogleTranslator(source="ru", target="en").translate('\n'.join(i["name"] for i in job_roles["categories"][7]["roles"])))
 
 if __name__ == "__main__":
     main()
