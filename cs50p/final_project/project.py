@@ -34,7 +34,8 @@ def get_areas():
     with open("areas.json", "r", encoding="utf-8") as f:
         areas = json.load(f)
 
-    print(areas)
+    for i, e in enumerate(areas):
+        print(f"{i} {e["name"]}")
 
 if __name__ == "__main__":
     main()
