@@ -2,11 +2,7 @@ import requests
 
 
 def main():
-    try:
-        r = requests.get('https://api.hh.ru/professional_roles')
 
-    except requests.RequestException as e:
-        print(e)
 
     job_roles = r.json()
 
@@ -15,7 +11,13 @@ def main():
             print(c["roles"])
             break
 
-def fetch_dictionaries
+def fetch_dictionaries():
+    try:
+        roles = requests.get('https://api.hh.ru/professional_roles')
+        
+
+    except requests.RequestException as e:
+        print(e)
 
 
 if __name__ == "__main__":
