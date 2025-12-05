@@ -6,7 +6,7 @@ def main():
 
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     #fetch_dictionaries()
-    print(f"Please select the roles that you are interested in: {get_roles()}")
+    print(f"Please select the roles that you are interested in:\n\n{get_roles()}")
     print("done")
 
 def fetch_dictionaries():
