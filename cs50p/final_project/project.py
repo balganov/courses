@@ -9,9 +9,11 @@ def main():
         print(e)
 
     job_roles = r.json()
-    for i, c enumerate(job_roles["categories"]):
+
+    for i, c in enumerate(job_roles["categories"]):
         if c["id"] == 11:
-            print(i)
+            print(c["roles"])
+        break
 
 
 
