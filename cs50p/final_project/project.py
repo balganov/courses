@@ -6,7 +6,8 @@ def main():
 
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     #fetch_dictionaries()
-    print(f"Please select the roles that you are interested in:\n\n{get_roles()}")
+    #print(f"Please select the roles that you are interested in:\n\n{get_roles()}")
+    get_areas()
     print("done")
 
 def fetch_dictionaries():
@@ -29,8 +30,11 @@ def get_roles():
 
     return GoogleTranslator(source="ru", target="en").translate('\n'.join(f"{i+1} {c['name']}" for i, c in enumerate(job_roles["categories"][7]["roles"])))
 
-#def get_areas():
+def get_areas():
+    with open("areas.json", "r", encoding="utf-8") as f:
+        areas = json.load(f)
 
+    print(areas)
 
 if __name__ == "__main__":
     main()
