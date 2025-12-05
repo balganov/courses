@@ -6,8 +6,8 @@ def main():
 
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     #fetch_dictionaries()
-    #print(f"Please select the roles you are interested in:\n\n{get_roles()}")
-    print(f"Please select your preferred work locations:\n\n{get_areas()}")
+    print(f"Please specify the job roles you are seeking:\n{get_roles()}")
+    print(f"Please select your preferred work locations:\n{get_areas()}")
     print("done")
 
 def fetch_dictionaries():
