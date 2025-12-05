@@ -1,27 +1,22 @@
 import requests
 
-job_roles = {}
-countries = {}
-
 def main():
 
     fetch_dictionaries()
 
-    for i, c in enumerate(job_roles["categories"]):
-        if c["id"] == "11":
-            print(c["roles"], i)
-            break
+    print("done")
 
 def fetch_dictionaries():
     try:
         roles = requests.get('https://api.hh.ru/professional_roles')
         areas = requests.get('https://api.hh.ru/areas')
 
-        file = open("job_roles","w")
-        file.write(roles.json())
+        with open("job_roles","w") as file:
+            file.write(str(roles.json()))
 
-        
-        countries = areas.json()
+        with open("areas", "w") as file:
+            file.write(str(areas.json()))
+
 
     except requests.RequestException as e:
         print(e)
