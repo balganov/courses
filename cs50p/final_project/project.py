@@ -2,6 +2,7 @@ import requests
 import json
 import spacy
 import sys
+import re
 from collections import Counter
 
 def main():
@@ -131,6 +132,9 @@ def get_skills():
         job_descriptions.append(d["description"])
 
     count_skills = Counter(skills)
+
+    r"\u003C.*?\u003E"
+
     print(count_skills, counter)
     #print(job_descriptions)
 
