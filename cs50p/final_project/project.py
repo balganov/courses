@@ -131,7 +131,7 @@ def get_skills():
     #print(job_descriptions)
 
     try:
-        nlp = spacy.load("ru-core-news-sm")
+        nlp = spacy.load("ru_core_news_sm")
     except OSError:
         print("Model not found. Please run: python -m spacy download ru_core_news_sm")
         sys.exit()
