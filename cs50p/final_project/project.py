@@ -96,8 +96,8 @@ def analyze_vacancies():
     for i in vacancies["clusters"][11]["items"]:
         print(f"{i['name']}: {i['count']}")
 
-    # for i in vacancies["items"][0]:
-    #     print(f"{i['url']}")
+    for i in vacancies["items"][0]:
+        print(f"{i['url']}")
 
 if __name__ == "__main__":
     main()
