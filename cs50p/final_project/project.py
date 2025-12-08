@@ -71,7 +71,9 @@ def analyze_vacancies():
     pages = int(vacancies["pages"])
     print(f"Total: {vacancies['found']} Pages: {pages}")
 
-
+    if pages > 1:
+        for p in range(pages):
+            
 
 if __name__ == "__main__":
     main()
