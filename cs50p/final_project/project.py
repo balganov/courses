@@ -128,7 +128,7 @@ def get_skills():
 
     count_skills = Counter(skills)
     print(count_skills)
-    print(job_descriptions)
+    #print(job_descriptions)
 
     try:
         nlp = spacy.load("ru-core-news-sm")
@@ -137,7 +137,11 @@ def get_skills():
         sys.exit()
 
     doc = nlp(job_descriptions)
-    
+
+    print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
+
+    for entity in doc.ents:
+        print(entity.text, entity.label_)
 
 
 
