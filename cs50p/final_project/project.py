@@ -51,7 +51,7 @@ def fetch_vacancies(role_params, area_params):
         print(f"Total: {data['found']} Pages: {pages}")
 
         if pages > 1:
-            for p in range(pages)-1:
+            for p in range(pages):
                 vacancy_params["clusters"] = "false"
                 vacancy_params["page"] = p+1
                 print(vacancy_params)
