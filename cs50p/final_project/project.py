@@ -55,12 +55,12 @@ def fetch_vacancies(role_params, area_params):
                 vacancy_params["clusters"] = "false"
                 vacancy_params["page"] = p
                 print(vacancy_params)
-                #vancancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
-                #data.append(vancancies.json())
+                vancancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
+                data.append(vancancies.json())
 
 
-        # with open("vacancies.json","w", encoding="utf-8") as f:
-        #      json.dump(vacancies.json(),f,indent=4, ensure_ascii=False)
+        with open("vacancies.json","w", encoding="utf-8") as f:
+              json.dump(data,f,indent=4, ensure_ascii=False)
 
     except requests.RequestException as e:
         print(e)
