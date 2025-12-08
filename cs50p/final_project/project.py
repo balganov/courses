@@ -100,5 +100,12 @@ def analyze_vacancies():
     for i in vacancies["items"]:
         urls.append(i["url"])
 
+    for url in urls:
+        r = requests.get(url)
+        desc 
+
+    with open("vacancy_desc.json","w", encoding="utf-8") as f:
+            json.dump(desc,f,indent=4, ensure_ascii=False)
+
 if __name__ == "__main__":
     main()
