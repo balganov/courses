@@ -115,8 +115,9 @@ def analyze_desc():
 
     skills = []
 
-    for i in desc:
-        skills.extend(i["key_skills"][k]["name"])
+    for d in desc:
+        for i in d["key_skills"]:
+            skills.append(i["name"])
 
     print(skills)
 
