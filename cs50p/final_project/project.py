@@ -77,6 +77,7 @@ def get_areas():
 
 def analyze_vacancies():
     urls = []
+    desc = []
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
@@ -102,7 +103,7 @@ def analyze_vacancies():
 
     for url in urls:
         r = requests.get(url)
-        desc 
+        desc.append(r.json())
 
     with open("vacancy_desc.json","w", encoding="utf-8") as f:
             json.dump(desc,f,indent=4, ensure_ascii=False)
