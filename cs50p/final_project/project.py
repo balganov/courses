@@ -98,15 +98,22 @@ def analyze_vacancies():
     for i in vacancies["clusters"][11]["items"]:
         print(f"{i['name']}: {i['count']}")
 
-    for i in vacancies["items"]:
-        urls.append(i["url"])
+    # for i in vacancies["items"]:
+    #     urls.append(i["url"])
 
-    for url in urls:
-        r = requests.get(url)
-        desc.append(r.json())
+    # for url in urls:
+    #     r = requests.get(url)
+    #     desc.append(r.json())
 
-    with open("vacancy_desc.json","w", encoding="utf-8") as f:
-            json.dump(desc,f,indent=4, ensure_ascii=False)
+    # with open("vacancy_desc.json","w", encoding="utf-8") as f:
+    #         json.dump(desc,f,indent=4, ensure_ascii=False)
+
+def analyze_desc():
+    with open("vacancy_desc.json", "r", encoding="utf-8") as f:
+        desc = json.load(f)
+
+    
+
 
 if __name__ == "__main__":
     main()
