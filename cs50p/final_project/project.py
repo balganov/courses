@@ -121,10 +121,10 @@ def get_skills():
     counter = 0
 
     for d in desc:
-        for i in d["key_skills"]:
-            if not i["name"]:
-                counter += 1
-            else:
+        if not d:
+            counter += 1
+        else:
+            for i in d["key_skills"]:
                 skills.append(i["name"])
 
     # for d in desc:
