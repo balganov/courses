@@ -79,7 +79,14 @@ def analyze_vacancies():
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
-    print(f"Number of items: {len(vacancies["items"])} Found: {vacancies["found"]}")
+    print(f"Total number of vacancies: {vacancies["found"]}")
+
+    for d in vacancies["clusters"]:
+        print(d["name"])
+        for i in range(5):
+            print(f"{d['items'][i]['name']}: {d['items'][i]['count']}")
+
+
 
 if __name__ == "__main__":
     main()
