@@ -12,7 +12,7 @@ def main():
     #fetch_vacancies(role_params, area_params)
     #fetch_vacancies(['165','164','156'], ['40'])
     analyze_vacancies()
-    analyze_desc()
+    get_skills()
 
     print("done")
 
@@ -110,7 +110,7 @@ def analyze_vacancies():
     # with open("vacancy_desc.json","w", encoding="utf-8") as f:
     #         json.dump(desc,f,indent=4, ensure_ascii=False)
 
-def analyze_desc():
+def get_skills():
     with open("vacancy_desc.json", "r", encoding="utf-8") as f:
         desc = json.load(f)
 
@@ -127,6 +127,8 @@ def analyze_desc():
     count_skills = Counter(skills)
     print(count_skills)
     print(job_descriptions)
+
+def
 
 if __name__ == "__main__":
     main()
