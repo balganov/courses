@@ -76,6 +76,7 @@ def get_areas():
     return '\n'.join(f"[{e['id']}]  {e['name']}" for e in areas if e['name'] != "Other regions")
 
 def analyze_vacancies():
+    urls = []
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
@@ -97,7 +98,7 @@ def analyze_vacancies():
         print(f"{i['name']}: {i['count']}")
 
     for i in vacancies["items"]:
-        print(f"{i['url']}")
+        urls.append(i["url"])
 
 if __name__ == "__main__":
     main()
