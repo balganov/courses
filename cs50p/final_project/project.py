@@ -120,7 +120,7 @@ def analyze_desc():
             skills.append(i["name"])
 
     count_skills = counter(skills)
-    print(skills)
+    print(count_skills)
 
 if __name__ == "__main__":
     main()
