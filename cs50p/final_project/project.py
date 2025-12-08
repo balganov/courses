@@ -35,7 +35,7 @@ def fetch_vacancies(role_params, area_params):
             "professional_role":role_params,
             "area" : area_params,
             "clusters":"true",
-            "per_page":"10",
+            "per_page":"100",
             "locale": "EN"
             }
 
@@ -43,6 +43,12 @@ def fetch_vacancies(role_params, area_params):
 
         vacancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
         print(vacancies.url)
+
+        pages = int(vacancies.json()["pages"])
+        print(f"Total: {vacancies['found']} Pages: {pages}")
+
+        if pages > 1:
+            for p in range(pages):
 
         with open("vacancies.json","w", encoding="utf-8") as f:
              json.dump(vacancies.json(),f,indent=4, ensure_ascii=False)
@@ -68,12 +74,8 @@ def analyze_vacancies():
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
-    pages = int(vacancies["pages"])
-    print(f"Total: {vacancies['found']} Pages: {pages}")
 
-    if pages > 1:
-        for p in range(pages):
-            
+
 
 if __name__ == "__main__":
     main()
