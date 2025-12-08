@@ -138,10 +138,20 @@ def get_skills():
 
     doc = nlp('...'.join(job_descriptions))
 
-    print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
+    # 1. Tokenization and Part-of-Speech Tagging
+    print("--- Tokenization and POS Tagging ---")
+    for token in doc:
+        print(f"{token.text:{15}} {token.pos_:{10}} {token.lemma_:{15}}")
 
-    for entity in doc.ents:
-        print(entity.text, entity.label_)
+    # 2. Named Entity Recognition (NER)
+    print("\n--- Named Entities ---")
+    for ent in doc.ents:
+        print(f"{ent.text:{20}} {ent.label_}")
+
+    # 3. Keyword Extraction (e.g., finding technical skills)
+    print("\n--- Keywords/Skills (Nouns and proper nouns) ---")
+    skills = [token.lemma_ for token in doc if token.pos_ in ["NOUN", "PROPN"]]
+    print(set(skills))
 
 
 
