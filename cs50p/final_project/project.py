@@ -81,10 +81,8 @@ def analyze_vacancies():
 
     print(f"Total number of vacancies: {vacancies["found"]}")
 
-    for d in vacancies["clusters"]:
-        print(d["name"])
-        for i in range(5):
-            print(f"{d['items'][i]['name']}: {d['items'][i]['count']}")
+    for i in vacancies["clusters"][0]["items"]:
+        print(f"{d['items'][i]['name']}: {d['items'][i]['count']}")
 
 
 
