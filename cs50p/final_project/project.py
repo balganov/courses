@@ -79,22 +79,22 @@ def analyze_vacancies():
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
-        print(f"Total number of vacancies: {vacancies["found"]}")
+    print(f"Total number of vacancies: {vacancies["found"]}")
 
-        for i in vacancies["clusters"][0]["items"][:5]:
-            print(f"{i['name']}: {i['count']}")
+    for i in vacancies["clusters"][0]["items"][:5]:
+        print(f"{i['name']}: {i['count']}")
 
-        for i in vacancies["clusters"][2]["items"][:5]:
-            print(f"{i['name']}: {i['count']}")
+    for i in vacancies["clusters"][2]["items"][:5]:
+        print(f"{i['name']}: {i['count']}")
 
-        for i in vacancies["clusters"][3]["items"]:
-            print(f"{i['name']}: {i['count']}")
+    for i in vacancies["clusters"][3]["items"]:
+        print(f"{i['name']}: {i['count']}")
 
-        for i in vacancies["clusters"][5]["items"]:
-            print(f"{i['name']}: {i['count']}")
+    for i in vacancies["clusters"][5]["items"]:
+        print(f"{i['name']}: {i['count']}")
 
-        for i in vacancies["clusters"][11]["items"]:
-            print(f"{i['name']}: {i['count']}")
+    for i in vacancies["clusters"][11]["items"]:
+        print(f"{i['name']}: {i['count']}")
 
     # for i in vacancies["items"][0]:
     #     print(f"{i['url']}")
