@@ -50,9 +50,10 @@ def fetch_vacancies(role_params, area_params):
         print(f"Total: {data['found']} Pages: {pages}")
 
         if pages > 1:
-            for p in range(pages):
-                vacancy_params["page"]=p
+            for p in range(pages)-1:
+                vacancy_params["page"]=p+1
                 vancancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
+                data.append(vancancies.json())
 
 
         with open("vacancies.json","w", encoding="utf-8") as f:
