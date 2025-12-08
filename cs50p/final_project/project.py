@@ -8,8 +8,9 @@ def main():
     # role_params = input(f"Please specify the job roles you are seeking:\n{get_roles()}\n").split(",")
     # area_params = input(f"Please select your preferred work locations:\n{get_areas()}\n").split(",")
 
-    # fetch_vacancies(role_params, area_params)
-    analyze_vacancies()
+    #fetch_vacancies(role_params, area_params)
+    fetch_vacancies(['165','164','156'], ['40'])
+    #analyze_vacancies()
 
     print("done")
 
@@ -51,13 +52,15 @@ def fetch_vacancies(role_params, area_params):
 
         if pages > 1:
             for p in range(pages)-1:
-                vacancy_params["page"]=p+1
-                vancancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
-                data.append(vancancies.json())
+                vacancy_params["clusters"] = "false"
+                vacancy_params["page"] = p+1
+                print(vacancy_params)
+                #vancancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
+                #data.append(vancancies.json())
 
 
-        with open("vacancies.json","w", encoding="utf-8") as f:
-             json.dump(vacancies.json(),f,indent=4, ensure_ascii=False)
+        # with open("vacancies.json","w", encoding="utf-8") as f:
+        #      json.dump(vacancies.json(),f,indent=4, ensure_ascii=False)
 
     except requests.RequestException as e:
         print(e)
@@ -79,8 +82,6 @@ def get_areas():
 def analyze_vacancies():
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
-
-
 
 
 if __name__ == "__main__":
