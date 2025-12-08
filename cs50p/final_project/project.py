@@ -119,6 +119,7 @@ def analyze_desc():
         for i in d["key_skills"]:
             skills.append(i["name"])
 
+    count_skills = counter(skills)
     print(skills)
 
 if __name__ == "__main__":
