@@ -70,7 +70,8 @@ def analyze_vacancies():
 
     print(f"Total: {vacancies['found']} Pages: {vacancies['pages']}")
 
-    if vacancies["pages"] > 1 
+    if vacancies["pages"] > 1:
+        
 
 if __name__ == "__main__":
     main()
