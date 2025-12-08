@@ -9,8 +9,8 @@ def main():
     # area_params = input(f"Please select your preferred work locations:\n{get_areas()}\n").split(",")
 
     #fetch_vacancies(role_params, area_params)
-    fetch_vacancies(['165','164','156'], ['40'])
-    #analyze_vacancies()
+    #fetch_vacancies(['165','164','156'], ['40'])
+    analyze_vacancies()
 
     print("done")
 
@@ -79,6 +79,7 @@ def analyze_vacancies():
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
+    print(f"Number of items: {len(vacancies["items"])} Found: {vacancies["found"]}")
 
 if __name__ == "__main__":
     main()
