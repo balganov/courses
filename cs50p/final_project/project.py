@@ -118,7 +118,6 @@ def get_skills():
         desc = json.load(f)
 
     skills = []
-    job_descriptions = []
     counter = 0
 
     for d in desc:
@@ -128,20 +127,8 @@ def get_skills():
             for i in d["key_skills"]:
                 skills.append(i["name"])
 
-    for d in desc:
-        job_descriptions.append(d["description"])
-
     count_skills = Counter(skills)
-
-    job_desc_str = ' '.join(job_descriptions)
-    clean = re.compile(r"\u003C.*?\u003E")
-    job_descriptions = re.sub(clean, '', job_desc_str).lower().split()
-    
-    count_skills_desc = Counter(job_descriptions)
-
     print(count_skills, counter)
-    print(count_skills_desc)
-    #print(job_descriptions)
 
 if __name__ == "__main__":
     main()
