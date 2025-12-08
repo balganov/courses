@@ -36,7 +36,8 @@ def fetch_vacancies(role_params, area_params):
             "area" : area_params,
             "clusters":"true",
             "per_page":"100",
-            "locale": "EN"
+            "locale": "EN",
+            "page":0
             }
 
         print(vacancy_params)
@@ -50,6 +51,7 @@ def fetch_vacancies(role_params, area_params):
 
         if pages > 1:
             for p in range(pages):
+                vacancy_params["page"]=p
                 vancancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
 
 
