@@ -1,5 +1,6 @@
 import requests
 import json
+from collections import Counter
 
 def main():
 
@@ -119,7 +120,7 @@ def analyze_desc():
         for i in d["key_skills"]:
             skills.append(i["name"])
 
-    count_skills = counter(skills)
+    count_skills = Counter(skills)
     print(count_skills)
 
 if __name__ == "__main__":
