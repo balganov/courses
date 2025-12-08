@@ -1,6 +1,7 @@
 import requests
 import json
 import spacy
+import sys
 from collections import Counter
 
 def main():
@@ -128,6 +129,15 @@ def get_skills():
     count_skills = Counter(skills)
     print(count_skills)
     print(job_descriptions)
+
+    try:
+        nlp = spacy.load("ru-core-news-sm")
+    except OSError:
+        print("Model not found. Please run: python -m spacy download ru_core_news_sm")
+        sys.exit()
+
+    doc = nlp(job_descriptions)
+    
 
 
 
