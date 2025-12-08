@@ -136,7 +136,7 @@ def get_skills():
         print("Model not found. Please run: python -m spacy download ru_core_news_sm")
         sys.exit()
 
-    doc = nlp(job_descriptions)
+    doc = nlp('...'.join(job_descriptions))
 
     print("Noun phrases:", [chunk.text for chunk in doc.noun_chunks])
 
