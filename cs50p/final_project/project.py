@@ -44,12 +44,10 @@ def fetch_vacancies(role_params, area_params):
         print(vacancy_params)
 
         vacancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
-        print(vacancies.url)
         data = vacancies.json()
-
         pages = int(data["pages"])
-        print(f"Total: {data['found']} Pages: {pages}")
 
+        # Check if we have additional pages and append them to our existing data
         if pages > 1:
             for p in range(1, pages):
                 vacancy_params["clusters"] = "false"
@@ -59,6 +57,7 @@ def fetch_vacancies(role_params, area_params):
                 data["items"].extend(vancancies.json()["items"])
 
 
+        # Write collected data to a file
         with open("vacancies.json","w", encoding="utf-8") as f:
               json.dump(data,f,indent=4, ensure_ascii=False)
 
