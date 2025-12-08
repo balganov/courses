@@ -122,7 +122,7 @@ def get_skills():
 
     for d in desc:
         for i in d["key_skills"]:
-            if i["name"] is None:
+            if not i["name"]:
                 counter += 1
             else:
                 skills.append(i["name"])
