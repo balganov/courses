@@ -133,12 +133,14 @@ def get_skills():
 
     count_skills = Counter(skills)
 
-    job_desc_str = '.....'.join(job_descriptions)
+    job_desc_str = ' '.join(job_descriptions)
     clean = re.compile(r"\u003C.*?\u003E")
-    job_desc_str_clean = re.sub(clean, '', job_desc_str)
-    print(job_desc_str_clean)
+    job_descriptions = re.sub(clean, '', job_desc_str).lower().split()
+    
+    count_skills_desc = Counter(job_descriptions)
 
     print(count_skills, counter)
+    print(count_skills_desc)
     #print(job_descriptions)
 
 if __name__ == "__main__":
