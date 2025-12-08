@@ -11,6 +11,7 @@ def main():
     #fetch_vacancies(role_params, area_params)
     #fetch_vacancies(['165','164','156'], ['40'])
     analyze_vacancies()
+    analyze_desc()
 
     print("done")
 
@@ -112,8 +113,12 @@ def analyze_desc():
     with open("vacancy_desc.json", "r", encoding="utf-8") as f:
         desc = json.load(f)
 
-    
+    skills = []
 
+    for i in desc:
+        skills.extend(i["key_skills"])
+
+    print(skills)
 
 if __name__ == "__main__":
     main()
