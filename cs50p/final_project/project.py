@@ -68,10 +68,10 @@ def analyze_vacancies():
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
-    print(f"Total: {vacancies['found']} Pages: {vacancies['pages']}")
+    pages = int(vacancies["pages"])
+    print(f"Total: {vacancies['found']} Pages: {pages}")
 
-    if vacancies["pages"] > 1:
-        
+
 
 if __name__ == "__main__":
     main()
