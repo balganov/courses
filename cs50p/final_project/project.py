@@ -118,16 +118,20 @@ def get_skills():
 
     skills = []
     job_descriptions = []
+    counter = 0
 
     for d in desc:
         for i in d["key_skills"]:
-            skills.append(i["name"])
+            if i["name"] is None:
+                counter += 1
+            else:
+                skills.append(i["name"])
 
-    for d in desc:
-        job_descriptions.append(d["description"])
+    # for d in desc:
+    #     job_descriptions.append(d["description"])
 
     count_skills = Counter(skills)
-    print(count_skills)
+    print(count_skills, counter)
     #print(job_descriptions)
 
 if __name__ == "__main__":
