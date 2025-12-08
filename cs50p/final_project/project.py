@@ -1,5 +1,6 @@
 import requests
 import json
+import spacy
 from collections import Counter
 
 def main():
@@ -128,7 +129,7 @@ def get_skills():
     print(count_skills)
     print(job_descriptions)
 
-def
+
 
 if __name__ == "__main__":
     main()
