@@ -115,13 +115,18 @@ def analyze_desc():
         desc = json.load(f)
 
     skills = []
+    job_descriptions = []
 
     for d in desc:
         for i in d["key_skills"]:
             skills.append(i["name"])
 
+    for d in desc:
+        job_descriptions.append(d["description"])
+
     count_skills = Counter(skills)
     print(count_skills)
+    print(job_descriptions)
 
 if __name__ == "__main__":
     main()
