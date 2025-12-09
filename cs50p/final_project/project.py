@@ -66,6 +66,16 @@ def fetch_vacancies(role_params, area_params):
     except requests.RequestException as e:
         print(e)
 
+def fetch_descriptions(vacancies):
+    for i in vacancies["items"]:
+        urls.append(i["url"])
+
+    for url in urls:
+        r = requests.get(url)
+        desc.append(r.json())
+
+    with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
+            json.dump(desc,f,indent=4, ensure_ascii=False)
 
 def get_roles():
     with open("job_roles.json", "r", encoding="utf-8") as f:
@@ -106,17 +116,6 @@ def get_summary():
             summary_list.append(summary)
 
     return total, summary_list
-
-def fetch_descriptions(vacancies):
-    for i in vacancies["items"]:
-        urls.append(i["url"])
-
-    for url in urls:
-        r = requests.get(url)
-        desc.append(r.json())
-
-    with open("vacancy_desc.json","w", encoding="utf-8") as f:
-            json.dump(desc,f,indent=4, ensure_ascii=False)
 
 def get_skills():
     with open("vacancy_desc.json", "r", encoding="utf-8") as f:
