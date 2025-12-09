@@ -104,7 +104,10 @@ def analyze_vacancies():
     #     print(f"{i['name']}: {i['count']}")
     for i, v in enumerate(vacancies["clusters"]):
         if i == 0 or i == 2:
-            print(f"{v['items'][i]['name']}: {v['items'][i]['count']}")
+            for k in vacancies["clusters"][i]["items"][:5]:
+                print(f"{k['name']}: {k['count']}")
+        elif i in [3,5,11]:
+            
 
 
     # for i in vacancies["items"]:
