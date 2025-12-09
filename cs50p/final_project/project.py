@@ -15,7 +15,7 @@ def main():
     #fetch_vacancies(role_params, area_params)
     #fetch_vacancies(['165','164','156'], ['40'])
     print(get_summary())
-    get_skills()
+    print(get_skills())
 
     print("done")
 
@@ -103,7 +103,7 @@ def get_summary():
         vacancies = json.load(f)
 
     #Create local JSON file with vacancy descriptions
-    fetch_descriptions(vacancies)
+    #fetch_descriptions(vacancies)
 
     #Total number of vacancies
     total = vacancies["found"]
@@ -123,11 +123,10 @@ def get_summary():
     return total, summary_list
 
 def get_skills():
-    with open("vacancy_desc.json", "r", encoding="utf-8") as f:
-        desc = json.load(f)
-
     skills = []
     counter = 0
+    with open("vacancy_descriptions.json", "r", encoding="utf-8") as f:
+        desc = json.load(f)
 
     for d in desc:
         if d["key_skills"] == []:
@@ -136,8 +135,9 @@ def get_skills():
             for i in d["key_skills"]:
                 skills.append(i["name"])
 
-    # count_skills = Counter(skills)
-    # print(count_skills, counter)
+    count_skills = Counter(skills)
+
+    return count_skills, counter
 
 if __name__ == "__main__":
     main()
