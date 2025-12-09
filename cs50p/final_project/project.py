@@ -106,9 +106,11 @@ def analyze_vacancies():
         if i in [0,2]:
             for c in vacancies["clusters"][i]["items"][:5]:
                 print(f"{c['name']}: {c['count']}")
+            print()
         elif i in [3,5,11]:
             for c in vacancies["clusters"][i]["items"]:
                 print(f"{c['name']}: {c['count']}")
+            print()
 
 
     # for i in vacancies["items"]:
