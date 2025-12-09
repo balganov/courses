@@ -87,10 +87,12 @@ def analyze_vacancies():
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
-    #print(f"Total number of vacancies: {vacancies["found"]}")
+    #Total number of vacancies
     total = vacancies["found"]
 
+    #Summary of regions, industries, work experience, roles, work format
     for i in range(len(vacancies["clusters"])):
+        summary = {}
         if i in [0,2]:
             for c in vacancies["clusters"][i]["items"][:5]:
                 summary.update({c['name']: c['count']})
@@ -99,7 +101,6 @@ def analyze_vacancies():
             for c in vacancies["clusters"][i]["items"]:
                 summary.update({c['name']: c['count']})
             summary_list.append(summary)
-
 
     return total, summary_list
 
