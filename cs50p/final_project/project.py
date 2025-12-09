@@ -83,6 +83,7 @@ def get_areas():
 def analyze_vacancies():
     total = 0
     summary = {}
+    summary_list = []
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
@@ -93,13 +94,13 @@ def analyze_vacancies():
         if i in [0,2]:
             for c in vacancies["clusters"][i]["items"][:5]:
                 summary.update({c['name']: c['count']})
-            print("d1")
+            summary_list.append(summary)
         elif i in [3,5,11]:
             for c in vacancies["clusters"][i]["items"]:
-                print(f"{c['name']}: {c['count']}")
-            print()
+                summary.update({c['name']: c['count']})
+            summary_list.append(summary)
 
-    return total, summary
+    return total, summary_list
 
     # for i in vacancies["items"]:
     #     urls.append(i["url"])
