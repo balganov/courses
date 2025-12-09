@@ -99,7 +99,7 @@ def analyze_vacancies():
             for c in vacancies["clusters"][i]["items"]:
                 summary.update({c['name']: c['count']})
             summary_list.append(summary)
-        summary.clear()
+
 
     return total, summary_list
 
