@@ -94,13 +94,13 @@ def analyze_vacancies():
         if i in [0,2]:
             for c in vacancies["clusters"][i]["items"][:5]:
                 summary.update({c['name']: c['count']})
-            summary_list.append(summary)
+            #summary_list.append(summary)
         elif i in [3,5,11]:
             for c in vacancies["clusters"][i]["items"]:
                 summary.update({c['name']: c['count']})
-            summary_list.append(summary)
+            #summary_list.append(summary)
 
-    return total, summary_list
+    return total, summary
 
     # for i in vacancies["items"]:
     #     urls.append(i["url"])
