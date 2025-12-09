@@ -67,6 +67,7 @@ def fetch_vacancies(role_params, area_params):
         print(e)
 
 def fetch_descriptions(vacancies):
+    desc = []
     urls = []
     print("--- Extracting URLs ---")
     for i in vacancies["items"]:
