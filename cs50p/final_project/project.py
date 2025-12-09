@@ -67,13 +67,17 @@ def fetch_vacancies(role_params, area_params):
         print(e)
 
 def fetch_descriptions(vacancies):
+    urls = []
+    print("--- Extracting URLs ---")
     for i in vacancies["items"]:
         urls.append(i["url"])
 
+    print("--- Appending data into one JSON file ---")
     for url in urls:
         r = requests.get(url)
         desc.append(r.json())
 
+    print("--- Creating local JSON file with vacancy descriptions ---")
     with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
             json.dump(desc,f,indent=4, ensure_ascii=False)
 
