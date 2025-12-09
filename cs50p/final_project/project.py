@@ -14,7 +14,7 @@ def main():
 
     #fetch_vacancies(role_params, area_params)
     #fetch_vacancies(['165','164','156'], ['40'])
-    print(analyze_vacancies())
+    print(get_summary())
     get_skills()
 
     print("done")
@@ -80,7 +80,7 @@ def get_areas():
     areas = sorted(areas,key=lambda x: x['name'])
     return '\n'.join(f"[{e['id']}]  {e['name']}" for e in areas if e['name'] != "Other regions")
 
-def analyze_vacancies():
+def get_summary():
     total = 0
     summary = {}
     summary_list = []
