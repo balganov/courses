@@ -102,9 +102,9 @@ def analyze_vacancies():
 
     # for i in vacancies["clusters"][11]["items"]:
     #     print(f"{i['name']}: {i['count']}")
-    for i, v in enumerate(vacancies["clusters"])
+    for i, v in enumerate(vacancies["clusters"]):
         if i == 0 or i == 2:
-            print(f"{v['items']['name'][:5]}: {v['items']['count']}")
+            print(f"{v['items']['name'][:5]}: {v['items']['count'][:5]}")
 
 
     # for i in vacancies["items"]:
@@ -131,8 +131,8 @@ def get_skills():
             for i in d["key_skills"]:
                 skills.append(i["name"])
 
-    count_skills = Counter(skills)
-    print(count_skills, counter)
+    # count_skills = Counter(skills)
+    # print(count_skills, counter)
 
 if __name__ == "__main__":
     main()
