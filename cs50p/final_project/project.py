@@ -14,7 +14,7 @@ def main():
 
     #fetch_vacancies(role_params, area_params)
     #fetch_vacancies(['165','164','156'], ['40'])
-    analyze_vacancies()
+    print(analyze_vacancies())
     get_skills()
 
     print("done")
@@ -92,14 +92,14 @@ def analyze_vacancies():
     for i in range(len(vacancies["clusters"])):
         if i in [0,2]:
             for c in vacancies["clusters"][i]["items"][:5]:
-                summary.append(c['name']:c['count']}")
-            print()
+                summary.append({c['name']: c['count']})
+            print("d1")
         elif i in [3,5,11]:
             for c in vacancies["clusters"][i]["items"]:
                 print(f"{c['name']}: {c['count']}")
             print()
 
-    return total
+    return total, summary
 
     # for i in vacancies["items"]:
     #     urls.append(i["url"])
