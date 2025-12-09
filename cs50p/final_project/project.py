@@ -88,20 +88,24 @@ def analyze_vacancies():
 
     print(f"Total number of vacancies: {vacancies["found"]}")
 
-    for i in vacancies["clusters"][0]["items"][:5]:
-        print(f"{i['name']}: {i['count']}")
+    # for i in vacancies["clusters"][0]["items"][:5]:
+    #     print(f"{i['name']}: {i['count']}")
 
-    for i in vacancies["clusters"][2]["items"][:5]:
-        print(f"{i['name']}: {i['count']}")
+    # for i in vacancies["clusters"][2]["items"][:5]:
+    #     print(f"{i['name']}: {i['count']}")
 
-    for i in vacancies["clusters"][3]["items"]:
-        print(f"{i['name']}: {i['count']}")
+    # for i in vacancies["clusters"][3]["items"]:
+    #     print(f"{i['name']}: {i['count']}")
 
-    for i in vacancies["clusters"][5]["items"]:
-        print(f"{i['name']}: {i['count']}")
+    # for i in vacancies["clusters"][5]["items"]:
+    #     print(f"{i['name']}: {i['count']}")
 
-    for i in vacancies["clusters"][11]["items"]:
-        print(f"{i['name']}: {i['count']}")
+    # for i in vacancies["clusters"][11]["items"]:
+    #     print(f"{i['name']}: {i['count']}")
+    for i, v in enumerate(vacancies["clusters"])
+        if i == 0 or i == 2:
+            print(f"{v['name']}: {v['count']}")
+
 
     # for i in vacancies["items"]:
     #     urls.append(i["url"])
