@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+
 import numpy as np
 
 data = {"city1":1,"city2":2,"city3":3,"city4":4}
