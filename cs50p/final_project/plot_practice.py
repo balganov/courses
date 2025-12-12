@@ -9,6 +9,7 @@ f, ax = plt.subplots(2,2)
 colors = plt.get_cmap('viridis')(np.linspace(0.2, 0.7, len(data)))
 
 print(colors)
+print(np.linspace(0.2, 0.7, 4))
 
 ax[0,0].set_title('Pie Chart 1')
 ax[0,0].pie(data.values(), labels=data.keys(),colors=colors)
