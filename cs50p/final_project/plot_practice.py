@@ -6,8 +6,8 @@ import numpy as np
 data = {"city1":1,"city2":2,"city3":3,"city4":4}
 
 f, ax = plt.subplots(2,2)
-cmap = mpl.colormaps['viridis']
-colors = cmap(range(len(data)))
+colors = plt.get_cmap('viridis')(np.linspace(0.2, 0.7, len(data)))
+
 print(colors)
 
 ax[0,0].set_title('Pie Chart 1')
