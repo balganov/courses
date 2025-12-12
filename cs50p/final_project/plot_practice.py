@@ -3,5 +3,5 @@ import numpy as np
 
 
 f, ax = plt.subplots()
-ax.plot([1,2,3,4])
+ax.pie([1,2,3,4])
 plt.savefig("test.png")
