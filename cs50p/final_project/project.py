@@ -1,12 +1,18 @@
 import requests
 import json
-import spacy
 import sys
 import re
+import threading
+import time
 from collections import Counter
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+import numpy as np
+
+loading = True
 
 def main():
-
+    global loading
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     # fetch_dictionaries()
     # role_params = input(f"Please specify the job roles you are seeking:\n{get_roles()}\n").split(",")
@@ -14,8 +20,22 @@ def main():
 
     #fetch_vacancies(role_params, area_params)
     #fetch_vacancies(['165','164','156'], ['40'])
-    print(get_summary())
-    print(get_skills())
+    print("start")
+
+    loading_thread = threading.Thread(target=loading_animation)
+    loading_thread.start()
+
+    try:
+        print(get_summary())
+    finally:
+        loading = False
+        loading_thread.join()
+
+    count_skills = Counter(get_skills())
+
+    wcloud = WordCloud(background_color='white', width=1000,height=600).generate_from_frequencies(count_skills)
+    wcloud.to_file("skills_word_cloud.png")
+    #plt.imshow(wcloud, interpolation='bilinear')
 
     print("done")
 
@@ -69,16 +89,16 @@ def fetch_vacancies(role_params, area_params):
 def fetch_descriptions(vacancies):
     desc = []
     urls = []
-    print("--- Extracting URLs ---")
+    print("Extracting vacancy URLs...")
     for i in vacancies["items"]:
         urls.append(i["url"])
 
-    print("--- Appending data into one JSON file ---")
+    print("Requesting data from API...")
     for url in urls:
         r = requests.get(url)
         desc.append(r.json())
 
-    print("--- Creating local JSON file with vacancy descriptions ---")
+    print("Creating local JSON file with vacancy descriptions...")
     with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
             json.dump(desc,f,indent=4, ensure_ascii=False)
 
@@ -104,7 +124,6 @@ def get_summary():
 
     #Create local JSON file with vacancy descriptions
     #fetch_descriptions(vacancies)
-
     #Total number of vacancies
     total = vacancies["found"]
 
@@ -119,6 +138,8 @@ def get_summary():
             for c in vacancies["clusters"][i]["items"]:
                 summary.update({c['name']: c['count']})
             summary_list.append(summary)
+
+    print("\n--- Success")
 
     return total, summary_list
 
@@ -135,9 +156,17 @@ def get_skills():
             for i in d["key_skills"]:
                 skills.append(i["name"])
 
-    count_skills = Counter(skills)
+    #count_skills = Counter(skills)
 
-    return count_skills, counter
+    return skills
+
+def loading_animation():
+    global loading
+    time.sleep(1)
+    while loading:
+        sys.stdout.write(".")
+        sys.stdout.flush()
+        time.sleep(1)
 
 if __name__ == "__main__":
     main()
