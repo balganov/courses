@@ -53,7 +53,7 @@ def fetch_dictionaries():
         print("fetching is done")
 
     except requests.RequestException as e:
-        print(e)
+        sys.exit(e)
 
 def fetch_vacancies(role_params, area_params):
     try:
@@ -84,7 +84,7 @@ def fetch_vacancies(role_params, area_params):
               json.dump(data,f,indent=4, ensure_ascii=False)
 
     except requests.RequestException as e:
-        print(e)
+        sys.exit(e)
 
 def fetch_descriptions(vacancies):
     desc = []
@@ -92,12 +92,13 @@ def fetch_descriptions(vacancies):
     print("Extracting vacancy URLs...")
     for i in vacancies["items"]:
         urls.append(i["url"])
-
-    print("Requesting data from API...")
-    for url in urls:
-        r = requests.get(url)
-        desc.append(r.json())
-
+    try:
+        print("Requesting data from API...")
+        for url in urls:
+            r = requests.get(url)
+            desc.append(r.json())
+    except requests.RequestException as e:
+        sys.exit(e)
     print("Creating local JSON file with vacancy descriptions...")
     with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
             json.dump(desc,f,indent=4, ensure_ascii=False)
@@ -139,7 +140,7 @@ def get_summary():
                 summary.update({c['name']: c['count']})
             summary_list.append(summary)
 
-    print("\n--- Success")
+    print("\nSuccess!")
 
     return total, summary_list
 
