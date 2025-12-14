@@ -184,8 +184,10 @@ def get_areas():
     with open("areas.json", "r", encoding="utf-8") as f:
         areas = json.load(f)
 
+    keys = ['id','name']
     areas = sorted(areas,key=lambda x: x['name'])
-    return '\n'.join(f"[{e['id']}]  {e['name']}" for e in areas if e['name'] != "Other regions")
+    return [{key: e[key] for key in keys} for e in areas if e['name'] != "Other regions"]
+    #return '\n'.join(f"[{e['id']}]  {e['name']}" for e in areas if e['name'] != "Other regions")
 
 #Reading data from local JSON: summarized data from clusters
 def get_summary():
