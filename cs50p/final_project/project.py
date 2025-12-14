@@ -23,7 +23,7 @@ def main():
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     #fetch_dictionaries()
     get_roles()
-    role_params = input(f"Please specify the job roles you are seeking:\n{get_roles()['id']} {get_roles()['name']}\n").split(",")
+    #role_params = input(f"Please specify the job roles you are seeking:\n{get_roles()['id']} {get_roles()['name']}\n").split(",")
     #area_params = input(f"Please select your preferred work locations:\n{get_areas()}\n").split(",")
 
     #fetch_vacancies(role_params, area_params)
@@ -155,7 +155,7 @@ def get_roles():
         job_roles = json.load(f)
 
     #return '\n'.join(f"[{e['id']}]  {e['name']}" for e in job_roles["categories"][7]["roles"])
-    return {e['id']:e['name'] for e in job_roles["categories"][7]["roles"]}
+    print({"id":e['id'], "name":e['name'] for e in job_roles["categories"][7]["roles"]})
 
 #Reading data from local JSON: list of locations
 def get_areas():
