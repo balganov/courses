@@ -163,7 +163,7 @@ def fetch_descriptions(vacancies):
             desc.append(r.json())
     except requests.RequestException as e:
         sys.exit(e)
-    print("\rCreating local JSON file with vacancy descriptions...")
+    print("Creating local JSON file with vacancy descriptions...")
     with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
             json.dump(desc,f,indent=4, ensure_ascii=False)
 
