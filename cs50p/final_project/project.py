@@ -155,7 +155,7 @@ def get_roles():
         job_roles = json.load(f)
 
     #return '\n'.join(f"[{e['id']}]  {e['name']}" for e in job_roles["categories"][7]["roles"])
-    print([e for e in job_roles["categories"][7]["roles"]])
+    print([e['name'], e['id'] for e in job_roles["categories"][7]["roles"]])
 
 #Reading data from local JSON: list of locations
 def get_areas():
