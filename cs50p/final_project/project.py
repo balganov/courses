@@ -25,7 +25,7 @@ def validated_input(prompt, values):
         try:
             validated_values = [int(v) for v in user_input.split(',')]
 
-            
+            if 
         except:
             continue
 
