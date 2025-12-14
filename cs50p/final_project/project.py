@@ -153,19 +153,9 @@ def fetch_vacancies(role_params, area_params):
 #Accessing individual vacancy information
 async def fetch_descriptions(vacancies):
     desc = []
-    urls = []
-    print("Extracting vacancy URLs...")
-    for i in vacancies["items"]:
-        urls.append(i["url"])
+    urls = [i["url"] for i in vacancies["items"]]
 
-    try:
-        async with aiohttp.ClientSession() as session:
-            for url in urls:
-                async with session.get(url) as response:
-                    json_data = await response.json()
-                    desc.append(json_data)
-    except aiohttp.ClientError as e:
-        sys.exit(e)
+    # This implementation was simple, however very slow due to syncronious requests
     # try:
     #     print("Requesting data from API...", end='')
     #     for url in urls:
@@ -173,6 +163,25 @@ async def fetch_descriptions(vacancies):
     #         desc.append(r.json())
     # except requests.RequestException as e:
     #     sys.exit(e)
+
+    print(f"Fetching {len(urls)} vacancy descriptions...")
+
+    semaphore = asyncio.Semaphore(30)
+    async def fetch_one(session, url):
+        async with semaphore:
+            async with session.get(url) as response:
+                response.raise_for_status()
+                return await response.json()
+
+    async with aiohttp.ClientSession() as session:
+        tasks = [fetch_one(session, url) for url in urls]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+
+     for result in results:
+        if isinstance(result, Exception):
+            print(f"Warning: Failed to fetch a vacancy: {result}")
+            continue
+        desc.append(result)
 
     print("Creating local JSON file with vacancy descriptions...")
     with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
