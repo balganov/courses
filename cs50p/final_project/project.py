@@ -257,4 +257,4 @@ def loading_animation():
         time.sleep(1)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
