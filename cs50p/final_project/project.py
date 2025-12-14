@@ -8,37 +8,80 @@ from collections import Counter
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import numpy as np
+from fpdf import FPDF
 
+#global variable for loading thread
 loading = True
+
+def validated_input(input):
+    
+    return validated_list
+
 
 def main():
     global loading
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
-    # fetch_dictionaries()
-    # role_params = input(f"Please specify the job roles you are seeking:\n{get_roles()}\n").split(",")
-    # area_params = input(f"Please select your preferred work locations:\n{get_areas()}\n").split(",")
+    fetch_dictionaries()
+    role_params = input(f"Please specify the job roles you are seeking:\n{get_roles()}\n").split(",")
+    area_params = input(f"Please select your preferred work locations:\n{get_areas()}\n").split(",")
 
     #fetch_vacancies(role_params, area_params)
     #fetch_vacancies(['165','164','156'], ['40'])
     print("start")
 
+    #Creating a thread to animate the loading since our function takes some time to fetch data from multiple urls
     loading_thread = threading.Thread(target=loading_animation)
     loading_thread.start()
-
     try:
-        print(get_summary())
+        data = get_summary()
     finally:
         loading = False
         loading_thread.join()
 
-    count_skills = Counter(get_skills())
+    #Here we create a two-dimensional plot that has 2 rows and 3 comlums resulting in 6 charts in total
+    # r - rows, c - columns, n - iterator for setting the titles
+    r, c, n = 2, 3, 0
+    _, ax = plt.subplots(r,c, figsize=(20,10))
+    colors = plt.get_cmap('viridis')(np.linspace(0.9, 0.4, len(data)))
 
-    wcloud = WordCloud(background_color='white', width=1000,height=600).generate_from_frequencies(count_skills)
-    wcloud.to_file("skills_word_cloud.png")
-    #plt.imshow(wcloud, interpolation='bilinear')
+    titles = ['Top 5 industries','Work format', 'Work experience', 'Top 5 cities', 'Professional roles', 'Type of employment']
+    #Setting titles for each chart
+    for i in range(r):
+        for j in range(c):
+            ax[i,j].set_title(titles[n], fontsize=20, fontweight='bold')
+            n += 1
+
+    #Generating pie charts located in the first row
+    ax[0,0].pie(data[1].values(), labels=data[1].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
+    ax[0,1].pie(data[5].values(), labels=data[5].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
+    ax[0,2].pie(data[2].values(), labels=data[2].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
+    #Generating bar charts located in the second row
+    ax[1,0].bar(data[0].keys(), data[0].values(), color=colors)
+    ax[1,1].bar(data[3].keys(), data[3].values(), color=colors)
+    ax[1,2].bar(data[4].keys(), data[4].values(), color=colors)
+
+    #Adjusting font size for bar charts
+    for i in range(3):
+        ax[1,i].tick_params(axis='x', labelsize=12)
+
+    #Fixing the layout, so labels don't overlap and then saving the charts to png file
+    plt.tight_layout()
+    plt.savefig("charts.png")
+
+    #Here we count skills occurances from each vacancy URL, generate wordcloud and save it to png file
+    count_skills = Counter(get_skills())
+    wcloud = WordCloud(background_color='white', width=2000,height=1200).generate_from_frequencies(count_skills)
+    wcloud.to_file("word_cloud.png")
+
+    visualization_requested = input("Would you like to generate a visualization in the form of charts to summarize the data? (y/n):")
+    if visualization_requested.lower() == 'y':
+        generate_pdf("charts.png", "word_cloud.png")
+    else:
+        print("If you want to analyze other vacancies, please rerun the program. Thank you.")
 
     print("done")
 
+#Accessing roles and locations from dictionaries
 def fetch_dictionaries():
     try:
         roles = requests.get('https://api.hh.ru/professional_roles?locale=EN')
@@ -55,6 +98,7 @@ def fetch_dictionaries():
     except requests.RequestException as e:
         sys.exit(e)
 
+#Accessing list of vacancies filtered by location and roles
 def fetch_vacancies(role_params, area_params):
     try:
         vacancy_params = {
@@ -86,6 +130,7 @@ def fetch_vacancies(role_params, area_params):
     except requests.RequestException as e:
         sys.exit(e)
 
+#Accessing individual vacancy information
 def fetch_descriptions(vacancies):
     desc = []
     urls = []
@@ -103,12 +148,14 @@ def fetch_descriptions(vacancies):
     with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
             json.dump(desc,f,indent=4, ensure_ascii=False)
 
+#Reading data from local JSON: list of roles
 def get_roles():
     with open("job_roles.json", "r", encoding="utf-8") as f:
         job_roles = json.load(f)
 
     return '\n'.join(f"[{e['id']}]  {e['name']}" for e in job_roles["categories"][7]["roles"])
 
+#Reading data from local JSON: list of locations
 def get_areas():
     with open("areas.json", "r", encoding="utf-8") as f:
         areas = json.load(f)
@@ -116,8 +163,8 @@ def get_areas():
     areas = sorted(areas,key=lambda x: x['name'])
     return '\n'.join(f"[{e['id']}]  {e['name']}" for e in areas if e['name'] != "Other regions")
 
+#Reading data from local JSON: summarized data from clusters
 def get_summary():
-    total = 0
     summary = {}
     summary_list = []
     with open("vacancies.json", "r", encoding="utf-8") as f:
@@ -128,22 +175,24 @@ def get_summary():
     #Total number of vacancies
     total = vacancies["found"]
 
-    #Summary of regions, industries, work experience, roles, work format
+    #Summary of regions, industries, work experience, roles, work format, employment type
     for i in range(len(vacancies["clusters"])):
         summary = {}
         if i in [0,2]:
             for c in vacancies["clusters"][i]["items"][:5]:
                 summary.update({c['name']: c['count']})
             summary_list.append(summary)
-        elif i in [3,5,11]:
+        elif i in [3,5,8,11]:
             for c in vacancies["clusters"][i]["items"]:
                 summary.update({c['name']: c['count']})
             summary_list.append(summary)
 
     print("\nSuccess!")
 
-    return total, summary_list
+    return summary_list
 
+#Extracting skills from each vacancy
+#It will be useful for future extractions of data from a particular vacancy
 def get_skills():
     skills = []
     counter = 0
@@ -156,11 +205,24 @@ def get_skills():
         else:
             for i in d["key_skills"]:
                 skills.append(i["name"])
-
-    #count_skills = Counter(skills)
-
     return skills
 
+#Merging to images into one pdf
+def generate_pdf(img1, img2):
+    try:
+        pdf = FPDF(orientation='P', format='A4', unit='mm')
+        pdf.add_page()
+        pdf.image(img1, w=190, keep_aspect_ratio=True)
+        pdf.set_font("Helvetica", style="B", size=9)
+        pdf.cell(0, 35, "Required skills (Word Cloud)", align="C")
+        pdf.set_xy(10,0)
+        pdf.image(img2, y=130, w=190, keep_aspect_ratio=True)
+        pdf.output("summary.pdf")
+
+    except FileNotFoundError:
+            sys.exit("Input does not exist")
+
+#Printing one dot at a time as a loading animation
 def loading_animation():
     global loading
     time.sleep(1)
