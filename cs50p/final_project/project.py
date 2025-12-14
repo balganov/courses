@@ -16,19 +16,20 @@ loading = True
 def validated_input(prompt, values):
 
     while True:
-        user_input = input(prompt).split(',')
+        user_input = input(prompt)
 
         if not user_input:
             print("Error: Input cannot be empty. Please select ID's from the list, use only numbers and commas (e.g. 165 or 140, 2, 13)")
             continue
-        
-        try:
 
-            if not user_input:
-                print("")
+        try:
+            validated_values = [int(v) for v in user_input.split(',')]
+
+            
         except:
-            pass
-    return validated_list
+            continue
+
+    return validated_values
 
 
 def main():
