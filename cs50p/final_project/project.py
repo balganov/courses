@@ -162,7 +162,7 @@ async def fetch_descriptions(vacancies):
         async with aiohttp.ClientSession() as session:
             for url in urls:
                 async with session.get(url) as response:
-                    json_data = await reponse.json()
+                    json_data = await response.json()
                     desc.append(json_data)
     except aiohttp.ClientError as e:
         sys.exit(e)
