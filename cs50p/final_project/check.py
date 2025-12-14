@@ -201,5 +201,5 @@ list = [
                     "search_deprecated": "false"
                 }
             ]
-
-print({e for e in list})
+keys = ['id','name']
+print([e for e in list if e])
