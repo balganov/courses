@@ -159,11 +159,10 @@ async def fetch_descriptions(vacancies):
         urls.append(i["url"])
 
     try:
-        async with aiohttp.ClientSession() as session:
-            for url in urls:
-                async with session.get(url) as response:
-                    json_data = await response.json()
-                    desc.append(json_data)
+        for url in urls:
+            async with session.get(url) as response:
+                json_data = await response.json()
+                desc.append(json_data)
     except aiohttp.ClientError as e:
         sys.exit(e)
     # try:
@@ -206,7 +205,8 @@ def get_summary():
         vacancies = json.load(f)
 
     #Create local JSON file with vacancy descriptions
-    asyncio.run(fetch_descriptions(vacancies))
+    async with aiohttp.ClientSession() as session:
+        asyncio.run(fetch_descriptions(vacancies))
     #Total number of vacancies
     #total = vacancies["found"]
 
