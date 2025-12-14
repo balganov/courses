@@ -55,11 +55,11 @@ wcloud.to_file("word_cloud.png")
 try:
     pdf = FPDF(orientation='P', format='A4', unit='mm')
     pdf.add_page()
-    pdf.image("test.png", w=190, keep_aspect_ratio=True)
+    pdf.image("charts.png", w=190, keep_aspect_ratio=True)
     pdf.set_font("Helvetica", style="B", size=9)
     pdf.cell(0, 35, "Required skills (Word Cloud)", align="C")
     pdf.set_xy(10,0)
-    pdf.image("skills_word_cloud.png", y=130, w=190, keep_aspect_ratio=True)
+    pdf.image("word_cloud.png", y=130, w=190, keep_aspect_ratio=True)
     pdf.output("summary.pdf")
 
 except FileNotFoundError:
