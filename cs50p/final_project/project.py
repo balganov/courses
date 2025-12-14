@@ -194,10 +194,8 @@ async def fetch_descriptions(vacancies):
         results = await asyncio.gather(*tasks, return_exceptions=False)
 
     for result in results:
-        if isinstance(result, Exception):
-            print(f"Warning: Failed to fetch a vacancy: {result}")
-            continue
-        desc.append(result)
+        if result is not None:
+            desc.append(result)
 
     print("Creating local JSON file with vacancy descriptions...")
     with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
