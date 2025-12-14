@@ -24,8 +24,8 @@ def main():
     display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
     display_roles = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
 
-    area_ids = validated_input(f"Please select your preferred work locations:\n{display_areas}\n", get_areas())
-    role_ids = validated_input(f"Please specify the job roles you are seeking:\n{display_roles}\n", get_roles())
+    area_ids = validated_input(f"Available locations:\n{display_areas}\nPlease select your preferred work locations:", get_areas())
+    role_ids = validated_input(f"Available professional roles:\n{display_roles}\nPlease specify the job roles you are seeking:", get_roles())
 
     fetch_vacancies(role_ids, area_ids)
 
