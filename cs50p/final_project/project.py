@@ -157,13 +157,13 @@ def fetch_descriptions(vacancies):
     for i in vacancies["items"]:
         urls.append(i["url"])
     try:
-        print("Requesting data from API...")
+        print("Requesting data from API...", end='')
         for url in urls:
             r = requests.get(url)
             desc.append(r.json())
     except requests.RequestException as e:
         sys.exit(e)
-    print("Creating local JSON file with vacancy descriptions...")
+    print("\rCreating local JSON file with vacancy descriptions...")
     with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
             json.dump(desc,f,indent=4, ensure_ascii=False)
 
