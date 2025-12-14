@@ -16,8 +16,14 @@ loading = True
 def validated_input(prompt, values):
 
     while True:
+        user_input = input(prompt).split(',')
+
+        if not user_input:
+            print("Error: Input cannot be empty. Please select ID's from the list, use only numbers and commas (e.g. 165 or 140, 2, 13)")
+            continue
+        
         try:
-            user_input = input(prompt).split(',')
+
             if not user_input:
                 print("")
         except:
