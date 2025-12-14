@@ -21,11 +21,11 @@ def main():
 
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     fetch_dictionaries()
-    display_roles = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
     display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
+    display_roles = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
 
-    role_ids = validated_input(f"Please specify the job roles you are seeking:\n{display_roles}\n", get_roles())
     area_ids = validated_input(f"Please select your preferred work locations:\n{display_areas}\n", get_areas())
+    role_ids = validated_input(f"Please specify the job roles you are seeking:\n{display_roles}\n", get_roles())
 
     fetch_vacancies(role_ids, area_ids)
 
