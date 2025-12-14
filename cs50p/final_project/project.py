@@ -29,8 +29,6 @@ def main():
 
     fetch_vacancies(role_ids, area_ids)
 
-    print("start")
-
     #Creating a thread to animate the loading since our function takes some time to fetch data from multiple urls
     loading_thread = threading.Thread(target=loading_animation)
     loading_thread.start()
