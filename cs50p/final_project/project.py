@@ -202,7 +202,7 @@ def get_summary():
         vacancies = json.load(f)
 
     #Create local JSON file with vacancy descriptions
-    fetch_descriptions(vacancies)
+    asyncio.run(fetch_descriptions(vacancies))
     #Total number of vacancies
     #total = vacancies["found"]
 
