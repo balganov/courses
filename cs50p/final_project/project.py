@@ -41,7 +41,7 @@ def main():
     #Here we create a two-dimensional plot that has 2 rows and 3 comlums resulting in 6 charts in total
     # r - rows, c - columns, n - iterator for setting the titles
     r, c, n = 2, 3, 0
-    _, ax = plt.subplots(r,c, figsize=(20,10))
+    _, ax = plt.subplots(r,c, figsize=(20,12))
     colors = plt.get_cmap('viridis')(np.linspace(0.9, 0.4, len(data)))
 
     titles = ['Top 5 industries','Work format', 'Work experience', 'Top 5 cities', 'Professional roles', 'Type of employment']
@@ -62,7 +62,7 @@ def main():
 
     #Adjusting font size for bar charts
     for i in range(3):
-        ax[1,i].tick_params(axis='x', labelsize=12)
+        ax[1,i].tick_params(axis='x', labelsize=12, rotation=45)
 
     #Fixing the layout, so labels don't overlap and then saving the charts to png file
     plt.tight_layout()
