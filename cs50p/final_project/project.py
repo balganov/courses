@@ -1,7 +1,6 @@
 import requests
 import json
 import sys
-import re
 import threading
 import time
 from collections import Counter
@@ -9,6 +8,8 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import numpy as np
 from fpdf import FPDF
+import aiohttp
+import asyncio
 
 #global variable for loading thread
 loading = True
