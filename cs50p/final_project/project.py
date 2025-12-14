@@ -177,9 +177,17 @@ async def fetch_descriptions(vacancies):
 
     async def fetch_one(session, url):
         async with semaphore:
-            async with session.get(url) as response:
-                response.raise_for_status()
-                return await response.json()
+
+            try:
+                async with session.get(url, headers=headers,timeout=30) as response:
+                    if response.status == 403:
+                        print(f"403 on {url} – possible temporary block; retry later")
+                        return None
+                    response.raise_for_status()
+                    return await response.json()
+            except:
+
+
 
     async with aiohttp.ClientSession() as session:
         tasks = [fetch_one(session, url) for url in urls]
