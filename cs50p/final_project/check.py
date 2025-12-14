@@ -202,4 +202,4 @@ list = [
                 }
             ]
 keys = ['id','name']
-print([e for e in list if e in keys])
+print([e for e in list if])
