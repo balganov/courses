@@ -13,38 +13,22 @@ from fpdf import FPDF
 #global variable for loading thread
 loading = True
 
-def validated_input(prompt, values):
-    valid_ids = set(values.keys())
-    while True:
-        user_input = input(prompt)
 
-        if not user_input:
-            print("Error: Input cannot be empty.")
-            continue
-
-        try:
-            selected_ids = [int(v.strip()) for v in user_input.split(',')]
-            if all(i in valid_ids for i in selected_ids):
-                return selected_ids
-            else:
-                print("Error: Please select IDs from the list, use only numbers and commas (e.g. 165 or 140, 2, 13)")
-        except:
-            continue
-
-    return validated_values
 
 
 def main():
     global loading
+
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
-    #fetch_dictionaries()
+    fetch_dictionaries()
     display_roles = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
+    display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
 
-    role_params = validated_input(f"Please specify the job roles you are seeking:\n{display_roles}\n", get_roles())
-    #area_params = input(f"2. Please select your preferred work locations:\n{get_areas()}\n").split(",")
+    role_ids = validated_input(f"Please specify the job roles you are seeking:\n{display_roles}\n", get_roles())
+    area_ids = validated_input(f"Please select your preferred work locations:\n{display_areas}\n", get_areas())
 
-    #fetch_vacancies(role_params, area_params)
-    #fetch_vacancies(['165','164','156'], ['40'])
+    fetch_vacancies(role_ids, area_ids)
+
     print("start")
 
     # #Creating a thread to animate the loading since our function takes some time to fetch data from multiple urls
@@ -98,6 +82,25 @@ def main():
     #     print("If you want to analyze other vacancies, please rerun the program. Thank you.")
 
     print("done")
+
+def validated_input(prompt, values):
+    valid_ids = set(values.keys())
+    while True:
+        user_input = input(prompt)
+
+        if not user_input:
+            print("Error: Input cannot be empty.")
+            continue
+
+        try:
+            selected_ids = [int(v.strip()) for v in user_input.split(',')]
+            if all(i in valid_ids for i in selected_ids):
+                return selected_ids
+            else:
+                print("Error: Please select only the IDs listed above.")
+        except ValueError:
+            print("Error: Please use only numbers and commas (e.g. 165 or 140, 2, 13)")
+
 
 #Accessing roles and locations from dictionaries
 def fetch_dictionaries():
