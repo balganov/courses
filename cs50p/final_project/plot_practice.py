@@ -17,7 +17,7 @@ count_skills = {'SQL': 62, 'Python': 47, 'Power BI': 26, 'Анализ данн�
 r = 2
 c = 3
 n = 0
-f, ax = plt.subplots(r,c, figsize=(20,10))
+f, ax = plt.subplots(r,c, figsize=(24,12))
 colors = plt.get_cmap('viridis')(np.linspace(0.9, 0.4, len(data)))
 
 print(colors)
