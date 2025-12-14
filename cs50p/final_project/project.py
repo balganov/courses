@@ -15,6 +15,10 @@ loading = True
 
 def validated_input(input):
 
+    if input.startswith('1'):
+        for e in get_roles():
+            print(f"{e['id'].rjust(5)} {e['name']}")
+
     return validated_list
 
 
@@ -22,10 +26,9 @@ def main():
     global loading
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     #fetch_dictionaries()
-    for e in get_roles():
-        print(f"{e['id'].rjust(5)} {e['name']}")
-    #role_params = input(f"Please specify the job roles you are seeking:\n{get_roles()['id']} {get_roles()['name']}\n").split(",")
-    #area_params = input(f"Please select your preferred work locations:\n{get_areas()}\n").split(",")
+
+    role_params = input(f"1. Please specify the job roles you are seeking:").split(",")
+    #area_params = input(f"2. Please select your preferred work locations:\n{get_areas()}\n").split(",")
 
     #fetch_vacancies(role_params, area_params)
     #fetch_vacancies(['165','164','156'], ['40'])
