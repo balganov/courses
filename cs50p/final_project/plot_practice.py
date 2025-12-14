@@ -34,12 +34,14 @@ ax[0,1].pie(data[5].values(), labels=data[5].keys(), colors=colors, autopct='%.2
 ax[0,2].pie(data[2].values(), labels=data[2].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
 
 ax[1,0].bar(data[0].keys(), data[0].values(), color=colors)
-ax[1,0].set_xticklabels(labels, rotation=45, ha='right')
+ax[1,0].set_xticklabels(data[0].keys(), rotation=45, ha='right')
 ax[1,1].bar(data[3].keys(), data[3].values(), color=colors)
+ax[1,1].set_xticklabels(data[3].keys(), rotation=45, ha='right')
 ax[1,2].bar(data[4].keys(), data[4].values(), color=colors)
+ax[1,2].set_xticklabels(data[4].keys(), rotation=45, ha='right')
 
-    for i in range(3):
-        ax[1,i].tick_params(axis='x', labelsize=12)
+for i in range(3):
+    ax[1,i].tick_params(axis='x', labelsize=12)
 
 
 
@@ -61,4 +63,4 @@ try:
     pdf.output("summary.pdf")
 
 except FileNotFoundError:
-        sys.exit("Input does not exist")
+        print("Input does not exist")
