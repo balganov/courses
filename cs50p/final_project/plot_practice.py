@@ -40,7 +40,6 @@ ax[1,2].bar(data[4].keys(), data[4].values(), color=colors)
 for i in range(3):
     ax[1,i].tick_params(axis='x', labelsize=12,rotation=45)
 
-plt.subplots_adjust(hspace=100)
 plt.tight_layout()
 plt.savefig("charts.png")
 
