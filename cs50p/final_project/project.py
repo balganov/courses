@@ -23,7 +23,7 @@ def main():
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     #fetch_dictionaries()
     for e in get_roles():
-        print(f"{e['id']} {e['name']}")
+        print(f"{e['id'].rjust(5)} {e['name']}")
     #role_params = input(f"Please specify the job roles you are seeking:\n{get_roles()['id']} {get_roles()['name']}\n").split(",")
     #area_params = input(f"Please select your preferred work locations:\n{get_areas()}\n").split(",")
 
