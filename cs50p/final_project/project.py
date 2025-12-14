@@ -158,10 +158,14 @@ async def fetch_descriptions(vacancies):
     for i in vacancies["items"]:
         urls.append(i["url"])
 
-    async with aiohttp.ClientSession() as session:
-        for url in urls:
-            async with session.get(url) as response:
-                desc.append(response.json())
+    try:
+        async with aiohttp.ClientSession() as session:
+            for url in urls:
+                async with session.get(url) as response:
+                    json_data = await reponse.json()
+                    desc.append(json_data)
+    except aiohttp.ClientError as e:
+        sys.exit(e)
     # try:
     #     print("Requesting data from API...", end='')
     #     for url in urls:
