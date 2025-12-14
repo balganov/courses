@@ -166,7 +166,7 @@ async def fetch_descriptions(vacancies):
 
     print(f"Fetching {len(urls)} vacancy descriptions...")
 
-    semaphore = asyncio.Semaphore(10)
+    semaphore = asyncio.Semaphore(5)
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
