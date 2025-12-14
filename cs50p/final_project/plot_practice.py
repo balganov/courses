@@ -34,18 +34,20 @@ ax[0,1].pie(data[5].values(), labels=data[5].keys(), colors=colors, autopct='%.2
 ax[0,2].pie(data[2].values(), labels=data[2].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
 
 ax[1,0].bar(data[0].keys(), data[0].values(), color=colors)
+ax[1,0].set_xticklabels(labels, rotation=45, ha='right')
 ax[1,1].bar(data[3].keys(), data[3].values(), color=colors)
 ax[1,2].bar(data[4].keys(), data[4].values(), color=colors)
 
-ax[1,0].tick_params(axis='x', labelsize=12)
-ax[1,1].tick_params(axis='x', labelsize=12)
-ax[1,2].tick_params(axis='x', labelsize=12)
+    for i in range(3):
+        ax[1,i].tick_params(axis='x', labelsize=12)
+
+
 
 plt.tight_layout()
-plt.savefig("test.png")
+plt.savefig("charts.png")
 
 wcloud = WordCloud(background_color='white', width=2000,height=1200).generate_from_frequencies(count_skills)
-wcloud.to_file("skills_word_cloud.png")
+wcloud.to_file("word_cloud.png")
 
 
 try:
@@ -56,7 +58,7 @@ try:
     pdf.cell(0, 35, "Required skills (Word Cloud)", align="C")
     pdf.set_xy(10,0)
     pdf.image("skills_word_cloud.png", y=130, w=190, keep_aspect_ratio=True)
-    pdf.output("final.pdf")
+    pdf.output("summary.pdf")
 
 except FileNotFoundError:
         sys.exit("Input does not exist")
