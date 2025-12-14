@@ -14,7 +14,7 @@ from fpdf import FPDF
 loading = True
 
 def validated_input(input):
-    
+
     return validated_list
 
 
@@ -153,7 +153,8 @@ def get_roles():
     with open("job_roles.json", "r", encoding="utf-8") as f:
         job_roles = json.load(f)
 
-    return '\n'.join(f"[{e['id']}]  {e['name']}" for e in job_roles["categories"][7]["roles"])
+    #return '\n'.join(f"[{e['id']}]  {e['name']}" for e in job_roles["categories"][7]["roles"])
+    return [e['id']e['name'] for e in job_roles["categories"][7]["roles"]
 
 #Reading data from local JSON: list of locations
 def get_areas():
