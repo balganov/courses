@@ -54,7 +54,7 @@ try:
     pdf.set_font("Helvetica", style="B", size=9)
     pdf.cell(0, 35, "Required skills (Word Cloud)", align="C")
     pdf.set_xy(10,0)
-    pdf.image("word_cloud.png", y=130, w=190, keep_aspect_ratio=True)
+    pdf.image("word_cloud.png", y=150, w=190, keep_aspect_ratio=True)
     pdf.output("summary.pdf")
 
 except FileNotFoundError:
