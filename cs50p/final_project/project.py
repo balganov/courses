@@ -14,7 +14,7 @@ from fpdf import FPDF
 loading = True
 
 def validated_input(input):
-
+    f"1. Please specify the job roles you are seeking:"
     if input.startswith('1'):
         for e in get_roles():
             print(f"{e['id'].rjust(5)} {e['name']}")
@@ -27,7 +27,7 @@ def main():
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     #fetch_dictionaries()
 
-    role_params = input(f"1. Please specify the job roles you are seeking:").split(",")
+    role_params = validated_input(get_roles())
     #area_params = input(f"2. Please select your preferred work locations:\n{get_areas()}\n").split(",")
 
     #fetch_vacancies(role_params, area_params)
