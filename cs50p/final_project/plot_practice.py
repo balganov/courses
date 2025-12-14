@@ -17,7 +17,7 @@ count_skills = {'SQL': 62, 'Python': 47, 'Power BI': 26, 'Анализ данн�
 r = 2
 c = 3
 n = 0
-f, ax = plt.subplots(r,c, figsize=(22,11))
+f, ax = plt.subplots(r,c, figsize=(21,11))
 colors = plt.get_cmap('viridis')(np.linspace(0.9, 0.4, len(data)))
 
 print(colors)
@@ -40,7 +40,7 @@ ax[1,2].bar(data[4].keys(), data[4].values(), color=colors)
 for i in range(3):
     ax[1,i].tick_params(axis='x', labelsize=12,rotation=45)
 
-f.tight_layout()
+plt.subplots_adjust(hspace=100)
 plt.tight_layout()
 plt.savefig("charts.png")
 
