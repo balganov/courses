@@ -15,7 +15,13 @@ loading = True
 
 def validated_input(prompt, values):
 
-    validated_list = input(prompt)
+    while True:
+        try:
+            user_input = input(prompt).split(',')
+            if not user_input:
+                print("")
+        except:
+            pass
     return validated_list
 
 
@@ -23,9 +29,9 @@ def main():
     global loading
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     #fetch_dictionaries()
-    roles_to_display = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
-    role_params = validated_input(f"Please specify the job roles you are seeking:\n{roles_to_display}\n", get_roles())
-    print(role_params)
+    display_roles = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
+
+    role_params = validated_input(f"Please specify the job roles you are seeking:\n{display_roles}\n", get_roles())
     #area_params = input(f"2. Please select your preferred work locations:\n{get_areas()}\n").split(",")
 
     #fetch_vacancies(role_params, area_params)
