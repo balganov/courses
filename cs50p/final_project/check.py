@@ -202,4 +202,4 @@ list = [
                 }
             ]
 
-print({'id':e['id'] for e in list})
+print({e for e in list})
