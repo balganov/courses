@@ -14,18 +14,20 @@ from fpdf import FPDF
 loading = True
 
 def validated_input(prompt, values):
-
+    valid_ids = set(values.keys())
     while True:
         user_input = input(prompt)
 
         if not user_input:
-            print("Error: Input cannot be empty. Please select ID's from the list, use only numbers and commas (e.g. 165 or 140, 2, 13)")
+            print("Error: Input cannot be empty.")
             continue
 
         try:
-            validated_values = [int(v) for v in user_input.split(',')]
-
-            if 
+            selected_ids = [int(v.strip()) for v in user_input.split(',')]
+            if all(i in valid_ids for i in selected_ids):
+                return selected_ids
+            else:
+                print("Error: Please select IDs from the list, use only numbers and commas (e.g. 165 or 140, 2, 13)")
         except:
             continue
 
