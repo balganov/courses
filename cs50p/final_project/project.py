@@ -185,13 +185,13 @@ async def fetch_descriptions(vacancies):
                         return None
                     response.raise_for_status()
                     return await response.json()
-            except:
-
-
+            except (aiohttp.ClientError, asyncio.TimeoutError) as e:
+                            print(f"Error fetching {url}: {e}")
+                            return None
 
     async with aiohttp.ClientSession() as session:
         tasks = [fetch_one(session, url) for url in urls]
-        results = await asyncio.gather(*tasks, return_exceptions=True)
+        results = await asyncio.gather(*tasks, return_exceptions=False)
 
     for result in results:
         if isinstance(result, Exception):
