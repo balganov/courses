@@ -22,7 +22,8 @@ def main():
     global loading
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     #fetch_dictionaries()
-    get_roles()
+    for e in get_roles():
+        print(f"{e['id']} {e['name']}")
     #role_params = input(f"Please specify the job roles you are seeking:\n{get_roles()['id']} {get_roles()['name']}\n").split(",")
     #area_params = input(f"Please select your preferred work locations:\n{get_areas()}\n").split(",")
 
@@ -156,7 +157,7 @@ def get_roles():
 
     keys = ['id','name']
     list = job_roles["categories"][7]["roles"]
-    print([{key: e[key] for key in keys} for e in list])
+    return [{key: e[key] for key in keys} for e in list]
     #return '\n'.join(f"[{e['id']}]  {e['name']}" for e in job_roles["categories"][7]["roles"])
 
 #Reading data from local JSON: list of locations
