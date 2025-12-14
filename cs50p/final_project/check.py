@@ -202,4 +202,6 @@ list = [
                 }
             ]
 keys = ['id','name']
+
 print([e for e in list])
+{key: original_dict[key] for key in keys if key in list}
