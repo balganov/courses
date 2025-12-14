@@ -177,7 +177,7 @@ async def fetch_descriptions(vacancies):
         tasks = [fetch_one(session, url) for url in urls]
         results = await asyncio.gather(*tasks, return_exceptions=True)
 
-     for result in results:
+    for result in results:
         if isinstance(result, Exception):
             print(f"Warning: Failed to fetch a vacancy: {result}")
             continue
