@@ -84,7 +84,7 @@ def main():
     print("done")
 
 def validated_input(prompt, values):
-    valid_ids = set(i.keys() for i in values)
+    valid_ids = set(e['id'] for e in values)
     while True:
         user_input = input(prompt)
 
