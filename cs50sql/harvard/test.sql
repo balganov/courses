@@ -1,10 +1,5 @@
 explain query plan
-SELECT "requirements"."name", COUNT(*) AS "courses"
-FROM "requirements"
-JOIN "satisfies" ON "requirements"."id" = "satisfies"."requirement_id"
-WHERE "satisfies"."course_id" IN (
-    SELECT "course_id"
-    FROM "enrollments"
-    WHERE "enrollments"."student_id" = 8
-)
-GROUP BY "requirements"."name";
+SELECT "department", "number", "title"
+FROM "courses"
+WHERE "title" LIKE "History%"
+AND "semester" = 'Fall 2023';
