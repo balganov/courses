@@ -1,7 +1,10 @@
 explain query plan
-SELECT "courses"."id", "courses"."department", "courses"."number", "courses"."title", COUNT(*) AS "enrollment"
-FROM "courses"
-JOIN "enrollments" ON "enrollments"."course_id" = "courses"."id"
-WHERE "courses"."semester" = 'Fall 2023'
-GROUP BY "courses"."id"
-ORDER BY "enrollment" DESC;
+SELECT "requirements"."name", COUNT(*) AS "courses"
+FROM "requirements"
+JOIN "satisfies" ON "requirements"."id" = "satisfies"."requirement_id"
+WHERE "satisfies"."course_id" IN (
+    SELECT "course_id"
+    FROM "enrollments"
+    WHERE "enrollments"."student_id" = 8
+)
+GROUP BY "requirements"."name";
