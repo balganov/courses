@@ -1,1 +1,1 @@
-CREATE INDEX "course_student_ids" ON "enrollments" ("course_id","student_id");
+CREATE INDEX "sid_in" ON "enrollments" ("student_id");
