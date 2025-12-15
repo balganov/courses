@@ -1,4 +1,4 @@
-EXPLAIN QUERY PLAN WITH "temp" AS (
+WITH "cte" AS (
     SELECT "to_user_id" AS "user_id", COUNT(*)
     FROM "messages" AS "m"
     JOIN "users" AS "u" ON "m"."from_user_id" = "u"."id"
@@ -6,4 +6,4 @@ EXPLAIN QUERY PLAN WITH "temp" AS (
     GROUP BY "to_user_id"
     ORDER BY COUNT(*) DESC
 )
-SELECT "user_id" FROM "temp" LIMIT 3;
+SELECT "user_id" FROM "cte" LIMIT 3;
