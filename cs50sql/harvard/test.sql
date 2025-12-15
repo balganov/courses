@@ -1,14 +1,7 @@
 explain query plan
-SELECT "id", "name"
-FROM "students"
-WHERE "id" IN (
-    SELECT "student_id"
-    FROM "enrollments"
-    WHERE "course_id" = (
-        SELECT "id"
-        FROM "courses"
-        WHERE "courses"."department" = 'Computer Science'
-        AND "courses"."number" = 50
-        AND "courses"."semester" = 'Fall 2023'
-    )
-);
+SELECT "courses"."id", "courses"."department", "courses"."number", "courses"."title", COUNT(*) AS "enrollment"
+FROM "courses"
+JOIN "enrollments" ON "enrollments"."course_id" = "courses"."id"
+WHERE "courses"."semester" = 'Fall 2023'
+GROUP BY "courses"."id"
+ORDER BY "enrollment" DESC;
