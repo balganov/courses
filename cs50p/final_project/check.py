@@ -204,3 +204,4 @@ list = [
 keys = ['id','name']
 
 print([{key: e[key] for key in keys} for e in list])
+ 
