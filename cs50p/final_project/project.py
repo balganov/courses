@@ -177,7 +177,7 @@ async def fetch_descriptions(vacancies):
 
     async def fetch_one(session, url):
         async with semaphore:
-
+            await asyncio.sleep(np.random.uniform(0.1, 0.5))
             try:
                 async with session.get(url, headers=headers,timeout=30) as response:
                     if response.status == 403:
@@ -189,7 +189,7 @@ async def fetch_descriptions(vacancies):
                             print(f"Error fetching {url}: {e}")
                             return None
 
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession(headers=headers) as session:
         tasks = [fetch_one(session, url) for url in urls]
         results = await asyncio.gather(*tasks, return_exceptions=False)
 
