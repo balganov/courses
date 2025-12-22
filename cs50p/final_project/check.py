@@ -1,8 +1,10 @@
 import asyncio
+import json
 
 def main():
-    urls =
+    with open("vacancies.json", encoding="utf-8") as f:
+        vacancies = json.load(f)
 
-
+    print(vacancies["items"])
 
 main()
