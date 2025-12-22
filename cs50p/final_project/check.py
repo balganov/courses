@@ -6,7 +6,9 @@ def main():
         vacancies = json.load(f)
 
 
-    for i in vacancies["items"]:
-        print(i["url"])
+    urls = [i["url"] for i in vacancies["items"][:5]]
+
+def fetch_one():
+    
 
 main()
