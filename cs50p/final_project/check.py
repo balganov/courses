@@ -8,6 +8,7 @@ def main():
     # urls = [i["url"] for i in vacancies["items"][:5]]
 
 def fetch_one():
-
+    print("fetching one URL")
+    asyncio.
 
 main()
