@@ -1,18 +1,16 @@
 import asyncio
 import json
 
-async def main():
+def main():
     # with open("vacancies.json", encoding="utf-8") as f:
     #     vacancies = json.load(f)
 
     # urls = [i["url"] for i in vacancies["items"][:5]]
-    await fetch_one()
 
-async def fetch_one():
+    my_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
 
-    for _ in range(5):
-        print("fetching one URL")
-        await asyncio.sleep(5)
+    for k in my_dict.keys():
+        print(k)
 
 
-await main()
+main()
