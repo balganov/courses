@@ -2,11 +2,14 @@ import asyncio
 import json
 
 async def main():
-    with open("vacancies.json", encoding="utf-8") as f:
-        vacancies = json.load(f)
 
-    urls = [i["url"] for i in vacancies["items"][:10]]
+    urls = ['https://api.hh.ru/vacancies/128638284?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128600670?locale=EN&host=hh.ru',
+            'https://api.hh.ru/vacancies/127949831?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/127253831?locale=EN&host=hh.ru',
+            'https://api.hh.ru/vacancies/128652740?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128675781?locale=EN&host=hh.ru',
+            'https://api.hh.ru/vacancies/128739986?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128548168?locale=EN&host=hh.ru',
+            'https://api.hh.ru/vacancies/128734657?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128511589?locale=EN&host=hh.ru']
 
+    print(urls)
     print("start")
     async with asyncio.TaskGroup() as tg:
         task1 = tg.create_task(cor_func(10))
