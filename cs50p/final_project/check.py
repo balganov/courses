@@ -7,15 +7,20 @@ async def main():
 
     # urls = [i["url"] for i in vacancies["items"][:5]]
     print("HI")
-    cor = cor_func(5)
-    task = asyncio.create_task(cor)
-    #asyncio.run(task)
+    task = asyncio.create_task(cor_func(5))
+    await cor_func(3)
+    print("stage 1")
+    await task
     print("done")
 
 async def cor_func(n):
 
     for _ in range(n):
-        print("hey")
-        await asyncio.sleep(1)
+        if n==5:
+            print("hey")
+            await asyncio.sleep(1)
+        else:
+            print("---")
+            await asyncio.sleep(3)
 
 asyncio.run(main())
