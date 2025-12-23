@@ -6,11 +6,12 @@ async def main():
     #     vacancies = json.load(f)
 
     # urls = [i["url"] for i in vacancies["items"][:5]]
-    print("HI")
+    print("start")
     task = asyncio.create_task(cor_func(5))
+    print("checkpoint1")
     await cor_func(3)
-    print("stage 1")
-    await task
+    print("checkpoint2")
+    #await task
     print("done")
 
 async def cor_func(n):
