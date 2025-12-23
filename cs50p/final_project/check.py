@@ -16,8 +16,10 @@ async def main():
     async with aiohttp.ClientSession() as session:
         async with asyncio.TaskGroup() as tg:
             for url in urls:
-                 task = tg.create_task(fetch_one(session, url))
-                 results.append(task)
+                 tasks = tg.create_task(fetch_one(session, url))
+
+    for task in tasks:
+        results.append(task)
 
     with open("results.json", "w", encoding='utf-8') as f:
          json.dump(results,f,indent=4, ensure_ascii=False)
