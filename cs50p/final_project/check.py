@@ -7,10 +7,6 @@ def main():
 
     # urls = [i["url"] for i in vacancies["items"][:5]]
 
-    my_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
-
-    for k in my_dict.keys():
-        print(k)
 
 
 main()
