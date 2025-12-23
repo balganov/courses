@@ -22,7 +22,7 @@ async def main():
     async with aiohttp.ClientSession() as session:
         async with session.get('https://api.hh.ru/vacancies/128638284?locale=EN&host=hh.ru') as response:
             print(response.status)
-            rint(response.json())
+            print(await response.json())
 
 
 async def cor_func(n):
