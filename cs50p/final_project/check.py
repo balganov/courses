@@ -25,11 +25,9 @@ async def main():
          json.dump(results,f,indent=4, ensure_ascii=False)
 
 async def fetch_one(session, url):
-    result = []
     async with session.get(url) as response:
             print(f"Fetching {url}, status: {response.status}")
-            result.append(await response.json())
-    return result
+            return await response.json()
 
 async def cor_func(n):
 
