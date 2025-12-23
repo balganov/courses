@@ -9,7 +9,7 @@ async def main():
     print("HI")
     cor = cor_func(5)
     task = asyncio.create_task(cor)
-    await task
+    #asyncio.run(task)
     print("done")
 
 async def cor_func(n: int = 1):
