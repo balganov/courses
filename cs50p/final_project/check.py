@@ -12,7 +12,7 @@ async def main():
     #asyncio.run(task)
     print("done")
 
-async def cor_func(n: int = 1):
+async def cor_func(n):
 
     for _ in range(n):
         print("hey")
