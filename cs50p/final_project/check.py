@@ -19,7 +19,8 @@ async def main():
                  task = tg.create_task(fetch_one(session, url))
                  results.append(task)
 
-    print("done")
+    with open("results.json", "w", encoding='utf-8') as f:
+         json.dump(results,f,indent=4, ensure_ascii=False)
 
 async def fetch_one(session, url):
     result = []
