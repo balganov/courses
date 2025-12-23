@@ -23,7 +23,7 @@ async def main():
 
     with open("results.json", "w", encoding='utf-8') as f:
          json.dump(results,f,indent=4, ensure_ascii=False)
-         print("Results are in local file now")
+         print("Results are in a local file now")
 
 async def fetch_one(session, url, semaphore):
     async with semaphore:
@@ -32,13 +32,5 @@ async def fetch_one(session, url, semaphore):
                 await asyncio.sleep(1)
                 print(f"Finished fetching, waited for 1 second")
                 return await response.json()
-
-async def cor_func(n):
-
-    for k in range(n):
-        print("hey")
-        if (k+1) % 2 == 0:
-            await asyncio.sleep(1.1)
-            print("waiting for 1.1 seconds")
 
 asyncio.run(main())
