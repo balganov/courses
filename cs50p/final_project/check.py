@@ -24,10 +24,11 @@ async def main():
          json.dump(results,f,indent=4, ensure_ascii=False)
          print("Results are in local file now")
 
-async def fetch_one(session, url):
-    async with session.get(url) as response:
-            print(f"Fetching {url}, status: {response.status}")
-            return await response.json()
+async def fetch_one(session, url, semaphore):
+    async with semaphore:
+        async with session.get(url) as response:
+                print(f"Fetching {url}, status: {response.status}")
+                return await response.json()
 
 async def cor_func(n):
 
