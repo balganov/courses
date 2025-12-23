@@ -7,9 +7,9 @@ def main():
 
     # urls = [i["url"] for i in vacancies["items"][:5]]
     cor = cor_func(5)
+    task = asyncio.create_task(cor)
 
-
-async def cor_func(n: int):
+async def cor_func(n: int = 1):
 
     for _ in range(n):
         print("hey")
