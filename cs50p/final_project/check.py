@@ -1,5 +1,5 @@
 import asyncio
-import iohttp
+import aiohttp
 import json
 
 async def main():
@@ -13,11 +13,17 @@ async def main():
     print(urls)
     print("start")
     async with asyncio.TaskGroup() as tg:
-        task1 = tg.create_task(cor_func(10))
-        task2 = tg.create_task(cor_func(5))
+        task1 = tg.create_task(cor_func(1))
+        task2 = tg.create_task(cor_func(1))
         print("checkpoint2")
 
     print("done")
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get('https://api.hh.ru/vacancies/128638284?locale=EN&host=hh.ru') as response:
+            print(response.status)
+            rint(response.json())
+
 
 async def cor_func(n):
 
