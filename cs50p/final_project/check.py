@@ -12,7 +12,6 @@ async def main():
 
     print("start")
     results = []
-    semaphore = asyncio.Semaphore(2)
     
     async with aiohttp.ClientSession() as session:
         async with asyncio.TaskGroup() as tg:
