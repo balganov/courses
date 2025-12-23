@@ -17,10 +17,12 @@ async def main():
         async with asyncio.TaskGroup() as tg:
                 tasks = [tg.create_task(fetch_one(session, url)) for url in urls]
                 print(tasks)
-    results = [ta]
+
+    results = [task.result() for task in tasks]
 
     with open("results.json", "w", encoding='utf-8') as f:
          json.dump(results,f,indent=4, ensure_ascii=False)
+         print("Results are in local file now")
 
 async def fetch_one(session, url):
     async with session.get(url) as response:
