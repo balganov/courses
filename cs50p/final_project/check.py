@@ -10,22 +10,19 @@ async def main():
             'https://api.hh.ru/vacancies/128739986?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128548168?locale=EN&host=hh.ru',
             'https://api.hh.ru/vacancies/128734657?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128511589?locale=EN&host=hh.ru']
 
-    print(urls)
     print("start")
-    async with asyncio.TaskGroup() as tg:
-        tasks = [tg.create_task(cor_func(1)), tg.create_task(cor_func(3))]
-        print("checkpoint2")
+
+    async with aiohttp.ClientSession() as session:
+        async with asyncio.TaskGroup() as tg:
+            tasks = [tg.create_task(fetch_one(session, url) for url in urls)]
 
     print("done")
 
-    async with aiohttp.ClientSession() as session:
-         fetch_one(session)
-
-
 async def fetch_one(session, url):
+    result = []
     async with session.get(url) as response:
-            print(response.status)
-            print(await response.json())
+            print(f"Fetching {url}, status: {response.status}")
+            result.append(response.json())
 
 async def cor_func(n):
 
