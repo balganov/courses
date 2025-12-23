@@ -8,9 +8,11 @@ async def main():
     urls = [i["url"] for i in vacancies["items"][:10]]
 
     print("start")
-    task1 = asyncio.create_task(cor_func(10))
-    print("checkpoint2")
-    await task1
+    async with asyncio.TaskGroup() as tg:
+        task1 = tg.create_task(cor_func(10))
+        task2 = tg.create_task(cor_func(5))
+        print("checkpoint2")
+
     print("done")
 
 async def cor_func(n):
