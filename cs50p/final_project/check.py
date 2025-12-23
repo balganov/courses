@@ -10,4 +10,5 @@ async def main():
     await asyncio.sleep(3)
     print("world")
 
-asyncio.run(main())
+# asyncio.run(main())
+main()
