@@ -6,13 +6,16 @@ def main():
     #     vacancies = json.load(f)
 
     # urls = [i["url"] for i in vacancies["items"][:5]]
-    gen()
+    gen = mygen()
+    next(gen)
 
-def gen():
+def mygen():
     print("hello")
     n=0
     while n < 10:
-        yield n += 1
+        yield n
+        n += 1
+        print(n)
     print("world")
 
 # asyncio.run(main())
