@@ -12,7 +12,7 @@ async def main():
 
     print("start")
     results = []
-    
+
     async with aiohttp.ClientSession() as session:
         async with asyncio.TaskGroup() as tg:
             for url in urls:
@@ -25,7 +25,7 @@ async def fetch_one(session, url):
     result = []
     async with session.get(url) as response:
             print(f"Fetching {url}, status: {response.status}")
-            await result.append(response.json())
+            result.append(await response.json())
     return result
 
 async def cor_func(n):
