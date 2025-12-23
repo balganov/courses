@@ -6,19 +6,14 @@ def main():
     #     vacancies = json.load(f)
 
     # urls = [i["url"] for i in vacancies["items"][:5]]
-    gen = mygen()
-    next(gen)
-    next(gen)
-    next(gen)
+    cor = cor_func(5)
 
-def mygen():
-    print("hello")
-    n=0
-    while n < 10:
-        yield n
-        n += 1
-        print(n)
-    print("world")
+
+async def cor_func(n: int):
+
+    for _ in range(n):
+        print("hey")
+        await asyncio.sleep(1)
 
 # asyncio.run(main())
 main()
