@@ -8,6 +8,8 @@ def main():
     # urls = [i["url"] for i in vacancies["items"][:5]]
     gen = mygen()
     next(gen)
+    next(gen)
+    next(gen)
 
 def mygen():
     print("hello")
