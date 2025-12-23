@@ -7,11 +7,11 @@ async def main():
 
     # urls = [i["url"] for i in vacancies["items"][:5]]
     print("start")
-    task = asyncio.create_task(cor_func(5))
+    await asyncio.create_task(cor_func(5))
     print("checkpoint1")
     await cor_func(3)
     print("checkpoint2")
-    #await task
+    await task
     print("done")
 
 async def cor_func(n):
