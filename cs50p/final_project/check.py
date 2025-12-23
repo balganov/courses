@@ -20,9 +20,10 @@ async def main():
     print("done")
 
     async with aiohttp.ClientSession() as session:
+         fetch_one(session)
 
 
-async def fetch_one():
+async def fetch_one(session):
     async with session.get('https://api.hh.ru/vacancies/128638284?locale=EN&host=hh.ru') as response:
             print(response.status)
             print(await response.json())
