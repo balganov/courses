@@ -1,13 +1,16 @@
 import asyncio
 import json
 
-def main():
+async def main():
     # with open("vacancies.json", encoding="utf-8") as f:
     #     vacancies = json.load(f)
 
     # urls = [i["url"] for i in vacancies["items"][:5]]
+    print("HI")
     cor = cor_func(5)
     task = asyncio.create_task(cor)
+    await task
+    print("done")
 
 async def cor_func(n: int = 1):
 
@@ -15,5 +18,4 @@ async def cor_func(n: int = 1):
         print("hey")
         await asyncio.sleep(1)
 
-# asyncio.run(main())
-main()
+asyncio.run(main())
