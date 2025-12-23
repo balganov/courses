@@ -22,8 +22,8 @@ async def main():
          fetch_one(session)
 
 
-async def fetch_one(session):
-    async with session.get('https://api.hh.ru/vacancies/128638284?locale=EN&host=hh.ru') as response:
+async def fetch_one(session, url):
+    async with session.get(url) as response:
             print(response.status)
             print(await response.json())
 
