@@ -11,10 +11,12 @@ async def main():
             'https://api.hh.ru/vacancies/128734657?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128511589?locale=EN&host=hh.ru']
 
     print("start")
-
+    results = []
     async with aiohttp.ClientSession() as session:
         async with asyncio.TaskGroup() as tg:
-            tasks = [tg.create_task(fetch_one(session, url) for url in urls)]
+            for url in urls:
+                 task = tg.create_task(fetch_one(session, url))
+                 results.append(task)
 
     print("done")
 
