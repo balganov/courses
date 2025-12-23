@@ -23,6 +23,7 @@ async def fetch_one(session, url):
     async with session.get(url) as response:
             print(f"Fetching {url}, status: {response.status}")
             result.append(response.json())
+    return result
 
 async def cor_func(n):
 
