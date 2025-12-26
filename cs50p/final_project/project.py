@@ -168,13 +168,6 @@ async def fetch_descriptions(vacancies):
 
     semaphore = asyncio.Semaphore(5)
 
-    headers = {
-        "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
-        "Accept": "application/json",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Referer": "https://hh.ru/"
-    }
-
     async def fetch_one(session, url):
         async with semaphore:
             await asyncio.sleep(np.random.uniform(0.1, 0.5))
