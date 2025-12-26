@@ -29,7 +29,7 @@ async def fetch_one(session, url, semaphore):
     async with semaphore:
         async with session.get(url) as response:
                 print(f"Fetching {url}, status: {response.status}")
-                await asyncio.sleep(1)
+                #await asyncio.sleep(1)
                 print(f"Finished fetching, waited for 1 second")
                 return await response.json()
 
