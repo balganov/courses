@@ -3,7 +3,7 @@ import aiohttp
 import json
 
 async def main():
-
+    RATE_LIMIT = 2
     urls = ['https://api.hh.ru/vacancies/128638284?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128600670?locale=EN&host=hh.ru',
             'https://api.hh.ru/vacancies/127949831?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/127253831?locale=EN&host=hh.ru',
             'https://api.hh.ru/vacancies/128652740?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128675781?locale=EN&host=hh.ru',
@@ -16,6 +16,7 @@ async def main():
     semaphore = asyncio.Semaphore(2)
     async with aiohttp.ClientSession() as session:
         async with asyncio.TaskGroup() as tg:
+            for batch in range(len(urls)):
                 tasks = [tg.create_task(fetch_one(session, url, semaphore)) for url in urls]
                 print(tasks)
 
@@ -32,5 +33,5 @@ async def fetch_one(session, url, semaphore):
                 #await asyncio.sleep(1)
                 print(f"Finished fetching, waited for 1 second")
                 return await response.json()
-        
+
 asyncio.run(main())
