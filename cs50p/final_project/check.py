@@ -17,7 +17,7 @@ async def main():
     async with aiohttp.ClientSession() as session:
         async with asyncio.TaskGroup() as tg:
             for start in range(0,len(urls),2):
-                
+                end = start 
                 tasks = [tg.create_task(fetch_one(session, url, semaphore)) for url in urls[start:batch+RATE_LIMIT]]
                 print(tasks)
                 await asyncio.sleep(5)
