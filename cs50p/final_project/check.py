@@ -19,6 +19,7 @@ async def main():
             for batch in range(0,len(urls),2):
                 tasks = [tg.create_task(fetch_one(session, url, semaphore)) for url in urls[batch:batch+RATE_LIMIT]]
                 print(tasks)
+                await asyncio.sleep(5)
 
     results = [task.result() for task in tasks]
 
@@ -31,7 +32,7 @@ async def fetch_one(session, url, semaphore):
         async with session.get(url) as response:
                 print(f"Fetching {url}, status: {response.status}")
                 #await asyncio.sleep(1)
-                print(f"Finished fetching, waited for 1 second")
+                #print(f"Finished fetching, waited for 1 second")
                 return await response.json()
 
 asyncio.run(main())
