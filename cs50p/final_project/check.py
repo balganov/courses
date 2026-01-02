@@ -9,16 +9,16 @@ async def main():
             'https://api.hh.ru/vacancies/128652740?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128675781?locale=EN&host=hh.ru',
             'https://api.hh.ru/vacancies/128739986?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128548168?locale=EN&host=hh.ru',
             'https://api.hh.ru/vacancies/128734657?locale=EN&host=hh.ru', 'https://api.hh.ru/vacancies/128511589?locale=EN&host=hh.ru']
-
+    total_urls = len(urls)
     print("start")
     results = []
 
     semaphore = asyncio.Semaphore(2)
     async with aiohttp.ClientSession() as session:
         async with asyncio.TaskGroup() as tg:
-            for start in range(0,len(urls),2):
-                end = start if len(urls)-start < RATE_LIMIT
-                tasks = [tg.create_task(fetch_one(session, url, semaphore)) for url in urls[start:batch+RATE_LIMIT]]
+            for i in range(0,total_urls,2):
+                end = total_urls-i if total_urls-i < RATE_LIMIT else i
+                tasks = [tg.create_task(fetch_one(session, url, semaphore)) for url in urls[i:batch+RATE_LIMIT]]
                 print(tasks)
                 await asyncio.sleep(5)
 
