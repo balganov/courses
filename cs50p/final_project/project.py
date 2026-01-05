@@ -119,7 +119,11 @@ async def fetch_dictionaries():
 
 #Accessing list of vacancies filtered by location and roles
 async def fetch_vacancies(role_params, area_params):
-    
+    access_token = 'USERTUNGS70TSFPSNLDLS1PKIEM4GE2CCA51OI6F5UCK31UI476IJ7SBESK7AMQT'
+    header = {
+        "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
+        "Authorization": f"Bearer {access_token}"
+    }
     vacancy_params = {
         "professional_role":role_params,
         "area" : area_params,
@@ -132,7 +136,7 @@ async def fetch_vacancies(role_params, area_params):
     # Collect the initial data
     async with aiohttp.ClientSession() as session:
         try:
-            async with session.get('https://api.hh.ru/vacancies', params=vacancy_params) as response:
+            async with session.get('https://api.hh.ru/vacancies', params=vacancy_params, headers=header) as response:
                 print(f"Fetching vacancies, status: {response.status}")
                 data = await response.json()
 
@@ -145,7 +149,7 @@ async def fetch_vacancies(role_params, area_params):
                     vacancy_params["page"] = p
                     # vancancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
                     # data["items"].extend(vancancies.json()["items"])
-                    async with session.get('https://api.hh.ru/vacancies', params=vacancy_params) as response:
+                    async with session.get('https://api.hh.ru/vacancies', params=vacancy_params, headers=header) as response:
                         print(f"Fetching additional vacancies, status: {response.status}")
                         vac = await response.json()
                         data["items"].extend(vac["items"])
@@ -202,7 +206,7 @@ async def fetch_one(session, url, semaphore):
     }
     async with semaphore:
         try:
-            async with session.get(url) as response:
+            async with session.get(url, headers=header) as response:
                 print(f"Fetching {url}, status: {response.status}")
                 return await response.json()
         except (aiohttp.ClientError, asyncio.TimeoutError) as e:
