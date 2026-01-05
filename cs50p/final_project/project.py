@@ -118,7 +118,7 @@ async def fetch_dictionaries():
 
 #Accessing list of vacancies filtered by location and roles
 async def fetch_vacancies(role_params, area_params):
-    access_token = 'USERTUNGS70TSFPSNLDLS1PKIEM4GE2CCA51OI6F5UCK31UI476IJ7SBESK7AMQT'
+    access_token = 'APPLJFG7N22I3S8BBAE8ES7I573A8D4HBTF9P5FIQHNOJN12A5KGQ41VOLNI928K'
     header = {
         "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
         "Authorization": f"Bearer {access_token}"
@@ -198,7 +198,7 @@ async def fetch_descriptions(vacancies):
 
 #Fetching one url for asynchronious requests
 async def fetch_one(session, url, semaphore):
-    access_token = 'USERTUNGS70TSFPSNLDLS1PKIEM4GE2CCA51OI6F5UCK31UI476IJ7SBESK7AMQT'
+    access_token = 'APPLJFG7N22I3S8BBAE8ES7I573A8D4HBTF9P5FIQHNOJN12A5KGQ41VOLNI928K'
     header = {
         "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
         "Authorization": f"Bearer {access_token}"
