@@ -14,21 +14,18 @@ import asyncio
 #global variable for loading thread
 loading = True
 
-
-
-
 def main():
     global loading
 
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
-    fetch_dictionaries()
+    asyncio.run(fetch_dictionaries())
     display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
     display_roles = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
 
     area_ids = validated_input(f"Available locations:\n{display_areas}\nPlease select your preferred work locations:", get_areas())
     role_ids = validated_input(f"Available professional roles:\n{display_roles}\nPlease specify the job roles you are seeking:", get_roles())
 
-    fetch_vacancies(role_ids, area_ids)
+    asyncio.run(fetch_vacancies(role_ids, area_ids))
 
     #Creating a thread to animate the loading since our function takes some time to fetch data from multiple urls
     loading_thread = threading.Thread(target=loading_animation)
@@ -102,58 +99,70 @@ def validated_input(prompt, values):
 
 
 #Accessing roles and locations from dictionaries
-def fetch_dictionaries():
-    try:
-        roles = requests.get('https://api.hh.ru/professional_roles?locale=EN')
-        areas = requests.get('https://api.hh.ru/areas?locale=EN')
+async def fetch_dictionaries():
+    semaphore = asyncio.Semaphore(2)
+    async with aiohttp.ClientSession() as session:
+        async with asyncio.TaskGroup() as tg:
+            task1 = tg.create_task(fetch_one(session, 'https://api.hh.ru/professional_roles?locale=EN', semaphore))
+            task2 = tg.create_task(fetch_one(session, 'https://api.hh.ru/areas?locale=EN', semaphore))
 
-        with open("job_roles.json","w", encoding="utf-8") as f:
-            json.dump(roles.json(),f,indent=4, ensure_ascii=False)
+    roles = task1.result()
+    areas = task2.result()
 
-        with open("areas.json", "w", encoding="utf-8") as f:
-            json.dump(areas.json(),f,indent=4, ensure_ascii=False)
+    with open("job_roles.json","w", encoding="utf-8") as f:
+        json.dump(roles,f,indent=4, ensure_ascii=False)
 
-        print("fetching is done")
+    with open("areas.json", "w", encoding="utf-8") as f:
+        json.dump(areas,f,indent=4, ensure_ascii=False)
 
-    except requests.RequestException as e:
-        sys.exit(e)
+    print("Fetching dictionaries ... done")
 
 #Accessing list of vacancies filtered by location and roles
-def fetch_vacancies(role_params, area_params):
-    try:
-        vacancy_params = {
-            "professional_role":role_params,
-            "area" : area_params,
-            "clusters":"true",
-            "per_page":"100",
-            "locale": "EN",
-            "page":0
-            }
+async def fetch_vacancies(role_params, area_params):
 
-        # Collect the initial data
-        vacancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
-        data = vacancies.json()
-        pages = int(data["pages"])
+    vacancy_params = {
+        "professional_role":role_params,
+        "area" : area_params,
+        "clusters":"true",
+        "per_page":"100",
+        "locale": "EN",
+        "page":0
+        }
 
-        # Check if we have additional pages and append them to our existing data
-        if pages > 1:
-            for p in range(1, pages):
-                vacancy_params["clusters"] = "false"
-                vacancy_params["page"] = p
-                vancancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
-                data["items"].extend(vancancies.json()["items"])
+    # Collect the initial data
+    async with aiohttp.ClientSession() as session:
+        try:
+            async with session.get('https://api.hh.ru/vacancies', params=vacancy_params) as response:
+                print(f"Fetching vacancies, status: {response.status}")
+                data = await response.json()
 
-        # Write the collected data to a file
-        with open("vacancies.json","w", encoding="utf-8") as f:
-              json.dump(data,f,indent=4, ensure_ascii=False)
+            pages = int(data["pages"])
 
-    except requests.RequestException as e:
-        sys.exit(e)
+            # Check if we have additional pages and append them to our existing data
+            if pages > 1:
+                for p in range(1, pages):
+                    vacancy_params["clusters"] = "false"
+                    vacancy_params["page"] = p
+                    # vancancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
+                    # data["items"].extend(vancancies.json()["items"])
+                    async with session.get('https://api.hh.ru/vacancies', params=vacancy_params) as response:
+                        print(f"Fetching additional vacancies, status: {response.status}")
+                        vac = await response.json()
+                        data["items"].extend(vac["items"])
+
+        except (aiohttp.ClientError, asyncio.TimeoutError) as e:
+            print(f"Error fetching vacancies: {e}")
+
+    # Write the collected data to a file
+    with open("vacancies.json","w", encoding="utf-8") as f:
+            json.dump(data,f,indent=4, ensure_ascii=False)
 
 #Accessing individual vacancy information
 async def fetch_descriptions(vacancies):
-    desc = []
+    results = []
     urls = [i["url"] for i in vacancies["items"]]
+    total_urls = len(urls)
+    REQ_PER_SECOND = 30
 
     # This implementation was simple, however very slow due to syncronious requests
     # try:
@@ -166,33 +175,33 @@ async def fetch_descriptions(vacancies):
 
     print(f"Fetching {len(urls)} vacancy descriptions...")
 
-    semaphore = asyncio.Semaphore(5)
+    #fetching url batch based on api requirements - 30 requests per second
+    semaphore = asyncio.Semaphore(REQ_PER_SECOND)
+    async with aiohttp.ClientSession() as session:
+        for i in range(0,total_urls,REQ_PER_SECOND):
+            end = total_urls if total_urls-i < REQ_PER_SECOND else i+REQ_PER_SECOND
+            tasks = [asyncio.create_task(fetch_one(session, url, semaphore)) for url in urls[i:end]]
+            print(tasks)
+            current_results = await asyncio.gather(*tasks)
+            results.extend(current_results)
 
-    async def fetch_one(session, url):
-        async with semaphore:
-            await asyncio.sleep(np.random.uniform(0.1, 0.5))
-            try:
-                async with session.get(url, headers=headers,timeout=30) as response:
-                    if response.status == 403:
-                        print(f"403 on {url} – possible temporary block; retry later")
-                        return None
-                    response.raise_for_status()
-                    return await response.json()
-            except (aiohttp.ClientError, asyncio.TimeoutError) as e:
-                            print(f"Error fetching {url}: {e}")
-                            return None
-
-    async with aiohttp.ClientSession(headers=headers) as session:
-        tasks = [fetch_one(session, url) for url in urls]
-        results = await asyncio.gather(*tasks, return_exceptions=False)
-
-    for result in results:
-        if result is not None:
-            desc.append(result)
+            if end < total_urls:
+                print(f"Pausing for 1.2 seconds to meet API rate limits")
+                await asyncio.sleep(1.2)
 
     print("Creating local JSON file with vacancy descriptions...")
     with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
-            json.dump(desc,f,indent=4, ensure_ascii=False)
+            json.dump(results,f,indent=4, ensure_ascii=False)
+
+#Fetching one url for asynchronious requests
+async def fetch_one(session, url, semaphore):
+    async with semaphore:
+        try:
+            async with session.get(url) as response:
+                print(f"Fetching {url}, status: {response.status}")
+                return await response.json()
+        except (aiohttp.ClientError, asyncio.TimeoutError) as e:
+            print(f"Error fetching {url}: {e}")
 
 #Reading data from local JSON: list of roles
 def get_roles():
