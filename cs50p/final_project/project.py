@@ -17,7 +17,8 @@ loading = True
 def main():
     global loading
     header = {
-        
+        "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)"
+        "Authorization": f"Bearer {token}"
     }
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     asyncio.run(fetch_dictionaries())
