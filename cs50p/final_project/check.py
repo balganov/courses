@@ -13,11 +13,7 @@ async def main():
     total_urls = len(urls)
     print("start")
     results = []
-    access_token = 'USERTUNGS70TSFPSNLDLS1PKIEM4GE2CCA51OI6F5UCK31UI476IJ7SBESK7AMQT'
-    header = {
-        "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
-        "Authorization": f"Bearer {access_token}"
-    }
+
 
     semaphore = asyncio.Semaphore(2)
     async with aiohttp.ClientSession() as session:
@@ -35,8 +31,13 @@ async def main():
          print("Results are in a local file now")
 
 async def fetch_one(session, url, semaphore):
+    access_token = 'USERTUNGS70TSFPSNLDLS1PKIEM4GE2CCA51OI6F5UCK31UI476IJ7SBESK7AMQT'
+    header = {
+        "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
+        "Authorization": f"Bearer {access_token}"
+    }
     async with semaphore:
-        async with session.get(url) as response:
+        async with session.get(url, headers=header) as response:
                 print(f"Fetching {url}, status: {response.status}")
                 #await asyncio.sleep(1)
                 #print(f"Finished fetching, waited for 1 second")
