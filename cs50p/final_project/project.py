@@ -16,7 +16,9 @@ loading = True
 
 def main():
     global loading
-
+    header = {
+        
+    }
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     asyncio.run(fetch_dictionaries())
     display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
