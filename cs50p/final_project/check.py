@@ -22,7 +22,7 @@ async def main():
                 end = total_urls if total_urls-i < REQ_PER_SECOND else i+REQ_PER_SECOND
                 tasks = [tg.create_task(fetch_one(session, url, semaphore)) for url in urls[i:end]]
                 print(tasks)
-                await asyncio.sleep(5)
+                await asyncio.sleep(1)
 
     results = [task.result() for task in tasks]
 
