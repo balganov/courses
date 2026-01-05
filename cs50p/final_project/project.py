@@ -136,7 +136,7 @@ async def fetch_vacancies(role_params, area_params):
     async with aiohttp.ClientSession() as session:
         try:
             async with session.get('https://api.hh.ru/vacancies', params=vacancy_params, headers=header) as response:
-                print(f"Fetching vacancies, status: {response.status}")
+                print(f"Fetching vacancies, status: {response.status, response.text(), response.json()}")
                 data = await response.json()
 
             pages = int(data["pages"])
