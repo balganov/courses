@@ -16,12 +16,13 @@ loading = True
 
 def main():
     global loading
+    access_token = 'USERTUNGS70TSFPSNLDLS1PKIEM4GE2CCA51OI6F5UCK31UI476IJ7SBESK7AMQT'
     header = {
         "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
-        "Authorization": f"Bearer {token}"
+        "Authorization": f"Bearer {access_token}"
     }
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
-    asyncio.run(fetch_dictionaries())
+    asyncio.run(fetch_dictionaries(header))
     display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
     display_roles = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
 

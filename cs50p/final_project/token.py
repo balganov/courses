@@ -11,3 +11,10 @@ payload = {
 
 response = requests.post(url, data=payload)
 print(response.json())
+
+# {
+#     'access_token': 'USERTUNGS70TSFPSNLDLS1PKIEM4GE2CCA51OI6F5UCK31UI476IJ7SBESK7AMQT',
+#     'token_type': 'bearer',
+#     'refresh_token': 'USERN8EUN6EUMRFL8CJMNCSDSFFTJ23F7JQDF5AIJ3JTO4S2QH9ELHFQ7G95MH8T',
+#     'expires_in': 1209599
+#  }
