@@ -13,6 +13,11 @@ async def main():
     total_urls = len(urls)
     print("start")
     results = []
+    access_token = 'USERTUNGS70TSFPSNLDLS1PKIEM4GE2CCA51OI6F5UCK31UI476IJ7SBESK7AMQT'
+    header = {
+        "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
+        "Authorization": f"Bearer {access_token}"
+    }
 
     semaphore = asyncio.Semaphore(2)
     async with aiohttp.ClientSession() as session:
