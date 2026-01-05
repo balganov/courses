@@ -119,7 +119,7 @@ async def fetch_dictionaries():
 
 #Accessing list of vacancies filtered by location and roles
 async def fetch_vacancies(role_params, area_params):
-
+    
     vacancy_params = {
         "professional_role":role_params,
         "area" : area_params,
