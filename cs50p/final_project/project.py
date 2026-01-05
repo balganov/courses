@@ -138,9 +138,6 @@ async def fetch_vacancies(role_params, area_params):
             async with session.get('https://api.hh.ru/vacancies', params=vacancy_params, headers=header) as response:
                 print(f"Fetching vacancies, status: {response.status}")
                 data = await response.json()
-                txt = await response.text()
-                print(f"{data}")
-                print(f"{txt}")
 
             pages = int(data["pages"])
 
