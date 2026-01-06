@@ -8,5 +8,5 @@ for i,e in enumerate(data):
     print(f"{titles[i]}: ")
     print(e)
 
-for e in dict.():
-    print(e.)
+for e in dict.items():
+    print(e)
