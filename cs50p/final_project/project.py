@@ -131,7 +131,7 @@ async def fetch_vacancies(role_params, area_params):
     semaphore = asyncio.Semaphore(30)
     # Collect the initial data
     async with aiohttp.ClientSession() as session:
-        task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/professional_roles?locale=EN', semaphore, vacancy_params))
+        task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/vacancies', semaphore, vacancy_params))
 
         data = await task.json()
 
