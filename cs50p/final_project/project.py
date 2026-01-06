@@ -142,8 +142,8 @@ async def fetch_vacancies(role_params, area_params):
                 vacancy_params["clusters"] = "false"
                 vacancy_params["page"] = p
                 task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/vacancies', semaphore, vacancy_params))
-                    vac = await task.json()
-                    data["items"].extend(vac["items"])
+                vac = await task.json()
+                data["items"].extend(vac["items"])
 
     # Write the collected data to a file
     with open("vacancies.json","w", encoding="utf-8") as f:
