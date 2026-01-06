@@ -10,3 +10,6 @@ for i,e in enumerate(data):
         print(f"\t{key}: {value}")
 
 
+for i, k in enumerate(dict):
+    if i < 2:
+        print(k)

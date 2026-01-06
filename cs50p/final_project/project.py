@@ -24,12 +24,17 @@ def main():
     #Fetching vacancy descriptions and summarizing the data
     data = get_summary()
     titles = ['Top 5 industries','Work format', 'Work experience', 'Top 5 cities', 'Professional roles', 'Type of employment']
-    count_skills = Counter(get_skills())
-    
+
     for i,e in enumerate(data):
         print(f"{titles[i]}: ")
         for key, value in e.items():
             print(f"\t{key}: {value}")
+
+    count_skills = Counter(get_skills())
+    print("Top 10 skills:")
+    for i, k in enumerate(dict):
+        if i < 10:
+            print(f"\t{k}")
 
     visualization_requested = input("Would you like to generate a visualization in the form of charts to summarize the data? (y/n):")
     if visualization_requested.lower() == 'y':
