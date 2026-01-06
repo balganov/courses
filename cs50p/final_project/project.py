@@ -21,7 +21,7 @@ def main():
     # Fetching vacancies based on the user input (proffesional roles and locations) and and writing them to local json files
     asyncio.run(fetch_vacancies(role_ids, area_ids))
 
-    
+    # Fetching vacancy descriptions and summarizing the data
     data = get_summary()
     print(data)
 
