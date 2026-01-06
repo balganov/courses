@@ -22,35 +22,7 @@ def main():
 
     data = get_summary()
 
-    #Here we create a two-dimensional plot that has 2 rows and 3 comlums resulting in 6 charts in total
-    # r - rows, c - columns, n - iterator for setting the titles
-    r, c, n = 2, 3, 0
-    _, ax = plt.subplots(r,c, figsize=(20,12))
-    colors = plt.get_cmap('viridis')(np.linspace(0.9, 0.4, len(data)))
-
-    titles = ['Top 5 industries','Work format', 'Work experience', 'Top 5 cities', 'Professional roles', 'Type of employment']
-    #Setting titles for each chart
-    for i in range(r):
-        for j in range(c):
-            ax[i,j].set_title(titles[n], fontsize=20, fontweight='bold')
-            n += 1
-
-    #Generating pie charts located in the first row
-    ax[0,0].pie(data[1].values(), labels=data[1].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
-    ax[0,1].pie(data[5].values(), labels=data[5].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
-    ax[0,2].pie(data[2].values(), labels=data[2].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
-    #Generating bar charts located in the second row
-    ax[1,0].bar(data[0].keys(), data[0].values(), color=colors)
-    ax[1,1].bar(data[3].keys(), data[3].values(), color=colors)
-    ax[1,2].bar(data[4].keys(), data[4].values(), color=colors)
-
-    #Adjusting font size for bar charts
-    for i in range(3):
-        ax[1,i].tick_params(axis='x', labelsize=12, rotation=45)
-
-    #Fixing the layout, so labels don't overlap and then saving the charts to png file
-    plt.tight_layout()
-    plt.savefig("charts.png")
+    create_dashboard(data)
 
     #Here we count skills occurances from each vacancy URL, generate wordcloud and save it to png file
     count_skills = Counter(get_skills())
@@ -249,6 +221,37 @@ def get_skills():
             for i in d["key_skills"]:
                 skills.append(i["name"])
     return skills
+
+def create_dashboard(data):
+        #Here we create a two-dimensional plot that has 2 rows and 3 comlums resulting in 6 charts in total
+    # r - rows, c - columns, n - iterator for setting the titles
+    r, c, n = 2, 3, 0
+    _, ax = plt.subplots(r,c, figsize=(20,12))
+    colors = plt.get_cmap('viridis')(np.linspace(0.9, 0.4, len(data)))
+
+    titles = ['Top 5 industries','Work format', 'Work experience', 'Top 5 cities', 'Professional roles', 'Type of employment']
+    #Setting titles for each chart
+    for i in range(r):
+        for j in range(c):
+            ax[i,j].set_title(titles[n], fontsize=20, fontweight='bold')
+            n += 1
+
+    #Generating pie charts located in the first row
+    ax[0,0].pie(data[1].values(), labels=data[1].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
+    ax[0,1].pie(data[5].values(), labels=data[5].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
+    ax[0,2].pie(data[2].values(), labels=data[2].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
+    #Generating bar charts located in the second row
+    ax[1,0].bar(data[0].keys(), data[0].values(), color=colors)
+    ax[1,1].bar(data[3].keys(), data[3].values(), color=colors)
+    ax[1,2].bar(data[4].keys(), data[4].values(), color=colors)
+
+    #Adjusting font size for bar charts
+    for i in range(3):
+        ax[1,i].tick_params(axis='x', labelsize=12, rotation=45)
+
+    #Fixing the layout, so labels don't overlap and then saving the charts to png file
+    plt.tight_layout()
+    plt.savefig("charts.png")
 
 #Merging to images into one pdf
 def generate_pdf(img1, img2):
