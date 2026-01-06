@@ -32,7 +32,7 @@ def main():
 
     count_skills = Counter(get_skills())
     print("Top 10 skills:")
-    for i, k in enumerate(dict):
+    for i, k in enumerate(count_skills):
         if i < 10:
             print(f"\t{k}")
 
