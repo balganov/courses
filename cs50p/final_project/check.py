@@ -44,7 +44,7 @@ async def fetch_one(session, url, semaphore, params):
         "Authorization": "Bearer APPLJFG7N22I3S8BBAE8ES7I573A8D4HBTF9P5FIQHNOJN12A5KGQ41VOLNI928K"
     }
     async with semaphore:
-        async with session.get(url, headers=header) as response:
+        async with session.get(url, headers=header, params=params) as response:
                 print(f"Fetching {url}, status: {response.status}")
                 #await asyncio.sleep(1)
                 #print(f"Finished fetching, waited for 1 second")
