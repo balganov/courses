@@ -133,7 +133,7 @@ async def fetch_vacancies(role_params, area_params):
     async with aiohttp.ClientSession() as session:
         task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/vacancies', semaphore, vacancy_params))
 
-        data = await task.json()
+        data = await task.result()
         pages = int(data["pages"])
 
         # Check if we have additional pages and append them to our existing data
@@ -142,7 +142,7 @@ async def fetch_vacancies(role_params, area_params):
                 vacancy_params["clusters"] = "false"
                 vacancy_params["page"] = p
                 task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/vacancies', semaphore, vacancy_params))
-                vac = await task.json()
+                vac = await task.result()
                 data["items"].extend(vac["items"])
 
     # Write the collected data to a file
