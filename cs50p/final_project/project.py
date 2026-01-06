@@ -21,7 +21,9 @@ def main():
     asyncio.run(fetch_vacancies(role_ids, area_ids))
 
     data = get_summary()
+    print(data)
 
+    
     create_dashboard(data)
 
     #Here we count skills occurances from each vacancy URL, generate wordcloud and save it to png file
@@ -201,8 +203,6 @@ def get_summary():
             for c in vacancies["clusters"][i]["items"]:
                 summary.update({c['name']: c['count']})
             summary_list.append(summary)
-
-    print("\nSuccess!")
 
     return summary_list
 
