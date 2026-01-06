@@ -144,7 +144,7 @@ async def fetch_descriptions(vacancies):
         for i in range(0,total_urls,REQ_PER_SECOND):
             end = total_urls if total_urls-i < REQ_PER_SECOND else i+REQ_PER_SECOND
             tasks = [asyncio.create_task(fetch_one(session, url, semaphore)) for url in urls[i:end]]
-            print(tasks)
+            #print(tasks)
             current_results = await asyncio.gather(*tasks)
             results.extend(current_results)
 
