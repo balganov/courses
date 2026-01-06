@@ -1,7 +1,5 @@
 import json
 import sys
-import threading
-import time
 from collections import Counter
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
@@ -10,12 +8,8 @@ from fpdf import FPDF
 import aiohttp
 import asyncio
 
-#global variable for loading thread
-loading = True
 
 def main():
-    global loading
-
     # First we fetch dictionaries from corresponding endpoints and write them to local json flies
     asyncio.run(fetch_dictionaries())
     display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
@@ -26,14 +20,7 @@ def main():
 
     asyncio.run(fetch_vacancies(role_ids, area_ids))
 
-    #Creating a thread to animate the loading since our function takes some time to fetch data from multiple urls
-    loading_thread = threading.Thread(target=loading_animation)
-    loading_thread.start()
-    try:
-        data = get_summary()
-    finally:
-        loading = False
-        loading_thread.join()
+    data = get_summary()
 
     #Here we create a two-dimensional plot that has 2 rows and 3 comlums resulting in 6 charts in total
     # r - rows, c - columns, n - iterator for setting the titles
@@ -277,15 +264,6 @@ def generate_pdf(img1, img2):
 
     except FileNotFoundError:
             sys.exit("Input does not exist")
-
-#Printing one dot at a time as a loading animation
-def loading_animation():
-    global loading
-    time.sleep(1)
-    while loading:
-        sys.stdout.write(".")
-        sys.stdout.flush()
-        time.sleep(1)
 
 if __name__ == "__main__":
     main()
