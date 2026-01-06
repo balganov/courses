@@ -23,12 +23,14 @@ def main():
 
     #Fetching vacancy descriptions and summarizing the data
     data = get_summary()
+    titles = ['Top 5 industries','Work format', 'Work experience', 'Top 5 cities', 'Professional roles', 'Type of employment']
+
     print(data)
 
     visualization_requested = input("Would you like to generate a visualization in the form of charts to summarize the data? (y/n):")
     if visualization_requested.lower() == 'y':
 
-        create_dashboard(data)
+        create_dashboard(data, titles)
 
         #Here we count skills occurances from each vacancy URL, generate wordcloud and save it to png file
         count_skills = Counter(get_skills())
@@ -222,14 +224,13 @@ def get_skills():
                 skills.append(i["name"])
     return skills
 
-def create_dashboard(data):
+def create_dashboard(data, titles):
         #Here we create a two-dimensional plot that has 2 rows and 3 comlums resulting in 6 charts in total
     # r - rows, c - columns, n - iterator for setting the titles
     r, c, n = 2, 3, 0
     _, ax = plt.subplots(r,c, figsize=(20,12))
     colors = plt.get_cmap('viridis')(np.linspace(0.9, 0.4, len(data)))
 
-    titles = ['Top 5 industries','Work format', 'Work experience', 'Top 5 cities', 'Professional roles', 'Type of employment']
     #Setting titles for each chart
     for i in range(r):
         for j in range(c):
