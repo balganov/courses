@@ -118,10 +118,7 @@ async def fetch_dictionaries():
 
 #Accessing list of vacancies filtered by location and roles
 async def fetch_vacancies(role_params, area_params):
-    header = {
-        "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
-        "Authorization": f"Bearer APPLJFG7N22I3S8BBAE8ES7I573A8D4HBTF9P5FIQHNOJN12A5KGQ41VOLNI928K"
-    }
+    
     vacancy_params = {
         "professional_role":role_params,
         "area" : area_params,
