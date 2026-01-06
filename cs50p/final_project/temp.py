@@ -8,3 +8,5 @@ for i,e in enumerate(data):
     print(f"{titles[i]}: ")
     for key, value in e.items():
         print(f"\t{key}: {value}")
+
+
