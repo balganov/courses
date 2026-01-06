@@ -196,18 +196,18 @@ async def fetch_descriptions(vacancies):
             json.dump(results,f,indent=4, ensure_ascii=False)
 
 #Fetching one url for asynchronious requests
-async def fetch_one(session, url, semaphore):
+async def fetch_one(session, url, semaphore, param=None):
     header = {
         "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
-        "Authorization": f"Bearer APPLJFG7N22I3S8BBAE8ES7I573A8D4HBTF9P5FIQHNOJN12A5KGQ41VOLNI928K"
+        "Authorization": "Bearer APPLJFG7N22I3S8BBAE8ES7I573A8D4HBTF9P5FIQHNOJN12A5KGQ41VOLNI928K"
     }
     async with semaphore:
         try:
-            async with session.get(url, headers=header) as response:
-                print(f"Fetching {url}, status: {response.status}")
+            async with session.get(url, headers=header, params=param) as response:
+                print(f"Fetching {response.url}, status: {response.status}")
                 return await response.json()
         except (aiohttp.ClientError, asyncio.TimeoutError) as e:
-            print(f"Error fetching {url}: {e}")
+            print(f"Error fetching {response.url}: {e}")
 
 #Reading data from local JSON: list of roles
 def get_roles():
