@@ -23,7 +23,7 @@ def main():
 
     #Fetching vacancy descriptions and summarizing the data
     data = get_summary()
-    titles = ['Top 5 industries','Work format', 'Work experience', 'Top 5 cities', 'Professional roles', 'Type of employment']
+    titles = ['Top 5 cities', 'Top 5 industries', 'Work experience', 'Professional roles', 'Type of employment', 'Work format']
 
     for i,e in enumerate(data):
         print(f"{titles[i]}: ")
