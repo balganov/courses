@@ -118,7 +118,7 @@ async def fetch_dictionaries():
 
 #Accessing list of vacancies filtered by location and roles
 async def fetch_vacancies(role_params, area_params):
-    
+
     vacancy_params = {
         "professional_role":role_params,
         "area" : area_params,
@@ -128,29 +128,26 @@ async def fetch_vacancies(role_params, area_params):
         "page":0
         }
 
+    semaphore = asyncio.Semaphore(30)
     # Collect the initial data
     async with aiohttp.ClientSession() as session:
-        try:
-            async with session.get('https://api.hh.ru/vacancies', params=vacancy_params, headers=header) as response:
-                print(f"Fetching vacancies, status: {response.status}")
-                data = await response.json()
+        task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/professional_roles?locale=EN', semaphore, vacancy_params))
 
-            pages = int(data["pages"])
+        data = await task.json()
 
-            # Check if we have additional pages and append them to our existing data
-            if pages > 1:
-                for p in range(1, pages):
-                    vacancy_params["clusters"] = "false"
-                    vacancy_params["page"] = p
-                    # vancancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
-                    # data["items"].extend(vancancies.json()["items"])
-                    async with session.get('https://api.hh.ru/vacancies', params=vacancy_params, headers=header) as response:
-                        print(f"Fetching additional vacancies, status: {response.status}")
-                        vac = await response.json()
-                        data["items"].extend(vac["items"])
+        pages = int(data["pages"])
 
-        except (aiohttp.ClientError, asyncio.TimeoutError) as e:
-            print(f"Error fetching vacancies: {e}")
+        # Check if we have additional pages and append them to our existing data
+        if pages > 1:
+            for p in range(1, pages):
+                vacancy_params["clusters"] = "false"
+                vacancy_params["page"] = p
+                # vancancies = requests.get('https://api.hh.ru/vacancies', params=vacancy_params)
+                # data["items"].extend(vancancies.json()["items"])
+                async with session.get('https://api.hh.ru/vacancies', params=vacancy_params, headers=header) as response:
+                    print(f"Fetching additional vacancies, status: {response.status}")
+                    vac = await response.json()
+                    data["items"].extend(vac["items"])
 
     # Write the collected data to a file
     with open("vacancies.json","w", encoding="utf-8") as f:
