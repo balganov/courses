@@ -24,6 +24,7 @@ def main():
     #Fetching vacancy descriptions and summarizing the data
     data = get_summary()
     titles = ['Top 5 industries','Work format', 'Work experience', 'Top 5 cities', 'Professional roles', 'Type of employment']
+    count_skills = Counter(get_skills())
     
     for i,e in enumerate(data):
         print(f"{titles[i]}: ")
@@ -36,7 +37,6 @@ def main():
         create_dashboard(data)
 
         #Here we count skills occurances from each vacancy URL, generate wordcloud and save it to png file
-        count_skills = Counter(get_skills())
         wcloud = WordCloud(background_color='white', width=2000,height=1200).generate_from_frequencies(count_skills)
         wcloud.to_file("word_cloud.png")
         generate_pdf("charts.png", "word_cloud.png")
