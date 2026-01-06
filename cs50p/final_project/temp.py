@@ -6,8 +6,5 @@ dict = {'Almaty': 16, 'Astana': 3, 'Shymkent': 1, 'Kazakhstan': 0}
 
 for i,e in enumerate(data):
     print(f"{titles[i]}: ")
-    print(e)
-
-for key, value in dict.items():
-    print(key)
-    print(value)
+    for key, value in e.items():
+        print(f"{key}: {value}")
