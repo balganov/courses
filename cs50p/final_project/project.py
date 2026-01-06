@@ -8,23 +8,26 @@ from fpdf import FPDF
 import aiohttp
 import asyncio
 
+REQ_PER_SECOND = 30
 
-def main():
+async def main():
     #Fetching dictionaries from corresponding endpoints and writing them to local json files
-    asyncio.run(fetch_dictionaries())
-    display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
-    display_roles = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
 
-    area_ids = validated_input(f"Available locations:\n{display_areas}\nPlease select your preferred work locations:", get_areas())
-    role_ids = validated_input(f"Available professional roles:\n{display_roles}\nPlease specify the job roles you are seeking:", get_roles())
+    async with aiohttp.ClientSession() as session:
+        await fetch_dictionaries(session)
+        display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
+        display_roles = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
 
-    #Fetching vacancies based on the user input (proffesional roles and locations) and and writing them to local json files
-    asyncio.run(fetch_vacancies(role_ids, area_ids))
+        area_ids = validated_input(f"Available locations:\n{display_areas}\nPlease select your preferred work locations:", get_areas())
+        role_ids = validated_input(f"Available professional roles:\n{display_roles}\nPlease specify the job roles you are seeking:", get_roles())
 
-    #Fetching vacancy descriptions and summarizing the data
-    data = get_summary()
+        #Fetching vacancies based on the user input (proffesional roles and locations) and and writing them to local json files
+        await fetch_vacancies(session, role_ids, area_ids)
+
+        #Fetching vacancy descriptions and summarizing the data
+        data = await get_summary(session)
+
     titles = ['Top 5 cities', 'Top 5 industries', 'Work experience', 'Professional roles', 'Type of employment', 'Work format']
-
     for i,e in enumerate(data):
         print(f"{titles[i]}: ")
         for key, value in e.items():
@@ -38,12 +41,14 @@ def main():
 
     visualization_requested = input("Would you like to generate a visualization in the form of charts to summarize the data? (y/n):")
     if visualization_requested.lower() == 'y':
-
+        print("Creating a dashboard with our fetched data... ")
         create_dashboard(data)
 
         #Here we count skills occurances from each vacancy URL, generate wordcloud and save it to png file
+        print("Creating a wordcloud for the skills... ")
         wcloud = WordCloud(background_color='white', width=2000,height=1200).generate_from_frequencies(count_skills)
         wcloud.to_file("word_cloud.png")
+        print("Creating a PDF file with our data... ")
         generate_pdf("charts.png", "word_cloud.png")
     else:
         print("If you want to analyze other vacancies, please rerun the program. Thank you.")
@@ -55,7 +60,7 @@ def validated_input(prompt, values):
         user_input = input(prompt)
 
         if not user_input:
-            print("Error: Input cannot be empty.")
+            print("***\nError: Input cannot be empty.\n***")
             continue
 
         try:
@@ -63,18 +68,16 @@ def validated_input(prompt, values):
             if all(i in valid_ids for i in selected_ids):
                 return selected_ids
             else:
-                print("Error: Please select only the IDs listed above.")
+                print("***\nError: Please select only the IDs listed above.\n***")
         except ValueError:
-            print("Error: Please use only numbers and commas (e.g. 165 or 140, 2, 13)")
+            print("***\nError: Please use only numbers and commas (e.g. 165 or 140, 2, 13)\n***")
 
 
 #Accessing roles and locations from dictionaries
-async def fetch_dictionaries():
-    semaphore = asyncio.Semaphore(2)
-    async with aiohttp.ClientSession() as session:
-        async with asyncio.TaskGroup() as tg:
-            task1 = tg.create_task(fetch_one(session, 'https://api.hh.ru/professional_roles?locale=EN', semaphore))
-            task2 = tg.create_task(fetch_one(session, 'https://api.hh.ru/areas?locale=EN', semaphore))
+async def fetch_dictionaries(session):
+    async with asyncio.TaskGroup() as tg:
+        task1 = tg.create_task(fetch_one(session, 'https://api.hh.ru/professional_roles?locale=EN'))
+        task2 = tg.create_task(fetch_one(session, 'https://api.hh.ru/areas?locale=EN'))
 
     roles = task1.result()
     areas = task2.result()
@@ -88,7 +91,7 @@ async def fetch_dictionaries():
     print("Fetching dictionaries ... done")
 
 #Accessing list of vacancies filtered by location and roles
-async def fetch_vacancies(role_params, area_params):
+async def fetch_vacancies(session, role_params, area_params):
 
     vacancy_params = {
         "professional_role":role_params,
@@ -99,33 +102,30 @@ async def fetch_vacancies(role_params, area_params):
         "page":0
         }
 
-    semaphore = asyncio.Semaphore(30)
     # Collect the initial data
-    async with aiohttp.ClientSession() as session:
-        task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/vacancies', semaphore, vacancy_params))
+    task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/vacancies', vacancy_params))
 
-        data = await task
-        pages = int(data["pages"])
+    data = await task
+    pages = int(data["pages"])
 
-        # Check if we have additional pages and append them to our existing data
-        if pages > 1:
-            for p in range(1, pages):
-                vacancy_params["clusters"] = "false"
-                vacancy_params["page"] = p
-                task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/vacancies', semaphore, vacancy_params))
-                vac = await task
-                data["items"].extend(vac["items"])
+    # Check if we have additional pages and append them to our existing data
+    if pages > 1:
+        for p in range(1, pages):
+            vacancy_params["clusters"] = "false"
+            vacancy_params["page"] = p
+            task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/vacancies', vacancy_params))
+            vac = await task
+            data["items"].extend(vac["items"])
 
     # Write the collected data to a file
     with open("vacancies.json","w", encoding="utf-8") as f:
             json.dump(data,f,indent=4, ensure_ascii=False)
 
 #Accessing individual vacancy information
-async def fetch_descriptions(vacancies):
+async def fetch_descriptions(session, vacancies):
     results = []
     urls = [i["url"] for i in vacancies["items"]]
     total_urls = len(urls)
-    REQ_PER_SECOND = 30
 
     # This implementation was simple, however very slow due to syncronious requests
     # try:
@@ -138,31 +138,28 @@ async def fetch_descriptions(vacancies):
 
     print(f"Fetching {len(urls)} vacancy descriptions...")
 
-    #fetching url batch based on api requirements - 30 requests per second
-    semaphore = asyncio.Semaphore(REQ_PER_SECOND)
-    async with aiohttp.ClientSession() as session:
-        for i in range(0,total_urls,REQ_PER_SECOND):
-            end = total_urls if total_urls-i < REQ_PER_SECOND else i+REQ_PER_SECOND
-            tasks = [asyncio.create_task(fetch_one(session, url, semaphore)) for url in urls[i:end]]
-            #print(tasks)
-            current_results = await asyncio.gather(*tasks)
-            results.extend(current_results)
+    for i in range(0,total_urls,REQ_PER_SECOND):
+        end = total_urls if total_urls-i < REQ_PER_SECOND else i+REQ_PER_SECOND
+        tasks = [asyncio.create_task(fetch_one(session, url)) for url in urls[i:end]]
+        #print(tasks)
+        current_results = await asyncio.gather(*tasks)
+        results.extend(current_results)
 
-            if end < total_urls:
-                print(f"Pausing for 1.2 seconds to meet API rate limits")
-                await asyncio.sleep(1.2)
+        if end < total_urls:
+            print(f"Pausing for 1.1 seconds to respect API rate limits")
+            await asyncio.sleep(1.1)
 
     print("Creating local JSON file with vacancy descriptions...")
     with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
             json.dump(results,f,indent=4, ensure_ascii=False)
 
 #Fetching one url for asynchronious requests
-async def fetch_one(session, url, semaphore, param=None):
+async def fetch_one(session, url, param=None):
     header = {
         "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
         "Authorization": "Bearer APPLJFG7N22I3S8BBAE8ES7I573A8D4HBTF9P5FIQHNOJN12A5KGQ41VOLNI928K"
     }
-    async with semaphore:
+    async with asyncio.Semaphore(REQ_PER_SECOND):
         try:
             async with session.get(url, headers=header, params=param) as response:
                 print(f"Fetching {response.url}, status: {response.status}")
@@ -191,14 +188,14 @@ def get_areas():
     #return '\n'.join(f"[{e['id']}]  {e['name']}" for e in areas if e['name'] != "Other regions")
 
 #Reading data from local JSON: summarized data from clusters
-def get_summary():
+async def get_summary(session):
     summary = {}
     summary_list = []
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
     #Create local JSON file with vacancy descriptions
-    asyncio.run(fetch_descriptions(vacancies))
+    await fetch_descriptions(session, vacancies)
     #Total number of vacancies
     #total = vacancies["found"]
 
@@ -233,7 +230,6 @@ def get_skills():
     return skills
 
 def create_dashboard(data):
-
     #Here we create a two-dimensional plot that has 2 rows and 3 comlums resulting in 6 charts in total
     # r - rows, c - columns, n - iterator for setting the titles
     r, c, n = 2, 3, 0
@@ -275,9 +271,9 @@ def generate_pdf(img1, img2):
         pdf.set_xy(10,0)
         pdf.image(img2, y=150, w=190, keep_aspect_ratio=True)
         pdf.output("summary.pdf")
-
+        print("Success! You can check the results in a local folder.")
     except FileNotFoundError:
             sys.exit("Input does not exist")
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
