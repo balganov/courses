@@ -18,26 +18,25 @@ def main():
     area_ids = validated_input(f"Available locations:\n{display_areas}\nPlease select your preferred work locations:", get_areas())
     role_ids = validated_input(f"Available professional roles:\n{display_roles}\nPlease specify the job roles you are seeking:", get_roles())
 
+    # Fetching vacancies based on the user input (proffesional roles and locations) and saving them into 
     asyncio.run(fetch_vacancies(role_ids, area_ids))
 
     data = get_summary()
     print(data)
 
-    
-    create_dashboard(data)
-
-    #Here we count skills occurances from each vacancy URL, generate wordcloud and save it to png file
-    count_skills = Counter(get_skills())
-    wcloud = WordCloud(background_color='white', width=2000,height=1200).generate_from_frequencies(count_skills)
-    wcloud.to_file("word_cloud.png")
-
     visualization_requested = input("Would you like to generate a visualization in the form of charts to summarize the data? (y/n):")
     if visualization_requested.lower() == 'y':
+
+        create_dashboard(data)
+
+        #Here we count skills occurances from each vacancy URL, generate wordcloud and save it to png file
+        count_skills = Counter(get_skills())
+        wcloud = WordCloud(background_color='white', width=2000,height=1200).generate_from_frequencies(count_skills)
+        wcloud.to_file("word_cloud.png")
         generate_pdf("charts.png", "word_cloud.png")
     else:
         print("If you want to analyze other vacancies, please rerun the program. Thank you.")
 
-    print("done")
 
 def validated_input(prompt, values):
     valid_ids = set(int(e['id']) for e in values)
