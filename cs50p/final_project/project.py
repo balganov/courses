@@ -134,7 +134,6 @@ async def fetch_vacancies(role_params, area_params):
         task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/vacancies', semaphore, vacancy_params))
 
         data = await task.json()
-
         pages = int(data["pages"])
 
         # Check if we have additional pages and append them to our existing data
