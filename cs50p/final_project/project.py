@@ -10,7 +10,7 @@ import asyncio
 
 
 def main():
-    # First we fetch dictionaries from corresponding endpoints and write them to local json flies
+    # Fetching dictionaries from corresponding endpoints and writing them to local json files
     asyncio.run(fetch_dictionaries())
     display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
     display_roles = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
@@ -18,9 +18,10 @@ def main():
     area_ids = validated_input(f"Available locations:\n{display_areas}\nPlease select your preferred work locations:", get_areas())
     role_ids = validated_input(f"Available professional roles:\n{display_roles}\nPlease specify the job roles you are seeking:", get_roles())
 
-    # Fetching vacancies based on the user input (proffesional roles and locations) and saving them into 
+    # Fetching vacancies based on the user input (proffesional roles and locations) and and writing them to local json files
     asyncio.run(fetch_vacancies(role_ids, area_ids))
 
+    
     data = get_summary()
     print(data)
 
