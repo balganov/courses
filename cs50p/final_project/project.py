@@ -34,10 +34,10 @@ async def main():
             print(f"\t{key}: {value}")
 
     count_skills = Counter(get_skills())
+    top_10 = count_skills.most_common(10)
     print("Top 10 skills:")
-    for i, k in enumerate(count_skills):
-        if i < 10:
-            print(f"\t{k}")
+    for i in top_10:
+        print(f"\t{i[0]}: {i[1]}")
 
     visualization_requested = input("Would you like to generate a visualization in the form of charts to summarize the data? (y/n):")
     if visualization_requested.lower() == 'y':
