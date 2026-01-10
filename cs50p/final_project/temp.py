@@ -6,6 +6,6 @@ with open("data/job_roles.json", "r", encoding="utf-8") as f:
     roles = json.load(f)
 
 #Summary of regions, industries, work experience, roles, work format, employment type
-for 
+for cat in roles:
+    print(cat['name'])
 
-print(summary_list)
