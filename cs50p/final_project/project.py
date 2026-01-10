@@ -7,12 +7,14 @@ import numpy as np
 from fpdf import FPDF
 import aiohttp
 import asyncio
+import os
+from dotenv import load_dotenv
 
 REQ_PER_SECOND = 30
 
 async def main():
+    load_dotenv()
     #Fetching dictionaries from corresponding endpoints and writing them to local json files
-
     async with aiohttp.ClientSession() as session:
         await fetch_dictionaries(session)
         display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
@@ -28,16 +30,16 @@ async def main():
         data = await get_summary(session)
 
     titles = ['Top 5 cities', 'Top 5 industries', 'Work experience', 'Professional roles', 'Type of employment', 'Work format']
-    for i,e in enumerate(data):
-        print(f"{titles[i]}: ")
-        for key, value in e.items():
+    for title, summary in zip(titles,data):
+        print(f"{title}: ")
+        for key, value in summary.items():
             print(f"\t{key}: {value}")
 
     count_skills = Counter(get_skills())
     top_10 = count_skills.most_common(10)
     print("Top 10 skills:")
-    for i in top_10:
-        print(f"\t{i[0]}: {i[1]}")
+    for skill, count in top_10:
+        print(f"\t{skill}: {count}")
 
     visualization_requested = input("Would you like to generate a visualization in the form of charts to summarize the data? (y/n):")
     if visualization_requested.lower() == 'y':
@@ -108,7 +110,7 @@ async def fetch_vacancies(session, role_params, area_params):
     data = await task
     pages = int(data["pages"])
 
-    # Check if we have additional pages and append them to our existing data
+    # Checking if we have additional pages and appending them to our existing data
     if pages > 1:
         for p in range(1, pages):
             vacancy_params["clusters"] = "false"
@@ -117,7 +119,7 @@ async def fetch_vacancies(session, role_params, area_params):
             vac = await task
             data["items"].extend(vac["items"])
 
-    # Write the collected data to a file
+    # Writing the collected data to a file
     with open("vacancies.json","w", encoding="utf-8") as f:
             json.dump(data,f,indent=4, ensure_ascii=False)
 
@@ -141,12 +143,11 @@ async def fetch_descriptions(session, vacancies):
     for i in range(0,total_urls,REQ_PER_SECOND):
         end = total_urls if total_urls-i < REQ_PER_SECOND else i+REQ_PER_SECOND
         tasks = [asyncio.create_task(fetch_one(session, url)) for url in urls[i:end]]
-        #print(tasks)
         current_results = await asyncio.gather(*tasks)
         results.extend(current_results)
 
         if end < total_urls:
-            print(f"Pausing for 1.1 seconds to respect API rate limits")
+            print("Pausing for 1.1 seconds to respect API rate limits")
             await asyncio.sleep(1.1)
 
     print("Creating local JSON file with vacancy descriptions...")
@@ -157,7 +158,7 @@ async def fetch_descriptions(session, vacancies):
 async def fetch_one(session, url, param=None):
     header = {
         "User-Agent": "JobAnalyzer/1.0 (sdf010121@gmail.com)",
-        "Authorization": "Bearer APPLJFG7N22I3S8BBAE8ES7I573A8D4HBTF9P5FIQHNOJN12A5KGQ41VOLNI928K"
+        "Authorization": f"Bearer {os.getenv('ACCESS_TOKEN')}"
     }
     async with asyncio.Semaphore(REQ_PER_SECOND):
         try:
@@ -189,26 +190,23 @@ def get_areas():
 
 #Reading data from local JSON: summarized data from clusters
 async def get_summary(session):
-    summary = {}
     summary_list = []
     with open("vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
-    #Create local JSON file with vacancy descriptions
+    #Creating local JSON file with vacancy descriptions
     await fetch_descriptions(session, vacancies)
-    #Total number of vacancies
-    #total = vacancies["found"]
 
     #Summary of regions, industries, work experience, roles, work format, employment type
-    for i in range(len(vacancies["clusters"])):
+    for cluster in vacancies["clusters"]:
         summary = {}
-        if i in [0,2]:
-            for c in vacancies["clusters"][i]["items"][:5]:
-                summary.update({c['name']: c['count']})
+        if cluster["name"] in ["Region", "Company branch"]:
+            for element in cluster["items"][:5]:
+                summary.update({element['name']: element['count']})
             summary_list.append(summary)
-        elif i in [3,5,8,11]:
-            for c in vacancies["clusters"][i]["items"]:
-                summary.update({c['name']: c['count']})
+        elif cluster["name"] in ["Work experience", "Professional role", "Type of employment", "Work format"]:
+            for element in cluster["items"]:
+                summary.update({element['name']: element['count']})
             summary_list.append(summary)
 
     return summary_list
@@ -217,16 +215,13 @@ async def get_summary(session):
 #It will be useful for future extractions of data from a particular vacancy
 def get_skills():
     skills = []
-    counter = 0
     with open("vacancy_descriptions.json", "r", encoding="utf-8") as f:
         desc = json.load(f)
 
     for d in desc:
-        if d["key_skills"] == []:
-            counter += 1
-        else:
-            for i in d["key_skills"]:
-                skills.append(i["name"])
+        for skill in d["key_skills"]:
+            skills.append(skill["name"])
+
     return skills
 
 def create_dashboard(data):
@@ -244,17 +239,17 @@ def create_dashboard(data):
             n += 1
 
     #Generating pie charts located in the first row
-    ax[0,0].pie(data[1].values(), labels=data[1].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
-    ax[0,1].pie(data[5].values(), labels=data[5].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
-    ax[0,2].pie(data[2].values(), labels=data[2].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
+    pie_ind = [1,5,2]
+    for j, ind in enumerate(pie_ind):
+        ax[0,j].pie(data[ind].values(), labels=data[ind].keys(), colors=colors, autopct='%.2f%%', textprops={'fontsize': 13})
     #Generating bar charts located in the second row
-    ax[1,0].bar(data[0].keys(), data[0].values(), color=colors)
-    ax[1,1].bar(data[3].keys(), data[3].values(), color=colors)
-    ax[1,2].bar(data[4].keys(), data[4].values(), color=colors)
+    bar_ind = [0,3,4]
+    for j, ind in enumerate(bar_ind):
+        ax[1,j].bar(data[ind].keys(), data[ind].values(), color=colors)
 
     #Adjusting font size for bar charts
-    for i in range(3):
-        ax[1,i].tick_params(axis='x', labelsize=12, rotation=45)
+    for j in range(3):
+        ax[1,j].tick_params(axis='x', labelsize=12, rotation=45)
 
     #Fixing the layout, so labels don't overlap and then saving the charts to png file
     plt.tight_layout()
@@ -272,8 +267,8 @@ def generate_pdf(img1, img2):
         pdf.image(img2, y=150, w=190, keep_aspect_ratio=True)
         pdf.output("summary.pdf")
         print("Success! You can check the results in a local folder.")
-    except FileNotFoundError:
-            sys.exit("Input does not exist")
+    except FileNotFoundError as e:
+            sys.exit(f"Input file does not exist: {e}")
 
 if __name__ == "__main__":
     asyncio.run(main())
