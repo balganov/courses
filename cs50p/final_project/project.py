@@ -46,7 +46,7 @@ async def main():
         print("Creating a dashboard with our fetched data... ")
         create_dashboard(data)
 
-        #Here we count skills occurances from each vacancy URL, generate wordcloud and save it to png file
+        #Counting skills occurances from each vacancy URL and generating wordcloud and save it to png file
         print("Creating a wordcloud for the skills... ")
         wcloud = WordCloud(background_color='white', width=2000,height=1200).generate_from_frequencies(count_skills)
         wcloud.to_file("word_cloud.png")
@@ -104,7 +104,7 @@ async def fetch_vacancies(session, role_params, area_params):
         "page":0
         }
 
-    # Collect the initial data
+    # Collecting the initial data
     task = asyncio.create_task(fetch_one(session, 'https://api.hh.ru/vacancies', vacancy_params))
 
     data = await task
