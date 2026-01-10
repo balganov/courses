@@ -174,7 +174,11 @@ def get_roles():
         job_roles = json.load(f)
 
     keys = ['id','name']
-    list = job_roles["categories"][7]["roles"]
+    #list = job_roles["categories"][7]["roles"]
+    for category in job_roles["categories"]:
+    if category["name"] == "Information technology":
+        list = category["roles"]
+        
     return [{key: e[key] for key in keys} for e in list]
     #return '\n'.join(f"[{e['id']}]  {e['name']}" for e in job_roles["categories"][7]["roles"])
 
