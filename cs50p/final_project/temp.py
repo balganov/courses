@@ -7,5 +7,5 @@ with open("data/job_roles.json", "r", encoding="utf-8") as f:
 
 #Summary of regions, industries, work experience, roles, work format, employment type
 for cat in roles["categories"]:
-    print(cat["name"])
+    print(f"{cat['id']}: {cat['name']}")
 
