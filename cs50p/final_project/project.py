@@ -268,7 +268,7 @@ def generate_pdf(img1, img2):
         pdf.output("summary.pdf")
         print("Success! You can check the results in a local folder.")
     except FileNotFoundError as e:
-            sys.exit(f"Input file does not exist: {e}")
+        sys.exit(f"Input file does not exist: {e}")
 
 if __name__ == "__main__":
     asyncio.run(main())
