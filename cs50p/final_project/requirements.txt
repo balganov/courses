@@ -1,0 +1,6 @@
+wordcloud
+matplotlib
+numpy
+fpdf
+aiohttp
+python-dotenv
