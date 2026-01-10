@@ -11,7 +11,6 @@ for cluster in vacancies["clusters"]:
         for element in cluster["items"][:5]:
             if len(element['name'].split(',')) > 2:
                 elements = ','.join(element['name'].split(',')[:2])
-                print(elements)
                 summary.update({elements: element['count']})
             else:
                 summary.update({element['name']: element['count']})
