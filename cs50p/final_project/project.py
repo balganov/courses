@@ -51,7 +51,7 @@ async def main():
         wcloud = WordCloud(background_color='white', width=2000,height=1200).generate_from_frequencies(count_skills)
         wcloud.to_file("summary/word_cloud.png")
         print("Creating a PDF file with our data... ")
-        generate_pdf("charts.png", "word_cloud.png")
+        generate_pdf("summary/charts.png", "summary/word_cloud.png")
     else:
         print("If you want to analyze other vacancies, please rerun the program. Thank you.")
 
