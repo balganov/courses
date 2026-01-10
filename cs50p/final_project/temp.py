@@ -10,5 +10,6 @@ for cat in roles["categories"]:
     print(f"{cat['id']}: {cat['name']}")
 
 keys = ['id','name']
-list = roles["categories"][7]["roles"]
+list = [cat["roles"] for cat in roles["categories"] if cat["name"] == "Information technology"]
+print(list)
 print([{key: e[key] for key in keys} for e in list])
