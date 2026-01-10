@@ -49,7 +49,7 @@ async def main():
         #Counting skills occurances from each vacancy URL and generating wordcloud and save it to png file
         print("Creating a wordcloud for the skills... ")
         wcloud = WordCloud(background_color='white', width=2000,height=1200).generate_from_frequencies(count_skills)
-        wcloud.to_file("word_cloud.png")
+        wcloud.to_file("summary/word_cloud.png")
         print("Creating a PDF file with our data... ")
         generate_pdf("charts.png", "word_cloud.png")
     else:
@@ -84,10 +84,10 @@ async def fetch_dictionaries(session):
     roles = task1.result()
     areas = task2.result()
 
-    with open("job_roles.json","w", encoding="utf-8") as f:
+    with open("data/job_roles.json","w", encoding="utf-8") as f:
         json.dump(roles,f,indent=4, ensure_ascii=False)
 
-    with open("areas.json", "w", encoding="utf-8") as f:
+    with open("data/areas.json", "w", encoding="utf-8") as f:
         json.dump(areas,f,indent=4, ensure_ascii=False)
 
     print("Fetching dictionaries ... done")
@@ -120,7 +120,7 @@ async def fetch_vacancies(session, role_params, area_params):
             data["items"].extend(vac["items"])
 
     # Writing the collected data to a file
-    with open("vacancies.json","w", encoding="utf-8") as f:
+    with open("data/vacancies.json","w", encoding="utf-8") as f:
             json.dump(data,f,indent=4, ensure_ascii=False)
 
 #Accessing individual vacancy information
@@ -151,7 +151,7 @@ async def fetch_descriptions(session, vacancies):
             await asyncio.sleep(1.1)
 
     print("Creating local JSON file with vacancy descriptions...")
-    with open("vacancy_descriptions.json","w", encoding="utf-8") as f:
+    with open("data/vacancy_descriptions.json","w", encoding="utf-8") as f:
             json.dump(results,f,indent=4, ensure_ascii=False)
 
 #Fetching one url for asynchronious requests
@@ -170,7 +170,7 @@ async def fetch_one(session, url, param=None):
 
 #Reading data from local JSON: list of roles
 def get_roles():
-    with open("job_roles.json", "r", encoding="utf-8") as f:
+    with open("data/job_roles.json", "r", encoding="utf-8") as f:
         job_roles = json.load(f)
 
     keys = ['id','name']
@@ -180,7 +180,7 @@ def get_roles():
 
 #Reading data from local JSON: list of locations
 def get_areas():
-    with open("areas.json", "r", encoding="utf-8") as f:
+    with open("data/areas.json", "r", encoding="utf-8") as f:
         areas = json.load(f)
 
     keys = ['id','name']
@@ -191,7 +191,7 @@ def get_areas():
 #Reading data from local JSON: summarized data from clusters
 async def get_summary(session):
     summary_list = []
-    with open("vacancies.json", "r", encoding="utf-8") as f:
+    with open("data/vacancies.json", "r", encoding="utf-8") as f:
         vacancies = json.load(f)
 
     #Creating local JSON file with vacancy descriptions
@@ -215,7 +215,7 @@ async def get_summary(session):
 #It will be useful for future extractions of data from a particular vacancy
 def get_skills():
     skills = []
-    with open("vacancy_descriptions.json", "r", encoding="utf-8") as f:
+    with open("data/vacancy_descriptions.json", "r", encoding="utf-8") as f:
         desc = json.load(f)
 
     for d in desc:
@@ -253,7 +253,7 @@ def create_dashboard(data):
 
     #Fixing the layout, so labels don't overlap and then saving the charts to png file
     plt.tight_layout()
-    plt.savefig("charts.png")
+    plt.savefig("summary/charts.png")
 
 #Merging to images into one pdf
 def generate_pdf(img1, img2):
@@ -265,7 +265,7 @@ def generate_pdf(img1, img2):
         pdf.cell(0, 35, "Required skills (Word Cloud)", align="C")
         pdf.set_xy(10,0)
         pdf.image(img2, y=150, w=190, keep_aspect_ratio=True)
-        pdf.output("summary.pdf")
+        pdf.output("summary/summary.pdf")
         print("Success! You can check the results in a local folder.")
     except FileNotFoundError as e:
         sys.exit(f"Input file does not exist: {e}")
