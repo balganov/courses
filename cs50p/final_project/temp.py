@@ -21,4 +21,4 @@ for cluster in vacancies["clusters"]:
             summary.update({element['name']: element['count']})
         summary_list.append(summary)
 
-return summary_list
+print(summary_list)
