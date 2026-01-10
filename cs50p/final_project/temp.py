@@ -2,19 +2,10 @@ import json
 
 summary = {}
 summary_list = []
-with open("vacancies.json", "r", encoding="utf-8") as f:
-    vacancies = json.load(f)
+with open("data/job_roles.json", "r", encoding="utf-8") as f:
+    roles = json.load(f)
 
 #Summary of regions, industries, work experience, roles, work format, employment type
-for cluster in vacancies["clusters"]:
-    summary = {}
-    if cluster["name"] in ["Region", "Company branch"]:
-        for element in cluster["items"][:5]:
-            summary.update({element['name']: element['count']})
-        summary_list.append(summary)
-    elif cluster["name"] in ["Work experience", "Professional role", "Type of employment", "Work format"]:
-        for element in cluster["items"]:
-            summary.update({element['name']: element['count']})
-        summary_list.append(summary)
+for 
 
 print(summary_list)
