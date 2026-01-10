@@ -9,8 +9,8 @@ for cluster in vacancies["clusters"]:
     summary = {}
     if cluster["name"] in ["Region", "Company branch"]:
         for element in cluster["items"][:5]:
-            try:
-                elements = element['name'].split(',')
+            if len(element['name'].split(',')) > 2:
+                
                 print(elements)
             except:
                 pass
