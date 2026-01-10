@@ -20,7 +20,7 @@ async def main():
         display_areas = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_areas())
         display_roles = '\n'.join(f"{e['id'].rjust(5)} {e['name']}" for e in get_roles())
 
-        area_ids = validated_input(f"\nAvailable locations:\n{display_areas}\nPlease select your preferred work locationsby listing IDs:", get_areas())
+        area_ids = validated_input(f"\nAvailable locations:\n{display_areas}\nPlease select your preferred work locations by listing IDs:", get_areas())
         role_ids = validated_input(f"\nAvailable professional roles:\n{display_roles}\nPlease specify the job roles you are seeking by listing IDs:", get_roles())
 
         #Fetching vacancies based on the user input (proffesional roles and locations) and and writing them to local json files
@@ -176,9 +176,9 @@ def get_roles():
     keys = ['id','name']
     #list = job_roles["categories"][7]["roles"]
     for category in job_roles["categories"]:
-    if category["name"] == "Information technology":
-        list = category["roles"]
-        
+        if category["name"] == "Information technology":
+            list = category["roles"]
+
     return [{key: e[key] for key in keys} for e in list]
     #return '\n'.join(f"[{e['id']}]  {e['name']}" for e in job_roles["categories"][7]["roles"])
 
