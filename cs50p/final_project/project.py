@@ -13,7 +13,12 @@ from dotenv import load_dotenv
 REQ_PER_SECOND = 30
 
 async def main():
+    #Loading the access token from .env
     load_dotenv()
+    # Creating folders to save our data and summary
+    os.makedirs("data", exist_ok=True)
+    os.makedirs("summary", exist_ok=True)
+
     #Fetching dictionaries from corresponding endpoints and writing them to local json files
     async with aiohttp.ClientSession() as session:
         await fetch_dictionaries(session)
